@@ -1,7 +1,5 @@
-<nav class="navbar navbar-expand-sm navbar-light" style="background-color: #e3f2fd;">
-  <a class="navbar-brand ml-5" href="Home">
-    <h1>Fint</h1>
-  </a>
+<nav *ngIf="loggedIn" class="navbar navbar-expand-sm navbar-light">
+  <img class="smaller ml-5 mr-3" src="../assets/Logo.svg" href="Home">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

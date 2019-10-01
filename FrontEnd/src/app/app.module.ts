@@ -10,6 +10,7 @@ import { ItemComponent } from './item/item.component';
 import { OutfintComponent } from './outfint/outfint.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
     ItemComponent,
     OutfintComponent,
     ProfileComponent,
-    ProfileSettingsComponent
+    ProfileSettingsComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

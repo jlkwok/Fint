@@ -1,0 +1,45 @@
+<nav class="navbar navbar-light mt-2">
+    <img class="smaller ml-5 mr-3" src="../assets/Logo.svg" href="Home">
+    <form class="form-inline">
+        <input type="email" class="form-control mr-sm-2" id="email" placeholder="Email">
+        <input type="password" class="form-control mr-sm-2" placeholder="Password">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>
+    </form>
+</nav>
+
+<hr>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+            <img class="medium" src="../../assets/Screenshot (2).jpg">
+        </div>
+        <div class="col-lg-6">
+            <h1>Sign Up</h1>
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="firstName">First Name</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password"
+                        placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
