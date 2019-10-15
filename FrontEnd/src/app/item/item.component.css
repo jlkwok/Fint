@@ -1,0 +1,49 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 50px;
+  width: 50px;
+  background-size: 50%, 50%;
+  border-radius: 50%;
+  background: white;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 30px;
+  color: black;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 30px;
+  color: black;
+}
+
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 1.5rem;
+    color: #d3d3d3;
+  }
+
+.full {
+    color: #fed766;
+}
+
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #fed766;
+}
+
+.btn-outline-primary {
+  border-color: #fe4a49;
+  color: #fe4a49;
+}
+
+.btn-outline-primary:hover {
+  background-color: #fe4a49;
+  color: white;
+}

@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CartComponent } from './cart/cart.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { ItemComponent } from './item/item.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'Outfint', component:OutfintComponent },
   { path: 'Profile', component:ProfileComponent },
   { path: 'Cart', component:CartComponent },
-  { path: 'ProfileSettings', component:ProfileSettingsComponent }
+  { path: 'ProfileSettings', component:ProfileSettingsComponent },
+  { path: 'Item', component:ItemComponent }
 ];
 
 @NgModule({

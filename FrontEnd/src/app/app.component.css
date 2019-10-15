@@ -9,3 +9,11 @@
 .smaller {
     width: 2%;
 }
+
+.pointer {
+    cursor: pointer;
+}
+
+.html {
+    background-color: black;
+}
