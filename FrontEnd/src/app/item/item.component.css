@@ -47,3 +47,10 @@
   background-color: #fe4a49;
   color: white;
 }
+
+.btn-outline-primary:active, .btn-outline-primary:focus {
+  background-color: #fe4a49 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+}

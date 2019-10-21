@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DatePickerComponent } from './date-picker/date-picker.component';
     ProfileComponent,
     ProfileSettingsComponent,
     SignInComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    ReviewComponent
   ],
   imports: [
     BrowserModule,

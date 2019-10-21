@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  avgRating = 4;
+  reviewRating = 0;
 
   constructor() { }
 
