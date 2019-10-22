@@ -1,0 +1,53 @@
+<div class="card m-2" style="width: 20rem;">
+    <img class="card-img-top" src="../../assets/placeholder.png" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Item title</h5>
+        <p class="card-text text-muted row-bottom-margin">Seller</p>
+        <h4>
+            <ngb-rating class="mt-0" [(rate)]="avgRating" [starTemplate]="t" [readonly]="true" max="5">
+            </ngb-rating>
+            <small class="text-muted mr-2">(# reviews)</small>
+        </h4>
+        <h5 class="card-title"><b>$0.00</b></h5>
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#itemReviewModal">Review this
+            item</button>
+    </div>
+</div>
+
+<div class="modal fade" id="itemReviewModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Leave a Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mx-2">
+                    <img class="small" src="../../assets/placeholder.png">
+                    <p class="mx-2 my-auto">Name</p>
+                </div>
+                <hr>
+                <p>Overall Rating: <ngb-rating class="align-text-center" [(rate)]="reviewRating" [starTemplate]="t"
+                        max="5">
+                    </ngb-rating>
+                </p>
+                <div class="form-group">
+                    <label for="revTextArea">Write Your Review:</label>
+                    <textarea class="form-control" id="revTextArea" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Post Your Review</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>

@@ -14,6 +14,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { ReviewComponent } from './review/review.component';
 import { ItemCardComponent } from './item-card/item-card.component';
+import { PastFintCardComponent } from './past-fint-card/past-fint-card.component';
+import { OutfintCardComponent } from './outfint-card/outfint-card.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { ItemCardComponent } from './item-card/item-card.component';
     SignInComponent,
     DatePickerComponent,
     ReviewComponent,
-    ItemCardComponent
+    ItemCardComponent,
+    PastFintCardComponent,
+    OutfintCardComponent
   ],
   imports: [
     BrowserModule,

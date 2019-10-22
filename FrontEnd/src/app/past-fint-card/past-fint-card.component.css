@@ -1,0 +1,42 @@
+.star {
+    position: relative;
+    display: inline-block;
+    font-size: 1.8rem;
+    color: #d3d3d3;
+  }
+
+.full {
+    color: #fed766;
+}
+
+.half {
+    position: absolute;
+    display: inline-block;
+    overflow: hidden;
+    color: #fed766;
+}
+
+.row-bottom-margin { 
+    margin-bottom: 5px; 
+}
+
+.btn-outline-primary {
+    border-color: #fe4a49;
+    color: #fe4a49;
+}
+  
+.btn-outline-primary:hover {
+    background-color: #fe4a49;
+    color: white;
+}
+
+.btn-outline-primary:active, .btn-outline-primary:focus {
+  background-color: #fe4a49 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
+}
+
+.small {
+    width: 30%;
+}
