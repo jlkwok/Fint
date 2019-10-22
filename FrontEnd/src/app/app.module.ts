@@ -13,6 +13,7 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { SignInComponent } from './sign-in/sign-in.component';
 import { DatePickerComponent } from './date-picker/date-picker.component';
 import { ReviewComponent } from './review/review.component';
+import { ItemCardComponent } from './item-card/item-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReviewComponent } from './review/review.component';
     ProfileSettingsComponent,
     SignInComponent,
     DatePickerComponent,
-    ReviewComponent
+    ReviewComponent,
+    ItemCardComponent
   ],
   imports: [
     BrowserModule,

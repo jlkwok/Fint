@@ -30,6 +30,10 @@
     color: #fed766;
 }
 
+.row-bottom-margin { 
+    margin-bottom: 5px; 
+}
+
 .btn-outline-primary {
     border-color: #fe4a49;
     color: #fe4a49;

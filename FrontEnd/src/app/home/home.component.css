@@ -1,0 +1,9 @@
+.btn-light, .btn-light:active:focus {
+    border-radius: 40px;
+    background-color: rgb(42, 183, 202) !important;
+}
+
+.dropdown-menu {
+    border-radius: 10px;
+    background-color: white;
+}
