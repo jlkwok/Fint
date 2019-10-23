@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
   currentRate = 3.45;
-
   constructor() { }
 
   ngOnInit() {

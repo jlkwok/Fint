@@ -9,7 +9,8 @@
             <small class="text-muted mr-2">(# reviews)</small>
         </h4>
         <h5 class="card-title"><b>$0.00</b></h5>
-        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#itemReviewModal">Review this
+        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#itemReviewModal">Review
+            this
             item</button>
     </div>
 </div>
@@ -37,6 +38,9 @@
                     <label for="revTextArea">Write Your Review:</label>
                     <textarea class="form-control" id="revTextArea" rows="3"></textarea>
                 </div>
+                <p>Add a Photo or Video (Optional)</p>
+                <img class="mb-2" [src]="url" height="200">
+                <input type='file' (change)="onSelectFile($event)">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
