@@ -8,6 +8,7 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ItemComponent } from './item/item.component';
 import { ReviewComponent } from './review/review.component';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,9 @@ const routes: Routes = [
   { path: 'Cart', component:CartComponent },
   { path: 'ProfileSettings', component:ProfileSettingsComponent },
   { path: 'Item', component:ItemComponent }, 
-  { path: 'Review', component:ReviewComponent }
+  { path: 'Review', component:ReviewComponent },
+  { path: 'Outfinting', component:OutfintComponent },
+  { path: 'CartItem', component:CartItemComponent }
 ];
 
 @NgModule({

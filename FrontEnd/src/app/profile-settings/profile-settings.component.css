@@ -1,0 +1,23 @@
+.avatar {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.btn-outline-primary {
+    border-color: #fe4a49;
+    color: #fe4a49;
+}
+  
+.btn-outline-primary:hover {
+    background-color: #fe4a49;
+    color: white;
+}
+  
+.btn-outline-primary:active, .btn-outline-primary:focus {
+    background-color: #fe4a49 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: white;
+}

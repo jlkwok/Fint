@@ -16,6 +16,7 @@ import { ReviewComponent } from './review/review.component';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { PastFintCardComponent } from './past-fint-card/past-fint-card.component';
 import { OutfintCardComponent } from './outfint-card/outfint-card.component';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { OutfintCardComponent } from './outfint-card/outfint-card.component';
     ReviewComponent,
     ItemCardComponent,
     PastFintCardComponent,
-    OutfintCardComponent
+    OutfintCardComponent,
+    CartItemComponent
   ],
   imports: [
     BrowserModule,

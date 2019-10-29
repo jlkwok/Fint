@@ -1,1 +1,19 @@
-<p>cart works!</p>
+<div class="container mx-5">
+    <h1># Items in Your Cart</h1>
+    <div class="row" style="background-color: white;">
+        <div class="col-lg-7 border-right">
+            <app-cart-item></app-cart-item>
+            <app-cart-item></app-cart-item>
+        </div>
+        <div class="col-lg-auto m-2">
+            <h5>Total: $0.00</h5>
+            <button type="button" class="btn btn-outline-primary btn-block">Pay with PayPal</button>
+        </div>
+    </div>
+</div>
+
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>
