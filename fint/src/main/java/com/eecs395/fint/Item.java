@@ -17,6 +17,8 @@ public class Item {
 
     private double price;
 
+    private String picture;
+
     private int fintCount;
 
     private boolean isAvailable;
@@ -45,9 +47,13 @@ public class Item {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
+
+    public String getPicture() { return picture; }
+
+    public void setPicture(String picture) { this.picture = picture; }
 
     public int getFintCount() {
         return fintCount;
