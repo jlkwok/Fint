@@ -12,4 +12,6 @@ public interface FinteeReviewRepository extends CrudRepository<FinteeReview, Rev
 	@Query("SELECT AVG(f.rating) FROM FinteeReview f WHERE f.id.reviewedId=?1")
 	public double getFinteeRating(Integer finteeId);
 
+	@Query("SELECT f FROM FinteeReview f WHERE f.id.reviewerId=?1 AND f.id.reviewedId=?2")
+	public FinteeReview findFinteeReviewByIdPair(Integer reviewerId, Integer finteeId);
 }

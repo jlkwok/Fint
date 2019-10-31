@@ -25,7 +25,12 @@ public class FinteeReviewController {
 		finteeRepository.save(review);
 		return "Review Posted";
 	}
-	
+		
+	@GetMapping(path="/getFinteeReview")
+	public @ResponseBody FinteeReview getFinteeReview (@RequestParam Integer reviewerId, @RequestParam Integer finteeId) {
+		return finteeRepository.findFinteeReviewByIdPair(reviewerId, finteeId);
+	}
+
 	@GetMapping(path="/getFinteeReviews") // Map ONLY GET Requests	
 	public @ResponseBody List<FinteeReview> getfinteeReviews (Integer finteeId) {
 		return finteeRepository.findFinteeReviewsById(finteeId);

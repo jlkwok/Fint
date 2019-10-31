@@ -26,8 +26,13 @@ public class ItemReviewController {
 		return "Review Posted";
 	}
 	
+	@GetMapping(path="/getItemReview")
+	public @ResponseBody ItemReview getItemReview (@RequestParam Integer reviewerId, @RequestParam Integer itemId) {
+		return itemRepository.findItemReviewByIdPair(reviewerId, itemId);
+	}
+	
 	@GetMapping(path="/getItemReviews") // Map ONLY GET Requests	
-	public @ResponseBody List<ItemReview> getItemReviews (Integer itemId) {
+	public @ResponseBody List<ItemReview> getItemReviews (@RequestParam Integer itemId) {
 		return itemRepository.findItemReviewsById(itemId);
 	}
 	
