@@ -26,6 +26,11 @@ public class FinterReviewController {
 		return "Review Posted";
 	}
 	
+	@GetMapping(path="/getFinterReview")
+	public @ResponseBody FinterReview getItemReview (@RequestParam Integer reviewerId, @RequestParam Integer finterId) {
+		return finterRepository.findFinterReviewByIdPair(reviewerId, finterId);
+	}
+	
 	@GetMapping(path="/getFinterReviews") // Map ONLY GET Requests	
 	public @ResponseBody List<FinterReview> getFinterReviews (Integer finterId) {
 		return finterRepository.findFinterReviewsById(finterId);
