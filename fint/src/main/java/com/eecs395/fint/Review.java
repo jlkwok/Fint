@@ -1,5 +1,6 @@
 package com.eecs395.fint;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.MappedSuperclass;
 
@@ -7,8 +8,15 @@ import javax.persistence.MappedSuperclass;
 public abstract class Review {
 
 	@EmbeddedId
+	@Column(name = "id")
     private ReviewIds id;
       
+	@Column(name = "description")
+	private String description;
+    
+	@Column(name = "rating")
+    private int rating;
+
     /**
 	 * @return the id
 	 */
@@ -22,11 +30,7 @@ public abstract class Review {
 	public void setId(ReviewIds id) {
 		this.id = id;
 	}
-
-	private String description;
     
-    private int rating;
-
 	/**
 	 * @return the description
 	 */
@@ -54,6 +58,4 @@ public abstract class Review {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-    
-    
 }
