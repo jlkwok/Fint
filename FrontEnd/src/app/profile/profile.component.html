@@ -1,14 +1,14 @@
 <div class="row mx-5">
     <div class="col-sm-1.5">
-        <img src="../../assets/avatar.png" alt="Avatar" class="avatar">
+        <img src={{profilePic}} alt="Avatar" class="avatar">
     </div>
     <div class="col-sm-8">
-        <h2 class="text-muted">Name</h2>
-        <h5 class="row-bottom-margin">Location | Join Date</h5>
+        <h2 class="text-muted">{{name}}</h2>
+        <h5 class="row-bottom-margin">{{location}} | {{joinDate}}</h5>
         <h4>
             <ngb-rating class="align-text-bottom" [(rate)]="avgRating" [starTemplate]="t" [readonly]="true" max="5">
             </ngb-rating>
-            <small class="text-muted mr-2">(# reviews)</small>
+            <small class="text-muted mr-2">({{totalNumReviews}})</small>
         </h4>
         <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#userReviewModal">Review
             this

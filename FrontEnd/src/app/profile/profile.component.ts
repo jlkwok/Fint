@@ -6,12 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  avgRating = 4;
-  reviewRating = 0;
+  name: String;
+  location: String;
+  joinDate: String;
+  avgRating: number;
+  totalNumReviews: number;
+  profilePic: String;
+  // need pastFints, outFints, reviews
 
   constructor() { }
 
   ngOnInit() {
+    this.name = "Jessica Kwok";
+    this.location = "Cleveland, OH";
+    this.joinDate = "October 31, 2019";
+    this.avgRating = 3.7;
+    this.totalNumReviews = 58;
+    this.profilePic = "../../assets/avatar.png";
   }
 
 }
