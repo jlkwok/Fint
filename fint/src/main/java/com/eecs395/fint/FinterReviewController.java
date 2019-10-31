@@ -37,8 +37,7 @@ public class FinterReviewController {
 	}
 
 	@GetMapping(path="/all")
-	public @ResponseBody Iterable<FinterReview> getAllUsers() {
-		// This returns a JSON or XML with the users
+	public @ResponseBody Iterable<FinterReview> getAllReviews() {
 		return finterRepository.findAll();
 	}
 }
