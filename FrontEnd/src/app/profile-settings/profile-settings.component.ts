@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileSettingsComponent implements OnInit {
   url = '';
+  profilePic: String;
+  name: String;
+  location: String;
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.profilePic = "../../assets/avatar.png";
+    this.name = "Jessica Kwok";
+    this.location = "Cleveland, OH";
+  }
 
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
