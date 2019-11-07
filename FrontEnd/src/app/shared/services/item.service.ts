@@ -17,7 +17,6 @@ export class ItemService {
   constructor(private http: HttpClient) { }
 
   getItem(id: number) {
-    //return of(new Item('hello'));
     return this.http.get(this.itemUrl + id);
   }
 }
