@@ -22,6 +22,11 @@ public class UserController {
         return ResponseEntity.of(user);
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllUsers() {
+        return ResponseEntity.ok(userRepository.findAll());
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> newUser(
             @RequestParam String username,
