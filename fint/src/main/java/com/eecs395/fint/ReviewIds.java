@@ -4,9 +4,9 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ReviewIds<T> implements Serializable{
+public class ReviewIds implements Serializable{
 	
-	private T reviewedId;
+	private Integer reviewedId;
 	private Integer reviewerId;
 	
 	public ReviewIds() {
@@ -14,7 +14,7 @@ public class ReviewIds<T> implements Serializable{
 		this.reviewerId = null;
 	}
 	
-	public ReviewIds(Integer reviewerId, T reviewedId) {
+	public ReviewIds(Integer reviewerId, Integer reviewedId) {
 		this.reviewerId = reviewerId;
 		this.reviewedId = reviewedId;
 	}
@@ -22,14 +22,14 @@ public class ReviewIds<T> implements Serializable{
 	/**
 	 * @return the reviewedId
 	 */
-	public T getReviewedId() {
+	public Integer getReviewedId() {
 		return reviewedId;
 	}
 
 	/**
 	 * @param reviewedId the reviewedId to set
 	 */
-	public void setReviewedId(T reviewedId) {
+	public void setReviewedId(Integer reviewedId) {
 		this.reviewedId = reviewedId;
 	}
 

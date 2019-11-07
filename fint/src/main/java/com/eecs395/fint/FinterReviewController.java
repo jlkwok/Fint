@@ -22,7 +22,7 @@ public class FinterReviewController {
 	@PostMapping(path="/postFinterReview") // Map ONLY POST Requests
 	public @ResponseBody String addNewFinterReview (@RequestParam Integer reviewerId, @RequestParam Integer finterId, @RequestParam Integer rating, @RequestParam String description, @RequestParam String date) {
 		FinterReview review = new FinterReview();
-		review.setId(new ReviewIds<Integer>(reviewerId, finterId));
+		review.setId(new ReviewIds(reviewerId, finterId));
 		review.setDescription(description);
 		review.setRating(rating);
 		review.setPostDate(StringDateConverter.stringToCalendar(date));
@@ -43,6 +43,11 @@ public class FinterReviewController {
 	@GetMapping(path="/getFinterRating") // Map ONLY GET Requests
 	public @ResponseBody double getFinterRating (@RequestParam Integer finterId) {
 		return finterRepository.getFinterRating(finterId);
+	}
+	
+	@GetMapping(path="/getReviewCount")
+	public @ResponseBody double getReviewCount(@RequestParam Integer finterId) {
+		return finterRepository.reviewCount(finterId);
 	}
 
 	@GetMapping(path="/all")

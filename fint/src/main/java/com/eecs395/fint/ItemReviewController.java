@@ -23,7 +23,7 @@ public class ItemReviewController {
 	@PostMapping(path="/postItemReview") // Map ONLY POST Requests
 	public @ResponseBody String addNewItemReview (@RequestParam Integer reviewerId, @RequestParam Integer itemId, @RequestParam Integer rating, @RequestParam String description, @RequestParam String date) {
 		ItemReview review = new ItemReview();
-		review.setId(new ReviewIds<Integer>(reviewerId, itemId));
+		review.setId(new ReviewIds(reviewerId, itemId));
 		review.setDescription(description);
 		review.setRating(rating);
 		review.setPostDate(StringDateConverter.stringToCalendar(date));
@@ -44,6 +44,11 @@ public class ItemReviewController {
 	@GetMapping(path="/getItemRating") // Map ONLY GET Requests
 	public @ResponseBody double getItemRating (@RequestParam Integer itemId) {
 		return itemRepository.getItemRating(itemId);
+	}
+	
+	@GetMapping(path="/getReviewCount")
+	public @ResponseBody double getReviewCount(@RequestParam Integer itemId) {
+		return itemRepository.reviewCount(itemId);
 	}
 
 	@GetMapping(path="/all")
