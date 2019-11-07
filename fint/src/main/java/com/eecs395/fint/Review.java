@@ -1,5 +1,7 @@
 package com.eecs395.fint;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.MappedSuperclass;
@@ -16,6 +18,9 @@ public abstract class Review {
     
 	@Column(name = "rating")
     private int rating;
+	
+	@Column(name = "postDate")
+	private Date postDate;
 
     /**
 	 * @return the id
@@ -57,5 +62,19 @@ public abstract class Review {
 	 */
 	public void setRating(int rating) {
 		this.rating = rating;
+	}
+	
+	/**
+	 * @return the rating
+	 */
+	public Date getPostDate() {
+		return postDate;
+	}
+
+	/**
+	 * @param rating the rating to set
+	 */
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
 	}
 }
