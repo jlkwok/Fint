@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import java.sql.Date;
+import java.util.Calendar;
 
 @Entity
 @Table(name="Transaction")
@@ -21,9 +21,9 @@ public class Transaction {
 
     private int finteeId;
 
-    private Date startDate;
+    private Calendar startDate;
     
-    private Date endDate;
+    private Calendar endDate;
 
     private double tPrice;
 
@@ -59,17 +59,17 @@ public class Transaction {
         this.finteeId = finteeId;
     }
 
-    public Date getStartDate() {
+    public Calendar getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date date) {
+    public void setStartDate(Calendar date) {
         this.startDate = date;
     }
 
-//    public int getLength() {
-//        return ;
-//    }
+    public int getLength() {
+        return endDate.get(Calendar.DAY_OF_YEAR) - startDate.get(Calendar.DAY_OF_YEAR);
+    }
 
     public double getTPrice() {
         return tPrice;
@@ -82,14 +82,14 @@ public class Transaction {
 	/**
 	 * @return the endDate
 	 */
-	public Date getEndDate() {
+	public Calendar getEndDate() {
 		return endDate;
 	}
 
 	/**
 	 * @param endDate the endDate to set
 	 */
-	public void setEndDate(Date endDate) {
+	public void setEndDate(Calendar endDate) {
 		this.endDate = endDate;
 	}
 }
