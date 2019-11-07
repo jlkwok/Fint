@@ -4,32 +4,32 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class ReviewIds implements Serializable{
+public class ReviewIds<T> implements Serializable{
 	
-	private Integer reviewedId;
+	private T reviewedId;
 	private Integer reviewerId;
 	
 	public ReviewIds() {
-		this.reviewedId = -1;
-		this.reviewerId = -1;
+		this.reviewedId = null;
+		this.reviewerId = null;
 	}
 	
-	public ReviewIds(Integer reviewerId, Integer reviewedId) {
-		this.reviewedId = reviewedId;
+	public ReviewIds(Integer reviewerId, T reviewedId) {
 		this.reviewerId = reviewerId;
+		this.reviewedId = reviewedId;
 	}
 
 	/**
 	 * @return the reviewedId
 	 */
-	public Integer getReviewedId() {
+	public T getReviewedId() {
 		return reviewedId;
 	}
 
 	/**
 	 * @param reviewedId the reviewedId to set
 	 */
-	public void setReviewedId(Integer reviewedId) {
+	public void setReviewedId(T reviewedId) {
 		this.reviewedId = reviewedId;
 	}
 

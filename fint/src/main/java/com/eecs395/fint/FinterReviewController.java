@@ -22,7 +22,7 @@ public class FinterReviewController {
 	@PostMapping(path="/postFinterReview") // Map ONLY POST Requests
 	public @ResponseBody String addNewFinterReview (@RequestParam Integer reviewerId, @RequestParam Integer finterId, @RequestParam Integer rating, @RequestParam String description, @RequestParam String date) {
 		FinterReview review = new FinterReview();
-		review.setId(new ReviewIds(reviewerId, finterId));
+		review.setId(new ReviewIds<Integer>(reviewerId, finterId));
 		review.setDescription(description);
 		review.setRating(rating);
 		review.setPostDate(StringDateConverter.stringToCalendar(date));
