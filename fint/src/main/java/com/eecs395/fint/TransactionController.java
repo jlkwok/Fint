@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Optional;
 
 @CrossOrigin
@@ -20,18 +21,15 @@ public class TransactionController {
     private ItemRepository itemRepository;
 
     @PostMapping("/fint")
-    public ResponseEntity<?> fint(
-            @RequestParam int itemId,
-            @RequestParam int finteeId,
-            @RequestParam int length) {
+    public ResponseEntity<?> fint(@RequestParam int itemId, @RequestParam int finteeId, @RequestParam Date startDate, @RequestParam Date endDate) {
         Transaction t = new Transaction();
         t.setItemId(itemId);
         t.setFinteeId(finteeId);
-        t.setLength(length);
+//        t.setLength(length);
         t.setIsReturned(false);
         Optional<Item> item = itemRepository.findById(itemId);
         if (item.isPresent()) {
-            t.setTPrice(item.get().getPrice() * length);
+            t.setTPrice(item.get().getPrice());
             return ResponseEntity.ok("Item Finted");
         } else {
             return new ResponseEntity<>("Item Not Found", HttpStatus.NOT_FOUND);

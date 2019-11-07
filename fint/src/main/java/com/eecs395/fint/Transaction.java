@@ -21,9 +21,9 @@ public class Transaction {
 
     private int finteeId;
 
-//    private Date date;
-
-    private int length;
+    private Date startDate;
+    
+    private Date endDate;
 
     private double tPrice;
 
@@ -59,21 +59,17 @@ public class Transaction {
         this.finteeId = finteeId;
     }
 
-//    public Date getDate() {
-//        return date;
-//    }
-//
-//    public void setDate(Date date) {
-//        this.date = date;
-//    }
-
-    public int getLength() {
-        return length;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setLength(int length) {
-        this.length = length;
+    public void setStartDate(Date date) {
+        this.startDate = date;
     }
+
+//    public int getLength() {
+//        return ;
+//    }
 
     public double getTPrice() {
         return tPrice;
@@ -82,4 +78,18 @@ public class Transaction {
     public void setTPrice(double tPrice) {
         this.tPrice = tPrice;
     }
+
+	/**
+	 * @return the endDate
+	 */
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	/**
+	 * @param endDate the endDate to set
+	 */
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
 }
