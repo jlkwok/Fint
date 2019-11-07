@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Item } from '../models/item';
+import { User } from '../models/user';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ItemService {
+export class UserService {
 
-  private itemUrl = 'http://localhost:8080/item/';
+  private userUrl = 'http://localhost:8080/user/';
   
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,7 +16,7 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
-  getItem(id: number): Observable<Item> {
-    return this.http.get<Item>(this.itemUrl + id);
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(this.userUrl + id);
   }
 }
