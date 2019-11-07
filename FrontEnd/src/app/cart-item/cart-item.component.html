@@ -1,17 +1,19 @@
 <div class="m-2">
-    <h5>Seller</h5>
+    <h5>{{seller}}</h5>
     <div class="row">
         <div class="col-sm">
-            <img src="../../assets/placeholder.png" style="width: 10rem;"></div>
+            <img src={{itemPic}} class="img-thumbnail" style="max-width: 120px;">
+        </div>
         <div class="col-sm">
-            <h5 class="font-weight-light">Title</h5>
+            <h5 class="font-weight-light">{{title}}</h5>
             <button type="button" class="btn btn-outline-primary btn-block">Remove</button>
         </div>
         <div class="col-sm">
             <h5 class="mx-2 font-weight-light">Date Range:</h5>
+            <h5 class="mx-2 font-weight-light">{{startDate}} - {{endDate}}</h5>
         </div>
         <div class="col-sm">
-            <h5 class="mx-2">$0.00</h5>
+            <h5 class="mx-2">${{price}}</h5>
         </div>
     </div>
 </div>

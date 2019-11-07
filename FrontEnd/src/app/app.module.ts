@@ -17,6 +17,7 @@ import { ItemCardComponent } from './item-card/item-card.component';
 import { PastFintCardComponent } from './past-fint-card/past-fint-card.component';
 import { OutfintCardComponent } from './outfint-card/outfint-card.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

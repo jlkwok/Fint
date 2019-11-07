@@ -1,12 +1,12 @@
 <div class="row mx-1">
     <div class="col-sm-1.5">
-        <img src="../../assets/avatar.png" alt="Avatar" class="avatar">
+        <img src={{profilePic}} class="avatar">
     </div>
     <div class="col-sm-8 flex-column">
-        <p class="m-0"><a style="color:black; text-decoration: underline" href="#">Name</a>   Post Date</p>
-        <p class="m-0"><ngb-rating [(rate)]="currentRate" [starTemplate]="t" [readonly]="true" max="5">
+        <p class="m-0"><a style="color:black; text-decoration: underline" href="#">{{name}}</a>   {{postDate}}</p>
+        <p class="m-0"><ngb-rating [(rate)]="rate" [starTemplate]="t" [readonly]="true" max="5">
         </ngb-rating></p>
-        <p>review content</p>
+        <p>{{reviewContent}}</p>
     </div>
 </div>
 
