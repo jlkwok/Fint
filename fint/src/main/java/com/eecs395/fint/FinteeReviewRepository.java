@@ -17,6 +17,6 @@ public interface FinteeReviewRepository extends CrudRepository<FinteeReview, Rev
 	@Query("SELECT f FROM FinteeReview f WHERE f.id.reviewerId=?1 AND f.id.reviewedId=?2")
 	public FinteeReview findFinteeReviewByIdPair(Integer reviewerId, Integer finteeId);
 	
-	@Query("SELECT Count(f) from FinteeReview f WHERE f.id.reviewerId=?1")
+	@Query("SELECT Count(f) from FinteeReview f WHERE f.id.reviewedId=?1")
 	public int reviewCount(Integer finteeId);
 }
