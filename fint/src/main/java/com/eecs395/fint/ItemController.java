@@ -22,7 +22,7 @@ public class ItemController {
 		return ResponseEntity.of(item);
 	}
 
-	@GetMapping(path="/post")
+	@PostMapping(path="/post")
 	public ResponseEntity<?> postItem(
 			@RequestParam String name,
 			@RequestParam double price,
@@ -98,7 +98,7 @@ public class ItemController {
 			@RequestParam String location) {
 		Item updatedItem = itemRepository.findById(id).get();
 		if (updatedItem != null) {
-			updatedItem.setName(location);
+			updatedItem.setLocation(location);
 			itemRepository.save(updatedItem);
 			return ResponseEntity.ok("Item location Updated");
 		} else {

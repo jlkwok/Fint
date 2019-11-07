@@ -13,4 +13,7 @@ public interface ItemRepository extends CrudRepository<Item, Integer> {
     @Query("SELECT i FROM Item i WHERE i.finterId=?1")
     public List<Item> findItemsByFinterId(Integer finterId);
 
+//    @Query("")
+//    public List<Item> getItemsForFeed(String query);
+
 }
