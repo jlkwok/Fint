@@ -22,6 +22,11 @@ public class ItemController {
 		return ResponseEntity.of(item);
 	}
 
+	@GetMapping("/all")
+    public ResponseEntity<?> getAllItems() {
+	    return ResponseEntity.ok(itemRepository.findAll());
+    }
+
 	@PostMapping(path="/post")
 	public ResponseEntity<?> postItem(
 			@RequestParam String name,
