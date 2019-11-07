@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Integer> {
 
-    @Query("SELECT i FROM Items i WHERE i.finterId=?1")
+    @Query("SELECT i FROM Item i WHERE i.finterId=?1")
     public List<Item> findItemsByFinterId(Integer finterId);
 
 }
