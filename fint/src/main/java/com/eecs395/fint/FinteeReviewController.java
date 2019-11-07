@@ -20,12 +20,12 @@ public class FinteeReviewController {
 	private FinteeReviewRepository finteeRepository;
 
 	@PostMapping(path="/postFinteeReview") // Map ONLY POST Requests
-	public @ResponseBody String addNewfinteeReview (@RequestParam Integer reviewerId, @RequestParam Integer finteeId, @RequestParam Integer rating, @RequestParam String description, @RequestParam Date date) {
+	public @ResponseBody String addNewfinteeReview (@RequestParam Integer reviewerId, @RequestParam Integer finteeId, @RequestParam Integer rating, @RequestParam String description, @RequestParam String date) {
 		FinteeReview review = new FinteeReview();
 		review.setId(new ReviewIds(reviewerId, finteeId));
 		review.setDescription(description);
 		review.setRating(rating);
-		review.setPostDate(date);
+		review.setPostDate(StringDateConverter.stringToCalendar(date));
 		finteeRepository.save(review);
 		return "Review Posted";
 	}

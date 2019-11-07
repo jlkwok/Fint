@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Optional;
 
@@ -21,12 +22,12 @@ public class TransactionController {
     private ItemRepository itemRepository;
 
     @PostMapping("/fint")
-    public ResponseEntity<?> fint(@RequestParam int itemId, @RequestParam int finteeId, @RequestParam Calendar startDate, @RequestParam Calendar endDate) {
+    public ResponseEntity<?> fint(@RequestParam int itemId, @RequestParam int finteeId, @RequestParam String startDate, @RequestParam String endDate) {
         Transaction t = new Transaction();
         t.setItemId(itemId);
         t.setFinteeId(finteeId);
-        t.setStartDate(startDate);
-        t.setEndDate(endDate);
+        t.setStartDate(StringDateConverter.stringToCalendar(startDate));
+		t.setEndDate(StringDateConverter.stringToCalendar(endDate));
         t.setIsReturned(false);
         Optional<Item> item = itemRepository.findById(itemId);
         if (item.isPresent()) {

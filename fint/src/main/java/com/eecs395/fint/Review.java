@@ -1,6 +1,6 @@
 package com.eecs395.fint;
 
-import java.util.Date;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -20,7 +20,7 @@ public abstract class Review {
     private int rating;
 	
 	@Column(name = "postDate")
-	private Date postDate;
+	private Calendar postDate;
 
     /**
 	 * @return the id
@@ -67,14 +67,14 @@ public abstract class Review {
 	/**
 	 * @return the rating
 	 */
-	public Date getPostDate() {
+	public Calendar getPostDate() {
 		return postDate;
 	}
 
 	/**
 	 * @param rating the rating to set
 	 */
-	public void setPostDate(Date postDate) {
+	public void setPostDate(Calendar postDate) {
 		this.postDate = postDate;
 	}
 }

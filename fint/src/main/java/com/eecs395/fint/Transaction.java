@@ -6,7 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name="Transaction")
@@ -66,7 +69,7 @@ public class Transaction {
     public void setStartDate(Calendar date) {
         this.startDate = date;
     }
-
+    
     public int getLength() {
         return endDate.get(Calendar.DAY_OF_YEAR) - startDate.get(Calendar.DAY_OF_YEAR);
     }

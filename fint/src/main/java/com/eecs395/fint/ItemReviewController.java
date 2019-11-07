@@ -1,6 +1,7 @@
 package com.eecs395.fint;
 
 import java.util.List;
+import java.text.ParseException;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,12 @@ public class ItemReviewController {
 	private ItemReviewRepository itemRepository;
 
 	@PostMapping(path="/postItemReview") // Map ONLY POST Requests
-	public @ResponseBody String addNewItemReview (@RequestParam Integer reviewerId, @RequestParam Integer itemId, @RequestParam Integer rating, @RequestParam String description, @RequestParam Date date) {
+	public @ResponseBody String addNewItemReview (@RequestParam Integer reviewerId, @RequestParam Integer itemId, @RequestParam Integer rating, @RequestParam String description, @RequestParam String date) {
 		ItemReview review = new ItemReview();
 		review.setId(new ReviewIds(reviewerId, itemId));
 		review.setDescription(description);
 		review.setRating(rating);
-		review.setPostDate(date);
+		review.setPostDate(StringDateConverter.stringToCalendar(date));
 		itemRepository.save(review);
 		return "Review Posted";
 	}
