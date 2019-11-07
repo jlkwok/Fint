@@ -1,6 +1,5 @@
 package com.eecs395.fint;
 
-import jdk.vm.ci.common.NativeImageReinitialize;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +40,13 @@ public class ItemController {
 		item.setFinterId(finterId);
 		itemRepository.save(item);
 		return ResponseEntity.ok("New Item Created");
+	}
+
+	@GetMapping("/getUserItems")
+	public ResponseEntity<?> getUserItems(
+			@RequestParam int finterId) {
+		return ResponseEntity.ok(itemRepository.findItemsByFinterId(finterId));
+
 	}
 
 	@PostMapping(path="/setItemPrice")

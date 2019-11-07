@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface FinteeReviewRepository extends CrudRepository<FinteeReview, ReviewIds>{
 	@Query("SELECT f FROM FinteeReview f WHERE f.id.reviewedId=?1")
 	public List<FinteeReview> findFinteeReviewsById(Integer finteeId);

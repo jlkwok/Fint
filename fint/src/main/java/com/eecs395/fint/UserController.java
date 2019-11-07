@@ -32,10 +32,4 @@ public class UserController {
         userRepository.save(u);
         return ResponseEntity.ok("New User Created");
     }
-
-//    @GetMapping("/getUserItems")
-//    public ResponseEntity<?> getUserItems(
-//            @RequestParam String username) {
-//
-//    }
 }
