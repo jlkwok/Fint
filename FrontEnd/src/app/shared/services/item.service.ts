@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Item } from '../models/item';
 
 @Injectable({
@@ -16,7 +16,8 @@ export class ItemService {
 
   constructor(private http: HttpClient) { }
 
-  getItem(id: number): Observable<Item> {
-    return this.http.get<Item>(this.itemUrl + id);
+  getItem(id: number) {
+    //return of(new Item('hello'));
+    return this.http.get(this.itemUrl + id);
   }
 }

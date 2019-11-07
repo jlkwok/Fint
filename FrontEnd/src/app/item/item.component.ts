@@ -9,11 +9,12 @@ import { Item } from '../shared/models/item';
 })
 export class ItemComponent implements OnInit {
   currentRate = 3.45;
-  seller: string;
-  title: String;
-  totalNumFints: number;
+  seller: String;
+  name: String;
+  fintCount: number;
   price: number;
   itemImages: String[];
+  location: String;
   // need reviews
   item: Item;
 
@@ -22,12 +23,14 @@ export class ItemComponent implements OnInit {
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
-    this.seller = "Seller Name";
-    this.title = "Item Title";
-    this.totalNumFints = 3;
-    this.price = 7.89;
     this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
-    this.itemService.getItem(1).subscribe(item => this.item = item);
+    this.itemService.getItem(1).subscribe(item => {
+      this.item = item as Item;
+      this.name = this.item.name;
+      this.fintCount = this.item.fintCount;
+      this.price = this.item.price;
+      this.location = this.item.location;
+    });
   }
 
 }

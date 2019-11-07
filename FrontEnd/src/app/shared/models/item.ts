@@ -7,4 +7,8 @@ export class Item {
     isAvailable: boolean;
     location: string;
     finterId: number;
+
+    constructor (name) {
+        this.name = name;
+    }
 }
