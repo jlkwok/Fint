@@ -25,7 +25,7 @@ export class ItemComponent implements OnInit {
   constructor(private itemService: ItemService, private userService: UserService, private itemReviewService: ItemReviewService) { }
 
   ngOnInit() {
-    this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
+    //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
     this.itemService.getItem(1).subscribe(item => {
       this.name = item.name;
       this.fintCount = item.fintCount;
