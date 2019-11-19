@@ -23,13 +23,7 @@
     </nav>
 
     <div class="card-deck justify-content-center">
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
+        <app-item-card *ngFor="let item of items" [item]="item">
+        </app-item-card>
     </div>
 </div>
