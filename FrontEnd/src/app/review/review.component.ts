@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Review } from '../shared/models/review';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-review',
@@ -6,20 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./review.component.css']
 })
 export class ReviewComponent implements OnInit {
-  rate: number;
+  @Input() review: Review;
+  rating: number;
   profilePic: String;
-  name: String;
-  postDate: String;
+  reviewer: String;
+  postDate: Date;
   reviewContent: String;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.rate = 3;
+    this.rating = this.review.rating;
     this.profilePic = "../../assets/avatar.png";
-    this.name = "Jessica Kwok";
-    this.postDate = "October 31, 2019";
-    this.reviewContent = "This item is cool!";
+    this.userService.getUser(this.review.id.reviewerId).subscribe(reviewer => this.reviewer = reviewer.name);
+    this.postDate = this.review.postDate;
+    this.reviewContent = this.review.description;
   }
 
 }

@@ -13,7 +13,8 @@
         <ngb-rating class="align-text-bottom" [(rate)]="rating" [starTemplate]="t" [readonly]="true" max="5">
         </ngb-rating>
       </h4>
-      <app-review></app-review>
+      <app-review *ngFor="let review of reviews" [review]="review">
+      </app-review>
     </div>
     <div class="col-lg-auto">
       <h3><small class="text-muted">{{sellerName}} - {{location}}</small></h3>

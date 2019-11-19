@@ -19,4 +19,8 @@ export class ItemService {
   getItem(id: number): Observable<Item> {
     return this.http.get<Item>(this.itemUrl + id);
   }
+
+  getAllItems(): Observable<Item[]> {
+    return this.http.get<Item[]>(this.itemUrl + 'all');
+  }
 }

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../shared/services/item.service';
-import { Item } from '../shared/models/item';
 import { UserService } from '../shared/services/user.service';
-import { User } from '../shared/models/user';
 import { ItemReviewService } from '../shared/services/item-review.service';
+import { Review } from '../shared/models/review';
 
 @Component({
   selector: 'app-item',
@@ -19,7 +18,7 @@ export class ItemComponent implements OnInit {
   itemImages: String[];
   location: String;
   itemReviewCount: number;
-  // need reviews
+  reviews: Review[];
 
   images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
 
@@ -36,5 +35,6 @@ export class ItemComponent implements OnInit {
     });
     this.itemReviewService.getItemRating(1).subscribe(rating => this.rating = rating);
     this.itemReviewService.getReviewCount(1).subscribe(itemReviewCount => this.itemReviewCount = itemReviewCount);
+    this.itemReviewService.getItemReviews(1).subscribe(reviews => this.reviews = reviews);
   }
 }
