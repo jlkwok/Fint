@@ -16,8 +16,9 @@ public class UserController {
     @Autowired // This means to get the bean called userRepository
     private UserRepository userRepository;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") int id) {
+    @GetMapping("/getUser")
+    public ResponseEntity<User> getUser(
+            @RequestParam int id) {
         Optional<User> user = userRepository.findById(id);
         return ResponseEntity.of(user);
     }
