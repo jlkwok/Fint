@@ -17,6 +17,6 @@ public interface ItemReviewRepository extends CrudRepository<ItemReview, ReviewI
 	@Query("SELECT i FROM ItemReview i WHERE i.id.reviewerId=?1 AND i.id.reviewedId=?2")
 	public ItemReview findItemReviewByIdPair(Integer reviewerId, Integer itemId);
 	
-	@Query("SELECT Count(i) from ItemReview i WHERE i.id.reviewerId=?1")
+	@Query("SELECT Count(i) from ItemReview i WHERE i.id.reviewedId=?1")
 	public int reviewCount(Integer itemId);
 }

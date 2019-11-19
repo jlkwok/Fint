@@ -32,9 +32,15 @@ public class TransactionController {
         Optional<Item> item = itemRepository.findById(itemId);
         if (item.isPresent()) {
             t.setTPrice(item.get().getPrice() * t.getLength());
+            transactionRepository.save(t);
             return ResponseEntity.ok("Item Finted");
         } else {
             return new ResponseEntity<>("Item Not Found", HttpStatus.NOT_FOUND);
         }
     }
+    
+	@GetMapping(path="/all")
+	public @ResponseBody Iterable<Transaction> getAllTransactions() {
+		return transactionRepository.findAll();
+	}    
 }

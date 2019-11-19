@@ -1,6 +1,7 @@
 package com.eecs395.fint;
 
 import java.util.List;
+import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +21,12 @@ public class FinteeReviewController {
 	private FinteeReviewRepository finteeRepository;
 
 	@PostMapping(path="/postFinteeReview") // Map ONLY POST Requests
-	public @ResponseBody String addNewfinteeReview (@RequestParam Integer reviewerId, @RequestParam Integer finteeId, @RequestParam Integer rating, @RequestParam String description, @RequestParam String date) {
+	public @ResponseBody String addNewfinteeReview (@RequestParam Integer reviewerId, @RequestParam Integer finteeId, @RequestParam Integer rating, @RequestParam String description) {
 		FinteeReview review = new FinteeReview();
 		review.setId(new ReviewIds(reviewerId, finteeId));
 		review.setDescription(description);
 		review.setRating(rating);
-		review.setPostDate(StringDateConverter.stringToCalendar(date));
+		review.setPostDate(Calendar.getInstance());
 		finteeRepository.save(review);
 		return "Review Posted";
 	}
