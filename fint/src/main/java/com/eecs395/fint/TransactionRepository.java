@@ -10,13 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TransactionRepository extends CrudRepository<Transaction, Integer> {
 	
-	@Query("SELECT t FROM Transaction t WHERE t.id.finteeId=?1")
-	public List<Transaction> findTransactionByFinteeId(Integer finteeId);
+	@Query("SELECT t FROM Transaction t WHERE t.tId=?1")
+	public Transaction findTransactionsByTransactionId(Integer tId);
 	
-	@Query("SELECT AVG(f.rating) FROM FinterReview f WHERE f.id.reviewedId=?1")
-	public double getFinterRating(Integer finterId);
+	@Query("SELECT t FROM Transaction t WHERE t.finteeId=?1 AND t.isReturned=True")
+	public List<Transaction> findTransactionsByFinteeId(Integer finteeId);
 	
-	@Query("SELECT f FROM FinterReview f WHERE f.id.reviewerId=?1 AND f.id.reviewedId=?2")
-	public FinterReview findFinterReviewByIdPair(Integer reviewerId, Integer finterId);
-
+	@Query("SELECT t FROM Transaction t, Item i WHERE t.itemId=i.itemId AND i.finterId=?1 AND t.isReturned=True")
+	public List<Transaction> findTransactionsByFinterId(Integer finterId);
 }

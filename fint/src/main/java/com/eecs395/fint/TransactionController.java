@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -22,21 +23,50 @@ public class TransactionController {
     private ItemRepository itemRepository;
 
     @PostMapping("/fint")
-    public ResponseEntity<?> fint(@RequestParam int itemId, @RequestParam int finteeId, @RequestParam String startDate, @RequestParam String endDate) {
+    public ResponseEntity<?> fint(@RequestParam int itemId, @RequestParam int finteeId, @RequestParam String endDate) {
         Transaction t = new Transaction();
         t.setItemId(itemId);
         t.setFinteeId(finteeId);
-        t.setStartDate(StringDateConverter.stringToCalendar(startDate));
+        t.setStartDate(Calendar.getInstance());
 		t.setEndDate(StringDateConverter.stringToCalendar(endDate));
         t.setIsReturned(false);
-        Optional<Item> item = itemRepository.findById(itemId);
-        if (item.isPresent()) {
-            t.setTPrice(item.get().getPrice() * t.getLength());
+        Optional<Item> itemOp = itemRepository.findById(itemId);
+        if (itemOp.isPresent()) {
+        	Item item = itemOp.get();
+            t.setTPrice(item.getPrice() * t.getLength());
             transactionRepository.save(t);
+            item.setIsAvailable(false);
+            item.setFintCount(item.getFintCount() + 1);
+            itemRepository.save(item);
             return ResponseEntity.ok("Item Finted");
         } else {
             return new ResponseEntity<>("Item Not Found", HttpStatus.NOT_FOUND);
         }
+    }
+    
+    @GetMapping("/getCurrentFints")
+    public @ResponseBody List<Transaction> getCurrentFints(Integer finteeId){
+    	return transactionRepository.findTransactionsByFinteeId(finteeId);
+    }
+    
+    @GetMapping("/getCurrentOutFints")
+    public @ResponseBody List<Transaction> getCurrentOutFints(Integer finterId){
+    	return transactionRepository.findTransactionsByFinterId(finterId);
+    }
+ 
+    @PostMapping("/return")
+    public ResponseEntity<?> returnTransaction(Integer tId) {
+    	Transaction t = transactionRepository.findTransactionsByTransactionId(tId);
+    	Item i = itemRepository.findById(t.getItemId()).get();
+    	i.setIsAvailable(true);
+    	t.setIsReturned(true);
+    	transactionRepository.save(t);
+    	itemRepository.save(i);
+    	if(t.getIsReturned() == false) {
+    		return ResponseEntity.ok("Item Returned");
+    	} else {	
+    		return new ResponseEntity<>("Item has already been returned", HttpStatus.NOT_FOUND);
+    	}
     }
     
 	@GetMapping(path="/all")
