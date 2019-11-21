@@ -5,6 +5,9 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +21,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tId;
 
-    private int itemId;
+    private Integer itemId;
 
     private boolean isReturned;
 
