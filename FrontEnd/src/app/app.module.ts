@@ -18,6 +18,7 @@ import { PastFintCardComponent } from './past-fint-card/past-fint-card.component
 import { OutfintCardComponent } from './outfint-card/outfint-card.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { HttpClientModule } from '@angular/common/http'; 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

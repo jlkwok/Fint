@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'Profile', component:ProfileComponent },
   { path: 'Cart', component:CartComponent },
   { path: 'ProfileSettings', component:ProfileSettingsComponent },
-  { path: 'Item', component:ItemComponent }, 
+  { path: 'item/:id', component:ItemComponent }, 
   { path: 'Review', component:ReviewComponent },
   { path: 'Outfinting', component:OutfintComponent },
   { path: 'CartItem', component:CartItemComponent },
