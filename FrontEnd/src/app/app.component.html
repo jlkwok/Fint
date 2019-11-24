@@ -41,10 +41,10 @@
   <div class="mx-5">
     <nav class="navbar navbar-light mt-2">
       <img class="smaller mr-3" src="../assets/Logo.svg" href="Home">
-      <form [formGroup]="logInForm" class="form-inline">
-        <input type="email" class="form-control mr-sm-2" id="email" placeholder="Email" [formControl]="email">
-        <input type="password" class="form-control mr-sm-2" placeholder="Password" [formControl]="password">
-        <button class="btn btn-outline-success my-2 my-sm-0" (click)="logIn()">Log In</button>
+      <form class="form-inline">
+        <input type="email" class="form-control mr-sm-2" placeholder="Email" [formControl]="logInEmail">
+        <input type="password" class="form-control mr-sm-2" placeholder="Password" [formControl]="logInPassword">
+        <button class="btn btn-outline-success my-2 my-sm-0" (click)="logIn(logInEmail.value, logInPassword.value)">Log In</button>
       </form>
     </nav>
     <hr>
@@ -58,22 +58,22 @@
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName" placeholder="First Name">
+              <input type="text" class="form-control" id="firstName" placeholder="First Name" [formControl]="firstName">
             </div>
             <div class="form-group col-md-6">
               <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+              <input type="text" class="form-control" id="lastName" placeholder="Last Name" [formControl]="lastName">
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="email@example.com">
+            <input type="email" class="form-control" placeholder="email@example.com" [formControl]="signUpEmail">
           </div>
           <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password">
+            <input type="password" class="form-control" id="password" placeholder="Password" [formControl]="signUpPassword">
           </div>
-          <button type="submit" class="btn btn-outline-success">Sign Up</button>
+          <button type="submit" class="btn btn-outline-success" (click)="signUp(signUpEmail.value, firstName.value, lastName.value, signUpPassword.value)">Sign Up</button>
         </form>
       </div>
     </div>

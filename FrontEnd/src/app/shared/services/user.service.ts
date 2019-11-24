@@ -17,6 +17,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUser(id: number): Observable<User> {
-    return this.http.get<User>(this.userUrl + id);
+    return this.http.get<User>(this.userUrl + "getUser?id=" + id);
+  }
+
+  signUpUser(username: string, name: string, password: string): Observable<User> {
+    var user = {"username":username, "name":name, "password": password};
+    return this.http.post<User>(this.userUrl + "create", JSON.stringify(user), this.httpOptions);
+  }
+
+  logInUser() {
+    // waiting for backend
   }
 }
