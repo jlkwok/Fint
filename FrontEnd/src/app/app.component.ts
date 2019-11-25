@@ -1,5 +1,5 @@
 import { Component, ElementRef, AfterViewInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
 import { User } from './shared/models/user';
 import { Router } from '@angular/router';
@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements AfterViewInit {
   title = 'Fint';  
-  loggedIn: boolean = false;
-  user: User;
+  // temporary
+  user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword");
+  userId: number = 1;
 
   logInEmail = new FormControl('');
   logInPassword = new FormControl('');
@@ -22,7 +23,8 @@ export class AppComponent implements AfterViewInit {
   signUpPassword = new FormControl('');
 
   constructor(private elementRef: ElementRef, private userService: UserService, private router: Router) {
-
+    // temporary
+    this.router.navigate([`/home/${this.userId}`]);
   }
   
   ngAfterViewInit(): void {

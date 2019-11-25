@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'SignIn', pathMatch: 'full' },
   { path: 'SignIn', component:SignInComponent },
   { path: 'home/:userId', component:HomeComponent },
-  { path: 'Outfint', component:OutfintComponent },
+  { path: 'outfint/:userId', component:OutfintComponent },
   { path: 'Profile', component:ProfileComponent },
   { path: 'Cart', component:CartComponent },
   { path: 'ProfileSettings', component:ProfileSettingsComponent },
