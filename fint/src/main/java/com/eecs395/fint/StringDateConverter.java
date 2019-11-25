@@ -20,4 +20,9 @@ public class StringDateConverter {
 		cal.setTime(date);
 		return cal;
 	}
+	
+	public static String calendarToString(Calendar cal) {
+		SimpleDateFormat df = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z");
+		return df.format(cal.getTime()).toString();
+	}
 }

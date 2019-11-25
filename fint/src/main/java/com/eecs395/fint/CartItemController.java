@@ -40,18 +40,13 @@ public class CartItemController {
     }
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> addToCart(@RequestParam Integer itemId, @RequestParam int finteeId, @RequestParam String endDate) {
-		CartItem item = new CartItem();
-        Optional<Item> itemOp = itemRepository.findById(itemId);
-        if(itemOp.isPresent()) {
-    		item.setId(new CartId(itemId, finteeId));
-    		item.setEndDate(StringDateConverter.stringToCalendar(endDate));
-    		
+	public ResponseEntity<?> addToCart(@RequestBody CartItem item) {
+        Optional<Item> itemOp = itemRepository.findById(item.getId().getItemId());
+        if(itemOp.isPresent()) {    		
     		Transaction t = new Transaction();
-    		t.setItemId(itemId);
-            t.setFinteeId(finteeId);
-            t.setStartDate(Calendar.getInstance());
-    		t.setEndDate(StringDateConverter.stringToCalendar(endDate));
+    		t.setItemId(itemOp.get().getItemId());
+            t.setStartDate(StringDateConverter.calendarToString(Calendar.getInstance()));
+    		t.setEndDate(item.getEndDate());
             t.setIsReturned(false);
             t.setTPrice(itemOp.get().getPrice() * t.getLength());
             item.setPrice(t.getTPrice());

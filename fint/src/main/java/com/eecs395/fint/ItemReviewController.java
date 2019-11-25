@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,13 +22,20 @@ public class ItemReviewController {
 	@Autowired
 	private ItemReviewRepository itemRepository;
 
+//	@PostMapping(path="/postItemReview") // Map ONLY POST Requests
+//	public @ResponseBody String addNewItemReview (@RequestParam Integer reviewerId, @RequestParam Integer itemId, @RequestParam Integer rating, @RequestParam String description) {
+//		ItemReview review = new ItemReview();
+//		review.setId(new ReviewIds(reviewerId, itemId));
+//		review.setDescription(description);
+//		review.setRating(rating);
+//		review.setPostDate(StringDateConverter.calendarToString(Calendar.getInstance()));
+//		itemRepository.save(review);
+//		return "Review Posted";
+//	}
+	
 	@PostMapping(path="/postItemReview") // Map ONLY POST Requests
-	public @ResponseBody String addNewItemReview (@RequestParam Integer reviewerId, @RequestParam Integer itemId, @RequestParam Integer rating, @RequestParam String description) {
-		ItemReview review = new ItemReview();
-		review.setId(new ReviewIds(reviewerId, itemId));
-		review.setDescription(description);
-		review.setRating(rating);
-		review.setPostDate(Calendar.getInstance());
+	public @ResponseBody String addNewItemReview (@RequestBody ItemReview review) {
+		review.setPostDate(StringDateConverter.calendarToString(Calendar.getInstance()));
 		itemRepository.save(review);
 		return "Review Posted";
 	}
