@@ -81,6 +81,16 @@ public class TransactionController {
     public @ResponseBody List<Transaction> getPastOutFints(Integer finterId){
     	return transactionRepository.findPastTransactionsByFinterId(finterId);
     }
+    
+    @GetMapping("/getAllFints")
+    public @ResponseBody List<Transaction> getAllFints(Integer finteeId){
+    	return transactionRepository.findAllTransactionsByFinteeId(finteeId);
+    }
+    
+    @GetMapping("/getAllOutFints")
+    public @ResponseBody List<Transaction> getAllOutFints(Integer finterId){
+    	return transactionRepository.findAllTransactionsByFinterId(finterId);
+    }
 
  
     @PostMapping("/return")
