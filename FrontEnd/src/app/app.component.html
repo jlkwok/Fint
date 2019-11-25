@@ -1,6 +1,6 @@
 <div *ngIf="user; else signIn">
   <nav class="navbar navbar-expand-sm navbar-light">
-    <img class="smaller ml-5 mr-3 pointer" src="../assets/Logo.svg" routerLink="/Home">
+    <img class="smaller ml-5 mr-3 pointer" src="../assets/Logo.svg" routerLink="/home/{{userId}}">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -20,9 +20,9 @@
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
               aria-expanded="false">You</a>
             <div class="dropdown-menu">
-              <span class="dropdown-item-text">Name</span>
+              <span class="dropdown-item-text">{{userName}}</span>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Profile">View Profile</a>
+              <a class="dropdown-item" routerLink="/profile/{{userId}}">View Profile</a>
               <a class="dropdown-item" href="ProfileSettings">Profile Settings</a>
               <a class="dropdown-item" href="#">Sign Out</a>
             </div>

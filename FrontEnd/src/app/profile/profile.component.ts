@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from '../shared/models/user';
+import { UserService } from '../shared/services/user.service';
+import { FinterReviewService } from '../shared/services/finter-review.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,20 +12,22 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
   name: String;
   location: String;
-  joinDate: String;
   avgRating: number;
   totalNumReviews: number;
   profilePic: String;
+  userId: number;
   // need pastFints, outFints, reviews
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private finterReviewService: FinterReviewService) { }
 
   ngOnInit() {
-    this.name = "Jessica Kwok";
-    this.location = "Cleveland, OH";
-    this.joinDate = "October 31, 2019";
-    this.avgRating = 3.7;
-    this.totalNumReviews = 58;
+    this.userId = +this.route.snapshot.paramMap.get('userId');
+    this.userService.getUser(this.userId).subscribe(user => {
+      this.name = user.name;
+      this.location = user.location;
+      this.finterReviewService.getFinterRating(user.userId).subscribe(rating => this.avgRating = rating);
+      this.finterReviewService.getReviewCount(user.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
+    })
     this.profilePic = "../../assets/avatar.png";
   }
 

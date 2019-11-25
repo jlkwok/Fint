@@ -2,7 +2,7 @@ import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
 import { User } from './shared/models/user';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-  title = 'Fint';  
+  title = 'Fint';
   // temporary
   //user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword", "Cleveland, OH");
   user: User;
   userId: number;
+  userName: String;
+  loggedIn: boolean;
 
   logInEmail = new FormControl('');
   logInPassword = new FormControl('');
@@ -25,13 +27,16 @@ export class AppComponent implements AfterViewInit {
   signUpEmail = new FormControl('');
   signUpPassword = new FormControl('');
 
-  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router) {
-    // temporary
-    this.router.navigate(["/SignIn"]);
+  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router, private route: ActivatedRoute) {
   }
-  
+
+  ngOnInit() {    
+    this.userId = +this.route.snapshot.paramMap.get('userId');
+    this.userService.getUser(this.userId).subscribe(user => this.user = user);
+  }
+
   ngAfterViewInit(): void {
-      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f4f4f8';
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f4f4f8';
   }
 
   logIn(email: String, password: String): void {
@@ -41,7 +46,8 @@ export class AppComponent implements AfterViewInit {
     this.userService.logInUser(email, password).subscribe(user => {
       this.user = user;
       this.userId = user.userId;
-      this.router.navigate([`/home/${user.userId}`])
+      this.userName = user.name;
+      this.router.navigate([`/home/${user.userId}`]);
     });
   }
 
@@ -56,8 +62,8 @@ export class AppComponent implements AfterViewInit {
       return;
     }
     let name = firstName + " " + lastName;
-    let location = city + ", " + state;
-    let user = new User (username, name, password, location)
+    let location = city + ", " + state.toUpperCase();
+    let user = new User(username, name, password, location)
     this.userService.signUpUser(user).subscribe(response => alert(response));
     this.firstName.reset();
     this.lastName.reset();
