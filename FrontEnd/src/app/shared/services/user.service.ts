@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   private userUrl = 'http://localhost:8080/user/';
-  
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -17,12 +17,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUser(id: number): Observable<User> {
-    return this.http.get<User>(this.userUrl + "getUser?id=" + id);
+    return this.http.get<User>(`${this.userUrl}getUser?id=${id}`);
   }
 
-  signUpUser(username: string, name: string, password: string): Observable<User> {
-    var user = {"username":username, "name":name, "password": password};
-    return this.http.post<User>(this.userUrl + "create", JSON.stringify(user), this.httpOptions);
+  signUpUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.userUrl}create`, user, {responseType:'text' as 'json'});
   }
 
   logInUser() {

@@ -28,7 +28,7 @@ public class UserController {
         return ResponseEntity.ok(userRepository.findAll());
     }
 
-    @PostMapping("/create")
+    /*@PostMapping("/create")
     public ResponseEntity<?> newUser(
             @RequestParam String username,
             @RequestParam String name,
@@ -39,5 +39,10 @@ public class UserController {
         u.setPassword(password);
         userRepository.save(u);
         return ResponseEntity.ok("New User Created");
+    }*/
+    @PostMapping("/create")
+    public ResponseEntity<?>  newUser(@RequestBody User user) {
+      userRepository.save(user);
+      return ResponseEntity.ok("New User Created");
     }
 }

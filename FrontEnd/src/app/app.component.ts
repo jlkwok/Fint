@@ -2,6 +2,7 @@ import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
 import { User } from './shared/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,7 @@ import { User } from './shared/models/user';
 export class AppComponent implements AfterViewInit {
   title = 'Fint';  
   loggedIn: boolean = false;
+  user: User;
 
   logInEmail = new FormControl('');
   logInPassword = new FormControl('');
@@ -19,7 +21,7 @@ export class AppComponent implements AfterViewInit {
   signUpEmail = new FormControl('');
   signUpPassword = new FormControl('');
 
-  constructor(private elementRef: ElementRef, private userService: UserService) {
+  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router) {
 
   }
   
@@ -33,6 +35,7 @@ export class AppComponent implements AfterViewInit {
     if (!email || !password) { return; }
     this.userService.logInUser();
     // waiting for backend
+    /*this.router.navigate([`/home/${user.userId}`])*/
   }
 
   signUp(username: string, firstName: string, lastName: string, password: string): void {
@@ -41,6 +44,7 @@ export class AppComponent implements AfterViewInit {
     lastName = lastName.trim();
     password = password.trim();
     var name = firstName + " " + lastName;
-    this.userService.signUpUser(username, name, password).subscribe();
+    let user = new User (username, name, password)
+    this.userService.signUpUser(user).subscribe(response => alert(response));
   }
 }

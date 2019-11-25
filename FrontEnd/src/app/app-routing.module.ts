@@ -15,7 +15,7 @@ import { ItemCardComponent } from './item-card/item-card.component';
 const routes: Routes = [
   { path: '', redirectTo: 'SignIn', pathMatch: 'full' },
   { path: 'SignIn', component:SignInComponent },
-  { path: 'Home', component:HomeComponent },
+  { path: 'home/:userId', component:HomeComponent },
   { path: 'Outfint', component:OutfintComponent },
   { path: 'Profile', component:ProfileComponent },
   { path: 'Cart', component:CartComponent },
