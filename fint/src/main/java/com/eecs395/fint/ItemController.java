@@ -58,7 +58,6 @@ public class ItemController {
 	public ResponseEntity<?> getUserItems(
 			@RequestParam int finterId) {
 		return ResponseEntity.ok(itemRepository.findItemsByFinterId(finterId));
-
 	}
 
 	@PostMapping(path="/setItemPrice")
