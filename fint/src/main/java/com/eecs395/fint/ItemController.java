@@ -27,7 +27,7 @@ public class ItemController {
 	    return ResponseEntity.ok(itemRepository.findAll());
     }
 
-	@PostMapping(path="/post")
+	/*@PostMapping(path="/post")
 	public ResponseEntity<?> postItem(
 			@RequestParam String name,
 			@RequestParam double price,
@@ -44,7 +44,13 @@ public class ItemController {
 		item.setFinterId(finterId);
 		itemRepository.save(item);
 		return ResponseEntity.ok("New Item Created");
-	}
+	}*/
+	
+	@PostMapping("/post")
+    public ResponseEntity<?> postItem(@RequestBody Item item) {
+      itemRepository.save(item);
+      return ResponseEntity.ok("New Item Created");
+    }
 
 	@GetMapping("/getUserItems")
 	public ResponseEntity<?> getUserItems(

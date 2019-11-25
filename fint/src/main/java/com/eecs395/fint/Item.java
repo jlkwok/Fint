@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer itemId;
+    public int itemId;
 
     private String name;
 
