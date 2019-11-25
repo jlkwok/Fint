@@ -23,6 +23,14 @@ public class UserController {
         return ResponseEntity.of(user);
     }
 
+    @GetMapping("/verifyUser")
+    public ResponseEntity<User> verifyUser(
+            @RequestParam String username,
+            @RequestParam String password) {
+        Optional<User> user = userRepository.verifyUser(username, password);
+        return ResponseEntity.of(user);
+    }
+
     @GetMapping("/all")
     public ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userRepository.findAll());

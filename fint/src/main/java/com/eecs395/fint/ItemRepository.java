@@ -13,7 +13,7 @@ public interface ItemRepository extends CrudRepository<Item, Integer> {
     @Query("SELECT i FROM Item i WHERE i.finterId=?1")
     public List<Item> findItemsByFinterId(Integer finterId);
 
-//    @Query("")
-//    public List<Item> getItemsForFeed(String query);
+    @Query("SELECT i FROM Item i WHERE LOWER(i.name) LIKE CONCAT('%', LOWER(?1), '%')")
+    public List<Item> query(String query);
 
 }
