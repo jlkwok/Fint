@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,12 +22,8 @@ public class FinterReviewController {
 	private FinterReviewRepository finterRepository;
 
 	@PostMapping(path="/postFinterReview") // Map ONLY POST Requests
-	public @ResponseBody String addNewFinterReview (@RequestParam Integer reviewerId, @RequestParam Integer finterId, @RequestParam Integer rating, @RequestParam String description) {
-		FinterReview review = new FinterReview();
-		review.setId(new ReviewIds(reviewerId, finterId));
-		review.setDescription(description);
-		review.setRating(rating);
-		review.setPostDate(Calendar.getInstance());
+	public @ResponseBody String addNewFinterReview (@RequestBody FinterReview review) {
+		review.setPostDate(StringDateConverter.calendarToString(Calendar.getInstance()));
 		finterRepository.save(review);
 		return "Review Posted";
 	}

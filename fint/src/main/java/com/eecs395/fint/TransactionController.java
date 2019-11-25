@@ -22,7 +22,7 @@ public class TransactionController {
     @Autowired
     private ItemRepository itemRepository;
 
-    @PostMapping("/fint")
+    /* @PostMapping("/fint")
     public ResponseEntity<?> fint(@RequestParam int itemId, @RequestParam int finteeId, @RequestParam String endDate) {
         Transaction t = new Transaction();
         t.setItemId(itemId);
@@ -35,6 +35,24 @@ public class TransactionController {
         	Item item = itemOp.get();
             t.setTPrice(item.getPrice() * t.getLength());
             transactionRepository.save(t);
+            item.setIsAvailable(false);
+            item.setFintCount(item.getFintCount() + 1);
+            itemRepository.save(item);
+            return ResponseEntity.ok("Item Finted");
+        } else {
+            return new ResponseEntity<>("Item Not Found", HttpStatus.NOT_FOUND);
+        }
+    } */
+    
+    @PostMapping("/fint")
+    public ResponseEntity<?> fint(@RequestBody Transaction transaction) {
+        transaction.setStartDate(StringDateConverter.calendarToString(Calendar.getInstance()));
+        transaction.setIsReturned(false);
+        Optional<Item> itemOp = itemRepository.findById(transaction.getItemId());
+        if (itemOp.isPresent()) {
+        	Item item = itemOp.get();
+            transaction.setTPrice(item.getPrice() * transaction.getLength());
+            transactionRepository.save(transaction);
             item.setIsAvailable(false);
             item.setFintCount(item.getFintCount() + 1);
             itemRepository.save(item);

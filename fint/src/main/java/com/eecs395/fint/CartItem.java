@@ -18,21 +18,21 @@ public class CartItem {
 	@Column(name = "id")
     private CartId id;
 	
-    private Calendar endDate;
+    private String endDate;
     
     private double price;
 
 	/**
 	 * @return the endDate
 	 */
-	public Calendar getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
 	/**
 	 * @param endDate the endDate to set
 	 */
-	public void setEndDate(Calendar endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 

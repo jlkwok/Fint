@@ -28,20 +28,7 @@ public class ItemController {
     }
 
 	@PostMapping(path="/post")
-	public ResponseEntity<?> postItem(
-			@RequestParam String name,
-			@RequestParam double price,
-			@RequestParam String picture,
-			@RequestParam String location,
-			@RequestParam int finterId) {
-		Item item = new Item();
-		item.setName(name);
-		item.setPrice(price);
-		item.setPicture(picture);
-		item.setFintCount(0);
-		item.setIsAvailable(true);
-		item.setLocation(location);
-		item.setFinterId(finterId);
+	public ResponseEntity<?> postItem(@RequestBody Item item) {
 		itemRepository.save(item);
 		return ResponseEntity.ok("New Item Created");
 	}
