@@ -5,6 +5,9 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,15 +21,15 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int tId;
 
-    private int itemId;
+    private Integer itemId;
 
     private boolean isReturned;
 
     private int finteeId;
 
-    private Calendar startDate;
+    private String startDate;
     
-    private Calendar endDate;
+    private String endDate;
 
     private double tPrice;
 
@@ -62,16 +65,16 @@ public class Transaction {
         this.finteeId = finteeId;
     }
 
-    public Calendar getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Calendar date) {
+    public void setStartDate(String date) {
         this.startDate = date;
     }
     
     public int getLength() {
-        return endDate.get(Calendar.DAY_OF_YEAR) - startDate.get(Calendar.DAY_OF_YEAR);
+        return StringDateConverter.stringToCalendar(endDate).get(Calendar.DAY_OF_YEAR) - StringDateConverter.stringToCalendar(startDate).get(Calendar.DAY_OF_YEAR);
     }
 
     public double getTPrice() {
@@ -85,14 +88,14 @@ public class Transaction {
 	/**
 	 * @return the endDate
 	 */
-	public Calendar getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
 
 	/**
 	 * @param endDate the endDate to set
 	 */
-	public void setEndDate(Calendar endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 }

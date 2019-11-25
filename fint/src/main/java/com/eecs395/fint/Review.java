@@ -20,7 +20,7 @@ public abstract class Review {
     private int rating;
 	
 	@Column(name = "postDate")
-	private Calendar postDate;
+	private String postDate;
 
     /**
 	 * @return the id
@@ -67,14 +67,14 @@ public abstract class Review {
 	/**
 	 * @return the rating
 	 */
-	public Calendar getPostDate() {
+	public String getPostDate() {
 		return postDate;
 	}
 
 	/**
 	 * @param rating the rating to set
 	 */
-	public void setPostDate(Calendar postDate) {
+	public void setPostDate(String postDate) {
 		this.postDate = postDate;
 	}
 }

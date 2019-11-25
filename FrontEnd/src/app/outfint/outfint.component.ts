@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { UserService } from '../shared/services/user.service';
+import { AppComponent } from '../app.component';
+import { ActivatedRoute } from '@angular/router';
+import { Item } from '../shared/models/item';
+import { ItemService } from '../shared/services/item.service';
+import { User } from '../shared/models/user';
 
 @Component({
   selector: 'app-outfint',
@@ -6,21 +13,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./outfint.component.css']
 })
 export class OutfintComponent implements OnInit {
-  url = '';
+  title = new FormControl('');
+  price = new FormControl('');
+  picture: String;
+  finterId: number;
 
-  constructor() { }
+  constructor(private userService: UserService, private route: ActivatedRoute, private itemService: ItemService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.finterId = +this.route.snapshot.paramMap.get('userId');
+  }
 
-  onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  onFileSelected(event) {
+    this.picture = event.target.files[0].name;
+  }
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = () => { // called once readAsDataURL is completed
-        this.url = reader.result.toString();
-      }
+  outfint(title: String, price: number) {
+    title = title.trim();
+    if (!title || !price) {
+      alert("Please fill all fields");
+      return;
     }
+    this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
+      let item = new Item(title, price, this.picture, 0, true, user.location, this.finterId);
+      this.itemService.postItem(item).subscribe(response => alert(response));
+    });
   }
 }

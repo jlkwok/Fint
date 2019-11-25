@@ -1,4 +1,8 @@
-import { Component, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, ElementRef, AfterViewInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { UserService } from './shared/services/user.service';
+import { User } from './shared/models/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +11,51 @@ import { Component, AfterViewInit, ElementRef } from '@angular/core';
 })
 export class AppComponent implements AfterViewInit {
   title = 'Fint';  
-  loggedIn: boolean = true;
+  // temporary
+  user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword", "Cleveland, OH");
+  //user: User;
+  userId: number = 1;
 
-  constructor(private elementRef: ElementRef) {
+  logInEmail = new FormControl('');
+  logInPassword = new FormControl('');
+  firstName = new FormControl('');
+  lastName = new FormControl('');
+  city = new FormControl('');
+  state = new FormControl('');
+  signUpEmail = new FormControl('');
+  signUpPassword = new FormControl('');
 
+  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router) {
+    // temporary
+    this.router.navigate([`/home/${this.userId}`]);
   }
   
   ngAfterViewInit(): void {
       this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f4f4f8';
+  }
+
+  logIn(email: String, password: String): void {
+    email = email.trim();
+    password = password.trim();
+    if (!email || !password) { return; }
+    this.userService.logInUser();
+    // waiting for backend
+    /*this.router.navigate([`/home/${user.userId}`])*/
+  }
+
+  signUp(username: String, firstName: String, lastName: String, password: String, city: String, state: String): void {
+    username = username.trim();
+    firstName = firstName.trim();
+    lastName = lastName.trim();
+    password = password.trim();
+    city = city.trim();
+    if (!username || !firstName || !lastName || !password || !city || !state) {
+      alert("Please fill all fields");
+      return;
+    }
+    let name = firstName + " " + lastName;
+    let location = city + ", " + state;
+    let user = new User (username, name, password, location)
+    this.userService.signUpUser(user).subscribe(response => alert(response));
   }
 }

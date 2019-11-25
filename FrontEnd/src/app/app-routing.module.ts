@@ -9,20 +9,22 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { ItemComponent } from './item/item.component';
 import { ReviewComponent } from './review/review.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
+import { ItemCardComponent } from './item-card/item-card.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'SignIn', pathMatch: 'full' },
   { path: 'SignIn', component:SignInComponent },
-  { path: 'Home', component:HomeComponent },
-  { path: 'Outfint', component:OutfintComponent },
+  { path: 'home/:userId', component:HomeComponent },
+  { path: 'outfint/:userId', component:OutfintComponent },
   { path: 'Profile', component:ProfileComponent },
   { path: 'Cart', component:CartComponent },
   { path: 'ProfileSettings', component:ProfileSettingsComponent },
-  { path: 'Item', component:ItemComponent }, 
+  { path: 'item/:id', component:ItemComponent }, 
   { path: 'Review', component:ReviewComponent },
   { path: 'Outfinting', component:OutfintComponent },
-  { path: 'CartItem', component:CartItemComponent }
+  { path: 'CartItem', component:CartItemComponent },
+  { path: 'ItemCard', component:ItemCardComponent }
 ];
 
 @NgModule({

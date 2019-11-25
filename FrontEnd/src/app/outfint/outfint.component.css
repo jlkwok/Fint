@@ -14,3 +14,7 @@
     box-shadow: none !important;
     color: white;
 }
+
+.form-control{
+    border-radius: 40px;
+}

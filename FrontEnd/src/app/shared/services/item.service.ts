@@ -19,4 +19,12 @@ export class ItemService {
   getItem(id: number): Observable<Item> {
     return this.http.get<Item>(this.itemUrl + id);
   }
+
+  getAllItems(): Observable<Item[]> {
+    return this.http.get<Item[]>(this.itemUrl + 'all');
+  }
+
+  postItem(item: Item): Observable<Item> {
+    return this.http.post<Item>(`${this.itemUrl}post`, item, {responseType:'text' as 'json'});
+  }
 }

@@ -1,8 +1,6 @@
 <ul>
     <li><a href="/SignIn">Sign In</a></li>
-    <li><a href="/Item">Item</a></li>
     <li><a href="/Profile">Profile</a></li>
-    <li><a href="/Review">Review</a></li>
     <li><a href="/ProfileSettings">Profile Settings</a></li>
     <li><a href="/Outfinting">Outfinting</a></li>
     <li><a href="/Cart">Cart</a></li>
@@ -23,13 +21,7 @@
     </nav>
 
     <div class="card-deck justify-content-center">
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
-        <app-item-card></app-item-card>
+        <app-item-card *ngFor="let item of items" [item]="item">
+        </app-item-card>
     </div>
 </div>

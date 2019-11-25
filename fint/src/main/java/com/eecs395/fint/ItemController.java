@@ -1,6 +1,6 @@
 package com.eecs395.fint;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,26 +27,30 @@ public class ItemController {
 	    return ResponseEntity.ok(itemRepository.findAll());
     }
 
-	@PostMapping(path="/post")
+	/*@PostMapping(path="/post")
 	public ResponseEntity<?> postItem(
 			@RequestParam String name,
 			@RequestParam double price,
 			@RequestParam String picture,
-			@RequestParam int fintCount,
-			@RequestParam boolean isAvailable,
 			@RequestParam String location,
 			@RequestParam int finterId) {
 		Item item = new Item();
 		item.setName(name);
 		item.setPrice(price);
 		item.setPicture(picture);
-		item.setFintCount(fintCount);
-		item.setIsAvailable(isAvailable);
+		item.setFintCount(0);
+		item.setIsAvailable(true);
 		item.setLocation(location);
 		item.setFinterId(finterId);
 		itemRepository.save(item);
 		return ResponseEntity.ok("New Item Created");
-	}
+	}*/
+	
+	@PostMapping("/post")
+    public ResponseEntity<?> postItem(@RequestBody Item item) {
+      itemRepository.save(item);
+      return ResponseEntity.ok("New Item Created");
+    }
 
 	@GetMapping("/getUserItems")
 	public ResponseEntity<?> getUserItems(
