@@ -12,9 +12,9 @@ import { Router } from '@angular/router';
 export class AppComponent implements AfterViewInit {
   title = 'Fint';  
   // temporary
-  user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword", "Cleveland, OH");
-  //user: User;
-  userId: number = 1;
+  //user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword", "Cleveland, OH");
+  user: User;
+  userId: number;
 
   logInEmail = new FormControl('');
   logInPassword = new FormControl('');
@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private elementRef: ElementRef, private userService: UserService, private router: Router) {
     // temporary
-    this.router.navigate([`/home/${this.userId}`]);
+    this.router.navigate(["/SignIn"]);
   }
   
   ngAfterViewInit(): void {
@@ -38,9 +38,11 @@ export class AppComponent implements AfterViewInit {
     email = email.trim();
     password = password.trim();
     if (!email || !password) { return; }
-    this.userService.logInUser();
-    // waiting for backend
-    /*this.router.navigate([`/home/${user.userId}`])*/
+    this.userService.logInUser(email, password).subscribe(user => {
+      this.user = user;
+      this.userId = user.userId;
+      this.router.navigate([`/home/${user.userId}`])
+    });
   }
 
   signUp(username: String, firstName: String, lastName: String, password: String, city: String, state: String): void {
@@ -57,5 +59,11 @@ export class AppComponent implements AfterViewInit {
     let location = city + ", " + state;
     let user = new User (username, name, password, location)
     this.userService.signUpUser(user).subscribe(response => alert(response));
+    this.firstName.reset();
+    this.lastName.reset();
+    this.city.reset();
+    this.state.reset();
+    this.signUpEmail.reset();
+    this.signUpPassword.reset();
   }
 }

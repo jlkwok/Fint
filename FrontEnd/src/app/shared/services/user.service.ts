@@ -24,7 +24,7 @@ export class UserService {
     return this.http.post<User>(`${this.userUrl}create`, user, {responseType:'text' as 'json'});
   }
 
-  logInUser() {
-    // waiting for backend
+  logInUser(username: String, password: String): Observable<User> {
+    return this.http.get<User>(`${this.userUrl}verifyUser?username=${username}&password=${password}`);
   }
 }
