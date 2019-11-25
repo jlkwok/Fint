@@ -26,6 +26,8 @@ public class Item {
     private String location;
 
     private int finterId;
+    
+    private String postDate;
 
     public int getItemId() {
         return itemId;
@@ -86,4 +88,25 @@ public class Item {
     public void setFinterId(int finterId) {
         this.finterId = finterId;
     }
+
+	/**
+	 * @return the postDate
+	 */
+	public String getPostDate() {
+		return postDate;
+	}
+
+	/**
+	 * @param postDate the postDate to set
+	 */
+	public void setPostDate(String postDate) {
+		this.postDate = postDate;
+	}
+
+	/**
+	 * @param isAvailable the isAvailable to set
+	 */
+	public void setAvailable(boolean isAvailable) {
+		this.isAvailable = isAvailable;
+	}
 }

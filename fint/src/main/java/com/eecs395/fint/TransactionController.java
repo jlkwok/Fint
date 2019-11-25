@@ -71,6 +71,27 @@ public class TransactionController {
     public @ResponseBody List<Transaction> getCurrentOutFints(Integer finterId){
     	return transactionRepository.findTransactionsByFinterId(finterId);
     }
+    
+    @GetMapping("/getPastFints")
+    public @ResponseBody List<Transaction> getPastFints(Integer finteeId){
+    	return transactionRepository.findPastTransactionsByFinteeId(finteeId);
+    }
+    
+    @GetMapping("/getPastOutFints")
+    public @ResponseBody List<Transaction> getPastOutFints(Integer finterId){
+    	return transactionRepository.findPastTransactionsByFinterId(finterId);
+    }
+    
+    @GetMapping("/getAllFints")
+    public @ResponseBody List<Transaction> getAllFints(Integer finteeId){
+    	return transactionRepository.findAllTransactionsByFinteeId(finteeId);
+    }
+    
+    @GetMapping("/getAllOutFints")
+    public @ResponseBody List<Transaction> getAllOutFints(Integer finterId){
+    	return transactionRepository.findAllTransactionsByFinterId(finterId);
+    }
+
  
     @PostMapping("/return")
     public ResponseEntity<?> returnTransaction(Integer tId) {
@@ -86,9 +107,4 @@ public class TransactionController {
     		return new ResponseEntity<>("Item has already been returned", HttpStatus.NOT_FOUND);
     	}
     }
-    
-	@GetMapping(path="/all")
-	public @ResponseBody Iterable<Transaction> getAllTransactions() {
-		return transactionRepository.findAll();
-	}    
 }

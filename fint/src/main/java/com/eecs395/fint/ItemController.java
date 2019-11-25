@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
 import java.util.Optional;
 
 @CrossOrigin
@@ -48,15 +49,15 @@ public class ItemController {
 	
 	@PostMapping("/post")
     public ResponseEntity<?> postItem(@RequestBody Item item) {
-      itemRepository.save(item);
-      return ResponseEntity.ok("New Item Created");
+		item.setPostDate(StringDateConverter.calendarToString(Calendar.getInstance()));
+		itemRepository.save(item);
+		return ResponseEntity.ok("New Item Created");
     }
 
 	@GetMapping("/getUserItems")
 	public ResponseEntity<?> getUserItems(
 			@RequestParam int finterId) {
 		return ResponseEntity.ok(itemRepository.findItemsByFinterId(finterId));
-
 	}
 
 	@PostMapping(path="/setItemPrice")
