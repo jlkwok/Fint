@@ -20,6 +20,8 @@ public class User {
 
     // WILL BE CHANGED
     private String password;
+    
+    private String location;
 
     public int getUserId() {
         return userId;
@@ -44,4 +46,8 @@ public class User {
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
+    
+    public String getLocation() { return location; }
+
+    public void setLocation(String location) { this.location = location; }
 }

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OutfintComponent implements OnInit {
   url = '';
+  location: String;
 
   constructor() { }
 

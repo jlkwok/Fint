@@ -12,13 +12,16 @@ import { Router } from '@angular/router';
 export class AppComponent implements AfterViewInit {
   title = 'Fint';  
   // temporary
-  user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword");
+  user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword", "Cleveland, OH");
+  //user: User;
   userId: number = 1;
 
   logInEmail = new FormControl('');
   logInPassword = new FormControl('');
   firstName = new FormControl('');
   lastName = new FormControl('');
+  city = new FormControl('');
+  state = new FormControl('');
   signUpEmail = new FormControl('');
   signUpPassword = new FormControl('');
 
@@ -31,7 +34,7 @@ export class AppComponent implements AfterViewInit {
       this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f4f4f8';
   }
 
-  logIn(email: string, password: string): void {
+  logIn(email: String, password: String): void {
     email = email.trim();
     password = password.trim();
     if (!email || !password) { return; }
@@ -40,13 +43,19 @@ export class AppComponent implements AfterViewInit {
     /*this.router.navigate([`/home/${user.userId}`])*/
   }
 
-  signUp(username: string, firstName: string, lastName: string, password: string): void {
+  signUp(username: String, firstName: String, lastName: String, password: String, city: String, state: String): void {
     username = username.trim();
     firstName = firstName.trim();
     lastName = lastName.trim();
     password = password.trim();
-    var name = firstName + " " + lastName;
-    let user = new User (username, name, password)
+    city = city.trim();
+    if (!username || !firstName || !lastName || !password || !city || !state) {
+      alert("Please fill all fields");
+      return;
+    }
+    let name = firstName + " " + lastName;
+    let location = city + ", " + state;
+    let user = new User (username, name, password, location)
     this.userService.signUpUser(user).subscribe(response => alert(response));
   }
 }

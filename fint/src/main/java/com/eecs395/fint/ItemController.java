@@ -32,16 +32,14 @@ public class ItemController {
 			@RequestParam String name,
 			@RequestParam double price,
 			@RequestParam String picture,
-			@RequestParam int fintCount,
-			@RequestParam boolean isAvailable,
 			@RequestParam String location,
 			@RequestParam int finterId) {
 		Item item = new Item();
 		item.setName(name);
 		item.setPrice(price);
 		item.setPicture(picture);
-		item.setFintCount(fintCount);
-		item.setIsAvailable(isAvailable);
+		item.setFintCount(0);
+		item.setIsAvailable(true);
 		item.setLocation(location);
 		item.setFinterId(finterId);
 		itemRepository.save(item);
