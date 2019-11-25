@@ -52,7 +52,6 @@ public class FinteeReviewController {
 		return finteeRepository.reviewCount(finteeId);
 	}
 
-
 	@GetMapping(path="/all")
 	public @ResponseBody Iterable<FinteeReview> getAllReviews() {
 		return finteeRepository.findAll();
