@@ -16,10 +16,10 @@ export class FinterReviewService {
   constructor(private http: HttpClient) { }
 
   getFinterRating(id: number): Observable<number> {
-    return this.http.get<number>(this.finterReviewUrl + "getFinterRating?finterId=" + id);
+    return this.http.get<number>(`${this.finterReviewUrl}getFinterRating?finterId=${id}`);
   }
 
   getReviewCount(id: number): Observable<number> {
-    return this.http.get<number>(this.finterReviewUrl + "getReviewCount?finterId=" + id);
+    return this.http.get<number>(`${this.finterReviewUrl}getReviewCount?finterId=${id}`);
   }
 }

@@ -17,11 +17,11 @@ export class ItemService {
   constructor(private http: HttpClient) { }
 
   getItem(id: number): Observable<Item> {
-    return this.http.get<Item>(this.itemUrl + id);
+    return this.http.get<Item>(`${this.itemUrl}${id}`);
   }
 
   getAllItems(): Observable<Item[]> {
-    return this.http.get<Item[]>(this.itemUrl + 'all');
+    return this.http.get<Item[]>(`${this.itemUrl}all`);
   }
 
   postItem(item: Item): Observable<Item> {

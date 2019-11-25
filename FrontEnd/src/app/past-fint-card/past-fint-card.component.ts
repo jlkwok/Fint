@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Item } from '../shared/models/item';
+import { UserService } from '../shared/services/user.service';
+import { ItemReviewService } from '../shared/services/item-review.service';
 
 @Component({
   selector: 'app-past-fint-card',
@@ -7,11 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PastFintCardComponent implements OnInit {
   url = '';
+  @Input() item: Item;
+  name: String;
+  seller: String;
+  avgRating: number;
+  numReviews: number;
+  price: number;
 
-  constructor() { }
+  constructor(private userService: UserService, private itemReviewService: ItemReviewService) { }
 
-  ngOnInit() { }
-  
+  ngOnInit() {
+    this.name = this.item.name;
+    this.userService.getUser(this.item.finterId).subscribe(user => this.seller = user.name);
+    this.itemReviewService.getItemRating(this.item.itemId).subscribe(rating => this.avgRating = rating);
+    this.itemReviewService.getReviewCount(this.item.itemId).subscribe(numReviews => this.numReviews = numReviews);
+    this.price = this.item.price;
+  }
+
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
