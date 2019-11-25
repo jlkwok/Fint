@@ -13,9 +13,16 @@ public interface TransactionRepository extends CrudRepository<Transaction, Integ
 	@Query("SELECT t FROM Transaction t WHERE t.tId=?1")
 	public Transaction findTransactionsByTransactionId(Integer tId);
 	
-	@Query("SELECT t FROM Transaction t WHERE t.finteeId=?1 AND t.isReturned=True")
+	@Query("SELECT t FROM Transaction t WHERE t.finteeId=?1 AND t.isReturned=False")
 	public List<Transaction> findTransactionsByFinteeId(Integer finteeId);
 	
-	@Query("SELECT t FROM Transaction t, Item i WHERE t.itemId=i.itemId AND i.finterId=?1 AND t.isReturned=True")
+	@Query("SELECT t FROM Transaction t, Item i WHERE t.itemId=i.itemId AND i.finterId=?1 AND t.isReturned=False")
 	public List<Transaction> findTransactionsByFinterId(Integer finterId);
+	
+	@Query("SELECT t FROM Transaction t WHERE t.finteeId=?1 AND t.isReturned=True")
+	public List<Transaction> findPastTransactionsByFinteeId(Integer finteeId);
+	
+	@Query("SELECT t FROM Transaction t, Item i WHERE t.itemId=i.itemId AND i.finterId=?1 AND t.isReturned=True")
+	public List<Transaction> findPastTransactionsByFinterId(Integer finterId);
+	
 }
