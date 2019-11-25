@@ -39,7 +39,10 @@ public class FinterReviewController {
 	}
 	
 	@GetMapping(path="/getFinterRating") // Map ONLY GET Requests
-	public @ResponseBody double getFinterRating (@RequestParam Integer finterId) {
+	public @ResponseBody Double getFinterRating (@RequestParam Integer finterId) {
+		if(null == finterRepository.getFinterRating(finterId)) {
+			return 0.0;
+		}
 		return finterRepository.getFinterRating(finterId);
 	}
 	

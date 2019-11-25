@@ -51,7 +51,9 @@ public class ItemReviewController {
 	}
 	
 	@GetMapping(path="/getItemRating") // Map ONLY GET Requests
-	public @ResponseBody double getItemRating (@RequestParam Integer itemId) {
+	public @ResponseBody Double getItemRating (@RequestParam Integer itemId) {
+		if(null == itemRepository.getItemRating(itemId))
+			return 0.0;
 		return itemRepository.getItemRating(itemId);
 	}
 	

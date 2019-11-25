@@ -40,7 +40,11 @@ public class FinteeReviewController {
 	
 	@GetMapping(path="/getFinteeRating") // Map ONLY GET Requests
 	public @ResponseBody double getfinteeRating (@RequestParam Integer finteeId) {
+		if(null == finteeRepository.getFinteeRating(finteeId)) {
+			return 0.0;
+		}
 		return finteeRepository.getFinteeRating(finteeId);
+
 	}
 	
 	@GetMapping(path="/getReviewCount")
