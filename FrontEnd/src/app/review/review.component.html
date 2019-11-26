@@ -3,7 +3,7 @@
         <img src={{profilePic}} class="avatar">
     </div>
     <div class="col-sm-8 flex-column">
-        <p class="m-0"><a style="color:black; text-decoration: underline" href="#">{{reviewer}}</a>   {{postDate | date}}</p>
+        <p class="m-0"><a style="color:black; text-decoration: underline" routerLink="/profile/{{reviewerId}}">{{reviewer}}</a>   {{postDate | date}}</p>
         <p class="m-0"><ngb-rating [(rate)]="rating" [starTemplate]="t" [readonly]="true" max="5">
         </ngb-rating></p>
         <p>{{reviewContent}}</p>

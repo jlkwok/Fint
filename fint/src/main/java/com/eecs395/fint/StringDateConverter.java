@@ -8,7 +8,11 @@ import java.util.Date;
 public class StringDateConverter {
 	
 	public static Calendar stringToCalendar(String dateString) {
+<<<<<<< HEAD
 		SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
+=======
+		SimpleDateFormat df = new SimpleDateFormat("d MM yyyy");
+>>>>>>> 74d249f84c6eb166b65f0db024f20140df8f91bd
 		Date date;
 		try {
 			date = (Date)df.parse(dateString);
@@ -22,7 +26,11 @@ public class StringDateConverter {
 	}
 	
 	public static String calendarToString(Calendar cal) {
+<<<<<<< HEAD
 		SimpleDateFormat df = new SimpleDateFormat("dd MM yyyy");
+=======
+		SimpleDateFormat df = new SimpleDateFormat("d MM yyyy");
+>>>>>>> 74d249f84c6eb166b65f0db024f20140df8f91bd
 		return df.format(cal.getTime()).toString();
 	}
 }

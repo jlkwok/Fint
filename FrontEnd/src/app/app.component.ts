@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
 import { User } from './shared/models/user';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,7 @@ export class AppComponent implements AfterViewInit {
   //user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword", "Cleveland, OH");
   user: User;
   userId: number;
-  userName: String;
+  userName: string;
   loggedIn: boolean;
 
   logInEmail = new FormControl('');
@@ -27,8 +28,7 @@ export class AppComponent implements AfterViewInit {
   signUpEmail = new FormControl('');
   signUpPassword = new FormControl('');
 
-  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router, private route: ActivatedRoute) {
-    
+  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router, private route: ActivatedRoute, private titleCasePipe: TitleCasePipe) {
   }
 
   ngOnInit() {    
@@ -40,7 +40,7 @@ export class AppComponent implements AfterViewInit {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f4f4f8';
   }
 
-  logIn(email: String, password: String): void {
+  logIn(email: string, password: string): void {
     email = email.trim();
     password = password.trim();
     if (!email || !password) { return; }
@@ -52,7 +52,7 @@ export class AppComponent implements AfterViewInit {
     });
   }
 
-  signUp(username: String, firstName: String, lastName: String, password: String, city: String, state: String): void {
+  signUp(username: string, firstName: string, lastName: string, password: string, city: string, state: string): void {
     username = username.trim();
     firstName = firstName.trim();
     lastName = lastName.trim();
@@ -63,7 +63,7 @@ export class AppComponent implements AfterViewInit {
       return;
     }
     let name = firstName + " " + lastName;
-    let location = city + ", " + state.toUpperCase();
+    let location = this.titleCasePipe.transform(city) + ", " + state.toUpperCase();
     let user = new User(username, name, password, location)
     this.userService.signUpUser(user).subscribe(response => alert(response));
     this.firstName.reset();

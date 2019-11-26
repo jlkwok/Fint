@@ -1,8 +1,8 @@
 <div class="container-fluid mx-5">
   <div class="row">
     <div class="col-lg-7">
-      <ngb-carousel *ngIf="images">
-        <ng-template ngbSlide *ngFor="let image of images">
+      <ngb-carousel>
+        <ng-template ngbSlide>
           <div class="picsum-img-wrapper">
             <img [src]="image">
           </div>
@@ -17,13 +17,17 @@
       </app-review>
     </div>
     <div class="col-lg-auto">
-      <h3><small class="text-muted">{{sellerName}} - {{location}}</small></h3>
+      <h3><small class="text-muted"><a routerLink="/profile/{{sellerId}}">{{sellerName}}</a> - {{location}}</small></h3>
       <h3>{{name}} ({{fintCount}})</h3>
       <p class="h5 font-weight-bold">${{price}}/day</p>
       <p class="text-muted">Select Dates for Use:</p>
-      <app-date-picker></app-date-picker>
+
+      <ngb-datepicker [displayMonths]="displayMonths" [navigation]="navigation" [showWeekNumbers]="showWeekNumbers"
+        [outsideDays]="outsideDays" #dp [(ngModel)]="model" (navigate)="date = $event.next">
+      </ngb-datepicker>
+
       <button type="button" class="btn btn-outline-primary btn-lg btn-block">Add To Cart</button>
-      <button type="button" class="btn btn-outline-primary btn-lg btn-block">Fint Now</button>
+      <button type="button" class="btn btn-outline-primary btn-lg btn-block" (click)="fint()">Fint Now</button>
     </div>
   </div>
 </div>

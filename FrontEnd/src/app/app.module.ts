@@ -11,7 +11,6 @@ import { OutfintComponent } from './outfint/outfint.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { DatePickerComponent } from './date-picker/date-picker.component';
 import { ReviewComponent } from './review/review.component';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { PastFintCardComponent } from './past-fint-card/past-fint-card.component';
@@ -19,6 +18,7 @@ import { OutfintCardComponent } from './outfint-card/outfint-card.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TitleCasePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ProfileComponent,
     ProfileSettingsComponent,
     SignInComponent,
-    DatePickerComponent,
     ReviewComponent,
     ItemCardComponent,
     PastFintCardComponent,
@@ -46,7 +45,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [TitleCasePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

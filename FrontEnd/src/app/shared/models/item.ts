@@ -1,11 +1,11 @@
 export class Item {
     itemId: number;
-    name: String;
+    name: string;
     price: number;
-    picture: String;
+    picture: string;
     fintCount: number;
     isAvailable: boolean;
-    location: String;
+    location: string;
     finterId: number;
 
     constructor (name, price, picture, fintCount, isAvailable, location, finterId) {

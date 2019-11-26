@@ -5,15 +5,12 @@ export class Transaction {
     finteeId: number;
     length: number;
     startDate: Date;
-    endDate: Date;
+    endDate: string;
     tPrice: number;
 
-    constructor (itemId: number, isReturned: boolean, finteeId: number, startDate: Date, endDate: Date, tPrice: number) {
+    constructor (itemId: number, finteeId: number, endDate: string) {
         this.itemId = itemId;
-        this.isReturned = isReturned; 
         this.finteeId = finteeId;
-        this.startDate = startDate;
         this.endDate = endDate;
-        this.tPrice = tPrice;
     }
 }
