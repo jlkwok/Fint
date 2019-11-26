@@ -48,7 +48,7 @@ export class AppComponent implements AfterViewInit {
       this.user = user;
       this.userId = user.userId;
       this.userName = user.name;
-      this.router.navigate([`/home/${user.userId}`]);
+      this.router.navigate([`/${user.userId}/home`]);
     });
   }
 
@@ -62,7 +62,7 @@ export class AppComponent implements AfterViewInit {
       alert("Please fill all fields");
       return;
     }
-    let name = firstName + " " + lastName;
+    let name = this.titleCasePipe.transform(firstName) + " " + this.titleCasePipe.transform(lastName);
     let location = this.titleCasePipe.transform(city) + ", " + state.toUpperCase();
     let user = new User(username, name, password, location)
     this.userService.signUpUser(user).subscribe(response => alert(response));

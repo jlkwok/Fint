@@ -29,11 +29,11 @@ export class ProfileComponent implements OnInit {
     this.userService.getUser(this.userId).subscribe(user => {
       this.name = user.name;
       this.location = user.location;
-      this.finterReviewService.getFinterRating(user.userId).subscribe(rating => this.avgRating = rating);
-      this.finterReviewService.getReviewCount(user.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
-      this.transactionService.getFints(user.userId).subscribe(fints => this.pastFints = fints);
-      this.transactionService.getOutfints(user.userId).subscribe(outfints => this.outFints = outfints);
-    })
+    });   
+    this.finterReviewService.getFinterRating(this.userId).subscribe(rating => this.avgRating = rating);
+    this.finterReviewService.getReviewCount(this.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
+    this.transactionService.getPastFints(this.userId).subscribe(fints => this.pastFints = fints);
+    this.transactionService.getOutfints(this.userId).subscribe(outfints => this.outFints = outfints);
     this.profilePic = "../../assets/avatar.png";
   }
 

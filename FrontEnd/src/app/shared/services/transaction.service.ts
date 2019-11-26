@@ -21,6 +21,10 @@ export class TransactionService {
     return this.http.get<Item[]>(`${this.transactionUrl}getAllFints?finteeId=${id}`);
   }
 
+  getPastFints(id: number): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.transactionUrl}getPastFints?finteeId=${id}`);
+  }
+
   getOutfints(id: number): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.transactionUrl}getAllOutFints?finterId=${id}`);
   }

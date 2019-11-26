@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Item } from '../shared/models/item';
 import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
+import { ItemService } from '../shared/services/item.service';
 
 @Component({
   selector: 'app-past-fint-card',
@@ -16,15 +17,19 @@ export class PastFintCardComponent implements OnInit {
   avgRating: number;
   numReviews: number;
   price: number;
+  picture: string;
 
-  constructor(private userService: UserService, private itemReviewService: ItemReviewService) { }
+  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private itemService: ItemService) { }
 
   ngOnInit() {
-    this.name = this.item.name;
+    this.itemService.getItem(this.item.itemId).subscribe(item => {
+      this.name = item.name;
+      this.price = item.price;
+      this.picture = "../../assets/" + item.picture;
+    });
     this.userService.getUser(this.item.finterId).subscribe(user => this.seller = user.name);
     this.itemReviewService.getItemRating(this.item.itemId).subscribe(rating => this.avgRating = rating);
     this.itemReviewService.getReviewCount(this.item.itemId).subscribe(numReviews => this.numReviews = numReviews);
-    this.price = this.item.price;
   }
 
   onSelectFile(event) {
