@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'home/:userId', component:HomeComponent },
   { path: 'outfint/:userId', component:OutfintComponent },
   { path: 'profile/:userId', component:ProfileComponent },
-  { path: 'Cart', component:CartComponent },
+  { path: 'cart/:userId', component:CartComponent },
   { path: 'ProfileSettings', component:ProfileSettingsComponent },
   { path: 'item/:id', component:ItemComponent }, 
   { path: 'Review', component:ReviewComponent },

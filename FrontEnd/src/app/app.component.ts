@@ -28,6 +28,7 @@ export class AppComponent implements AfterViewInit {
   signUpPassword = new FormControl('');
 
   constructor(private elementRef: ElementRef, private userService: UserService, private router: Router, private route: ActivatedRoute) {
+    
   }
 
   ngOnInit() {    
