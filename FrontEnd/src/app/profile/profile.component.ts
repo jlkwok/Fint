@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
-import { FinterReviewService } from '../shared/services/finter-review.service';
 import { Item } from '../shared/models/item';
 import { TransactionService } from '../shared/services/transaction.service';
 import { ItemService } from '../shared/services/item.service';
+import { Review } from '../shared/models/review';
+import { FinteeReviewService } from '../shared/services/fintee-review.service';
 
 @Component({
   selector: 'app-profile',
@@ -20,10 +21,11 @@ export class ProfileComponent implements OnInit {
   userId: number;
   pastFints: Item[];
   outfints: Item[];
+  reviews: Review[];
   //currentTransactions: Item[];
-  // need outFints, reviews
+  // reviews
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private finterReviewService: FinterReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.userId = +this.route.snapshot.paramMap.get('userId');
@@ -31,8 +33,9 @@ export class ProfileComponent implements OnInit {
       this.name = user.name;
       this.location = user.location;
     });   
-    this.finterReviewService.getFinterRating(this.userId).subscribe(rating => this.avgRating = rating);
-    this.finterReviewService.getReviewCount(this.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
+    this.finteeReviewService.getFinteeRating(this.userId).subscribe(rating => this.avgRating = rating);
+    this.finteeReviewService.getReviewCount(this.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
+    this.finteeReviewService.getFinteeReviews(this.userId).subscribe(reviews => this.reviews = reviews);
     this.transactionService.getPastFints(this.userId).subscribe(fints => this.pastFints = fints);
     this.itemService.getUserItems(this.userId).subscribe(outfints => this.outfints = outfints);
     this.profilePic = "../../assets/avatar.png";

@@ -50,7 +50,8 @@
         <ngb-tab title="Reviews">
             <ng-template ngbTabContent>
                 <div class="mt-3">
-                    <app-review></app-review>
+                    <app-review *ngFor="let review of reviews" [review]="review">
+                    </app-review>
                 </div>
             </ng-template>
         </ngb-tab>

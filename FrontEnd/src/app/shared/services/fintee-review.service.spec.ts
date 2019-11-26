@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FinterReviewService } from './finter-review.service';
+import { FinteeReviewService } from './fintee-review.service';
 
-describe('FinterReviewService', () => {
+describe('FinteeReviewService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: FinterReviewService = TestBed.get(FinterReviewService);
+    const service: FinteeReviewService = TestBed.get(FinteeReviewService);
     expect(service).toBeTruthy();
   });
 });
