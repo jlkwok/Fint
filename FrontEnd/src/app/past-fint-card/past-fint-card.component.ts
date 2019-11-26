@@ -11,8 +11,8 @@ import { ItemReviewService } from '../shared/services/item-review.service';
 export class PastFintCardComponent implements OnInit {
   url = '';
   @Input() item: Item;
-  name: String;
-  seller: String;
+  name: string;
+  seller: string;
   avgRating: number;
   numReviews: number;
   price: number;

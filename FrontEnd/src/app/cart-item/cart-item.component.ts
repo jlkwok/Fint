@@ -6,11 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent implements OnInit {
-  seller: String;
-  itemPic: String;
-  title: String;
-  startDate: String;
-  endDate: String;
+  seller: string;
+  itemPic: string;
+  title: string;
+  startDate: string;
+  endDate: string;
   price: number;
 
   constructor() { }

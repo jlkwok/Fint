@@ -12,12 +12,12 @@ import { Item } from '../shared/models/item';
 export class ItemCardComponent implements OnInit {
   @Input() item: Item;
   rating: number;
-  sellerName: String;
-  name: String;
+  sellerName: string;
+  name: string;
   price: number;
-  itemImages: String[];
+  itemImages: string[];
   itemReviewCount: number;
-  image: String;
+  image: string;
 
   constructor(private userService: UserService, private itemReviewService: ItemReviewService) { }
 

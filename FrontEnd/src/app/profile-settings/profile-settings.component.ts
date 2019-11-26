@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../shared/services/user.service';
 
 @Component({
   selector: 'app-profile-settings',
@@ -7,16 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileSettingsComponent implements OnInit {
   url = '';
-  profilePic: String;
-  name: String;
-  location: String;
+  profilePic: string;
+  name: string;
+  location: string;
+  userId: number;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
+    this.userId = +this.route.snapshot.paramMap.get('userId');
     this.profilePic = "../../assets/avatar.png";
-    this.name = "Jessica Kwok";
-    this.location = "Cleveland, OH";
+    this.userService.getUser(this.userId).subscribe(user => {
+      this.name = user.name;
+      this.location = user.location;
+    });
   }
 
   onSelectFile(event) {

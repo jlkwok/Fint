@@ -12,13 +12,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ItemComponent implements OnInit {
   rating: number;
-  sellerName: String;
+  sellerName: string;
   sellerId: number;
-  name: String;
+  name: string;
   fintCount: number;
   price: number;
-  itemImages: String[];
-  location: String;
+  itemImages: string[];
+  location: string;
   itemReviewCount: number;
   reviews: Review[];
 

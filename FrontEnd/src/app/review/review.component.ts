@@ -10,10 +10,10 @@ import { UserService } from '../shared/services/user.service';
 export class ReviewComponent implements OnInit {
   @Input() review: Review;
   rating: number;
-  profilePic: String;
-  reviewer: String;
+  profilePic: string;
+  reviewer: string;
   postDate: Date;
-  reviewContent: String;
+  reviewContent: string;
   reviewerId: number;
 
   constructor(private userService: UserService) { }

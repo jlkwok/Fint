@@ -12,11 +12,11 @@ import { TransactionService } from '../shared/services/transaction.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  name: String;
-  location: String;
+  name: string;
+  location: string;
   avgRating: number;
   totalNumReviews: number;
-  profilePic: String;
+  profilePic: string;
   userId: number;
   pastFints: Item[];
   outFints: Item[];

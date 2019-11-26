@@ -15,7 +15,7 @@ import { User } from '../shared/models/user';
 export class OutfintComponent implements OnInit {
   title = new FormControl('');
   price = new FormControl('');
-  picture: String;
+  picture: string;
   finterId: number;
 
   constructor(private userService: UserService, private route: ActivatedRoute, private itemService: ItemService) { }
@@ -28,7 +28,7 @@ export class OutfintComponent implements OnInit {
     this.picture = event.target.files[0].name;
   }
 
-  outfint(title: String, price: number) {
+  outfint(title: string, price: number) {
     title = title.trim();
     if (!title || !price) {
       alert("Please fill all fields");

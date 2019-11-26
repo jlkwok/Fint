@@ -19,6 +19,7 @@ import { OutfintCardComponent } from './outfint-card/outfint-card.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { TitleCasePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [TitleCasePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
