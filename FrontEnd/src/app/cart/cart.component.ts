@@ -9,14 +9,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartItems: CartItem[];
+  cartItems:CartItem[];
 
   constructor(private cartItemService: CartItemService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const userId = +this.route.snapshot.paramMap.get('userId');
     //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
-    this.cartItemService.getFinteeCart(userId).subscribe(cartItems => this.cartItems = cartItems);
+    this.cartItemService.getFinteeCart(userId).subscribe(cartItems => {
+      this.cartItems = cartItems;
+      alert(userId);
+      alert("Cart item id:" + this.cartItems[0].id);
+    });
   }
-
 }

@@ -17,7 +17,7 @@ export class CartItemService {
   constructor(private http: HttpClient) { }
 
   getFinteeCart(finteeId: number): Observable<CartItem[]> {
-    return this.http.get<CartItem[]>(this.cartItemUrl + '/getCart/' + finteeId);
+    return this.http.get<CartItem[]>(this.cartItemUrl + 'getCart/' + finteeId);
   }
 
   getAllCartItems(): Observable<CartItem[]> {

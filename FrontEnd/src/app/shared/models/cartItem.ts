@@ -1,13 +1,13 @@
 import { CartId } from './cartId';
 
 export class CartItem {
-    cartId:CartId;
+    id:CartId;
     endDate:String;
     startDate:String;
     price:number;
 
-    constructor (cartId:CartId, endDate:String, price:number, startDate:String) {
-        this.cartId = cartId;
+    constructor (id:CartId, startDate:String, endDate:String, price:number) {
+        this.id = id;
         this.endDate = endDate;
         this.startDate = startDate;
         this.price = price;

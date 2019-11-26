@@ -12,6 +12,7 @@ import { CartItem } from '../shared/models/cartItem';
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem : CartItem;
+  itemId: number;
   seller: String;
   itemPic: String;
   title: String;
@@ -24,13 +25,16 @@ export class CartItemComponent implements OnInit {
 
   ngOnInit() {
     //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
-    this.itemService.getItem(this.cartItem.cartId.itemId).subscribe(item => {
-      this.itemPic = item.picture;
+    alert("Cart-Item-Init:" + this.cartItem);
+    this.startDate = this.cartItem.startDate;
+    this.endDate = this.cartItem.endDate;
+    this.price = this.cartItem.price;  
+
+    this.itemId = this.cartItem.id.itemId;
+    this.itemService.getItem(this.cartItem.id.itemId).subscribe(item => {
+      this.itemPic = "../../assets/" + item.picture;
       this.title = item.name;
       this.userService.getUser(item.finterId).subscribe(seller => this.seller = seller.name);
     });
-    this.startDate = this.cartItem.startDate;
-    this.endDate = this.cartItem.endDate;
-    this.price = this.cartItem.price;
   }
 }
