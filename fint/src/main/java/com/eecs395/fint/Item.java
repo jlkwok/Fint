@@ -1,5 +1,7 @@
 package com.eecs395.fint;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
@@ -11,29 +13,29 @@ import javax.persistence.Id;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int itemId;
+    public Integer itemId;
 
     private String name;
 
-    private double price;
+    private Double price;
 
     private String picture;
 
-    private int fintCount;
+    private Integer fintCount;
 
-    private boolean isAvailable;
+    private Boolean isAvailable;
 
     private String location;
 
-    private int finterId;
+    private Integer finterId;
     
     private String postDate;
 
-    public int getItemId() {
+    public Integer getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
 
@@ -45,11 +47,11 @@ public class Item {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -57,19 +59,19 @@ public class Item {
 
     public void setPicture(String picture) { this.picture = picture; }
 
-    public int getFintCount() {
+    public Integer getFintCount() {
         return fintCount;
     }
 
-    public void setFintCount(int fintCount) {
+    public void setFintCount(Integer fintCount) {
         this.fintCount = fintCount;
     }
 
-    public boolean getIsAvailable() {
+    public Boolean getIsAvailable() {
         return isAvailable;
     }
 
-    public void setIsAvailable(boolean isAvailable) {
+    public void setIsAvailable(Boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
 
@@ -81,11 +83,11 @@ public class Item {
         this.location =  location;
     }
 
-    public int getFinterId() {
+    public Integer getFinterId() {
         return finterId;
     }
 
-    public void setFinterId(int finterId) {
+    public void setFinterId(Integer finterId) {
         this.finterId = finterId;
     }
 
