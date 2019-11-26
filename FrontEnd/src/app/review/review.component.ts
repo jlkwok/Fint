@@ -14,12 +14,14 @@ export class ReviewComponent implements OnInit {
   reviewer: String;
   postDate: Date;
   reviewContent: String;
+  reviewerId: number;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.rating = this.review.rating;
     this.profilePic = "../../assets/avatar.png";
+    this.reviewerId = this.review.id.reviewerId;
     this.userService.getUser(this.review.id.reviewerId).subscribe(reviewer => this.reviewer = reviewer.name);
     this.postDate = this.review.postDate;
     this.reviewContent = this.review.description;

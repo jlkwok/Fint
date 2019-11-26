@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ItemComponent implements OnInit {
   rating: number;
   sellerName: String;
+  sellerId: number;
   name: String;
   fintCount: number;
   price: number;
@@ -33,6 +34,7 @@ export class ItemComponent implements OnInit {
       this.fintCount = item.fintCount;
       this.price = item.price;
       this.location = item.location;
+      this.sellerId = item.finterId;
       this.userService.getUser(item.finterId).subscribe(seller => this.sellerName = seller.name);
     });
     this.itemReviewService.getItemRating(id).subscribe(rating => this.rating = rating);
