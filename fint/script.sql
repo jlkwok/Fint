@@ -12,7 +12,8 @@ INSERT INTO fint.item (name, price, picture, fint_count, is_available, location,
 INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id) VALUES ('Grill', 10, 'grill.png', 13, true, 'Redmond, WA', 6);
 INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id) VALUES ('Tractor', 276, 'tractor.png', 1, true, 'Saline, MI', 7);
 
-INSERT INTO fint.item_review (reviewed_id, reviewer_id, description, rating, post_date) VALUES (1, 2, 'This tuxedo is awesome', 4, '2019-11-07T16:24:29.000');
-INSERT INTO fint.item_review (reviewed_id, reviewer_id, description, rating, post_date) VALUES (1, 3, 'This tuxedo is terrible', 1, '2019-11-07T16:24:29.000');
+INSERT INTO fint.item_review (reviewed_id, reviewer_id, description, rating, post_date) VALUES (1, 2, 'This tuxedo is awesome', 4, '7 11 2019');
+INSERT INTO fint.item_review (reviewed_id, reviewer_id, description, rating, post_date) VALUES (1, 3, 'This tuxedo is terrible', 1, '7 11 2019');
 INSERT INTO fint.transaction (item_id, is_returned, fintee_id, start_date, end_date, t_price) VALUES (1, true, 2, '1 12 2019', '7 12 2019', 100);
-INSERT INTO fint.cart_item (item_id, fintee_id, start_date, end_date, price) VALUES (1, 1, '7 11 2019', '11 14 2019', 100);
+INSERT INTO fint.cart_item (item_id, fintee_id, start_date, end_date, price) VALUES (1, 1, '7 11 2019', '14 11 2019', 100);
+INSERT INTO fint.cart_item (item_id, fintee_id, start_date, end_date, price) VALUES (2, 1, '7 11 2019', '14 11 2019', 50);
