@@ -50,6 +50,7 @@ public class CartItemController {
             t.setIsReturned(false);
             t.setTPrice(itemOp.get().getPrice() * t.getLength());
             item.setPrice(t.getTPrice());
+            item.setStartDate(StringDateConverter.calendarToString(Calendar.getInstance()));
             
     		cartRepository.save(item);
     		return ResponseEntity.ok("Item added to cart");

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { CartItemService } from '../shared/services/cart-item.service';
+import { ItemService } from '../shared/services/item.service';
+import { UserService } from '../shared/services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { CartItem } from '../shared/models/cartItem';
 
 @Component({
   selector: 'app-cart-item',
@@ -6,22 +11,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-item.component.css']
 })
 export class CartItemComponent implements OnInit {
-  seller: string;
-  itemPic: string;
-  title: string;
-  startDate: string;
-  endDate: string;
+  @Input() cartItem : CartItem;
+  seller: String;
+  itemPic: String;
+  title: String;
+  startDate: String;
+  endDate: String;
   price: number;
 
-  constructor() { }
+  constructor(private itemService: ItemService, private userService: UserService, private route: ActivatedRoute) { }
+
 
   ngOnInit() {
-    this.seller = "Jessica Kwok";
-    this.itemPic = "../../assets/placeholder.png";
-    this.title = "A nice portrait";
-    this.startDate = "October 31, 2019";
-    this.endDate = "November 4, 2019";
-    this.price = 5.55;
+    //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
+    this.itemService.getItem(this.cartItem.cartId.itemId).subscribe(item => {
+      this.itemPic = item.picture;
+      this.title = item.name;
+      this.userService.getUser(item.finterId).subscribe(seller => this.seller = seller.name);
+    });
+    this.startDate = this.cartItem.startDate;
+    this.endDate = this.cartItem.endDate;
+    this.price = this.cartItem.price;
   }
-
 }

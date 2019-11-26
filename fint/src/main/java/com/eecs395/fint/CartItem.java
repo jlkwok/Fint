@@ -18,6 +18,8 @@ public class CartItem {
 	@Column(name = "id")
     private CartId id;
 	
+	private String startDate;
+	
     private String endDate;
     
     private double price;
@@ -62,5 +64,19 @@ public class CartItem {
 	 */
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	/**
+	 * @return the startDate
+	 */
+	public String getStartDate() {
+		return startDate;
+	}
+
+	/**
+	 * @param startDate the startDate to set
+	 */
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 }
