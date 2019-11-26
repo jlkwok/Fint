@@ -11,7 +11,6 @@ import { OutfintComponent } from './outfint/outfint.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { DatePickerComponent } from './date-picker/date-picker.component';
 import { ReviewComponent } from './review/review.component';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { PastFintCardComponent } from './past-fint-card/past-fint-card.component';
@@ -32,7 +31,6 @@ import { TitleCasePipe } from '@angular/common';
     ProfileComponent,
     ProfileSettingsComponent,
     SignInComponent,
-    DatePickerComponent,
     ReviewComponent,
     ItemCardComponent,
     PastFintCardComponent,

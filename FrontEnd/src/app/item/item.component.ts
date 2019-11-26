@@ -4,6 +4,9 @@ import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
 import { Review } from '../shared/models/review';
 import { ActivatedRoute } from '@angular/router';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { Transaction } from '../shared/models/transaction';
+import { TransactionService } from '../shared/services/transaction.service';
 
 @Component({
   selector: 'app-item',
@@ -17,28 +20,44 @@ export class ItemComponent implements OnInit {
   name: string;
   fintCount: number;
   price: number;
-  itemImages: string[];
+  image: string;
   location: string;
   itemReviewCount: number;
   reviews: Review[];
+  itemId: number;
+  userId: number;
 
-  images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
+  displayMonths = 2;
+  navigation = 'select';
+  showWeekNumbers = false;
+  outsideDays = 'visible';
 
-  constructor(private itemService: ItemService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute) { }
+  model: NgbDateStruct;
+  date: {year: number, month: number, day: number};
+
+  constructor(private itemService: ItemService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
+    this.userId = +this.route.snapshot.paramMap.get('userId');
+    this.itemId = +this.route.snapshot.paramMap.get('id');
     //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
-    this.itemService.getItem(id).subscribe(item => {
+    this.itemService.getItem(this.itemId).subscribe(item => {
       this.name = item.name;
       this.fintCount = item.fintCount;
       this.price = item.price;
       this.location = item.location;
       this.sellerId = item.finterId;
+      this.image = "../../assets/" + item.picture;
       this.userService.getUser(item.finterId).subscribe(seller => this.sellerName = seller.name);
     });
-    this.itemReviewService.getItemRating(id).subscribe(rating => this.rating = rating);
-    this.itemReviewService.getReviewCount(id).subscribe(itemReviewCount => this.itemReviewCount = itemReviewCount);
-    this.itemReviewService.getItemReviews(id).subscribe(reviews => this.reviews = reviews);
+    this.itemReviewService.getItemRating(this.itemId).subscribe(rating => this.rating = rating);
+    this.itemReviewService.getReviewCount(this.itemId).subscribe(itemReviewCount => this.itemReviewCount = itemReviewCount);
+    this.itemReviewService.getItemReviews(this.itemId).subscribe(reviews => this.reviews = reviews);
+  }
+
+  fint() {
+    let date = this.model.day + " " + this.model.month + " " + this.model.year;
+    let transaction = new Transaction(this.itemId, this.userId, date);
+    this.transactionService.fint(transaction).subscribe(response => alert(response));
   }
 }

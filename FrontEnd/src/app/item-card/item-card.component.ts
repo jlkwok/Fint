@@ -3,6 +3,7 @@ import { ItemService } from '../shared/services/item.service';
 import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
 import { Item } from '../shared/models/item';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-item-card',
@@ -18,10 +19,12 @@ export class ItemCardComponent implements OnInit {
   itemImages: string[];
   itemReviewCount: number;
   image: string;
+  userId: number;
 
-  constructor(private userService: UserService, private itemReviewService: ItemReviewService) { }
+  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.userId = +this.route.snapshot.paramMap.get('userId');
     this.image = "../../assets/" + this.item.picture;
     this.name = this.item.name;
     this.price = this.item.price;

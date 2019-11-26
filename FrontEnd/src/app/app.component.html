@@ -1,6 +1,6 @@
 <div *ngIf="user; else signIn">
   <nav class="navbar navbar-expand-sm navbar-light">
-    <img class="smaller ml-5 mr-3 pointer" src="../assets/Logo.svg" routerLink="/home/{{userId}}">
+    <img class="smaller ml-5 mr-3 pointer" src="../assets/Logo.svg" routerLink="/{{userId}}/home">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,7 +14,7 @@
       <span>
         <ul class="navbar-nav mr-5">
           <li class="nav-item active ml-2 border-right">
-            <a class="nav-link" routerLink="/outfint/{{userId}}">Outfint</a>
+            <a class="nav-link" routerLink="/{{userId}}/outfint">Outfint</a>
           </li>
           <li class="nav-item dropdown active border-right">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -22,8 +22,8 @@
             <div class="dropdown-menu">
               <span class="dropdown-item-text">{{userName}}</span>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" routerLink="/profile/{{userId}}">View Profile</a>
-              <a class="dropdown-item" routerLink="/profileSettings/{{userId}}">Profile Settings</a>
+              <a class="dropdown-item" routerLink="/{{userId}}/profile">View Profile</a>
+              <a class="dropdown-item" routerLink="/{{UserId}}/profileSettings">Profile Settings</a>
               <a class="dropdown-item" href="#">Sign Out</a>
             </div>
           </li>
