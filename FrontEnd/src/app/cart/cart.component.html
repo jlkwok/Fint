@@ -2,8 +2,7 @@
     <h1># Items in Your Cart</h1>
     <div class="row" style="background-color: white;">
         <div class="col-lg-7 border-right">
-            <app-cart-item></app-cart-item>
-            <app-cart-item></app-cart-item>
+            <app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem"></app-cart-item>
         </div>
         <div class="col-lg-auto m-2">
             <h5>Total: $0.00</h5>
