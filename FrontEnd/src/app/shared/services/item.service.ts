@@ -27,4 +27,8 @@ export class ItemService {
   postItem(item: Item): Observable<Item> {
     return this.http.post<Item>(`${this.itemUrl}post`, item, {responseType:'text' as 'json'});
   }
+
+  getUserItems(id: number): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.itemUrl}getUserItems?finterId=${id}`);
+  }
 }
