@@ -29,6 +29,10 @@ export class CartItemService {
     return this.http.get<number>(this.cartItemUrl + 'price/' + finteeId);
   }
 
+  getCartCount(finteeId: number):  Observable<number> {
+    return this.http.get<number>(this.cartItemUrl + 'count/' + finteeId);
+  }
+
   addToCart(item: CartItem): Observable<CartItem> {
     return this.http.post<CartItem>(`${this.cartItemUrl}add`, item, {responseType:'text' as 'json'});
   }

@@ -33,6 +33,11 @@ public class CartItemController {
 	public @ResponseBody List<Item>  getCartItems(@PathVariable("finteeId") int finteeId) {
 		return cartRepository.findCartItemsById(finteeId);
 	}
+	
+	@GetMapping("count/{finteeId}") // Map ONLY POST Requests
+	public @ResponseBody Integer  getCartCount(@PathVariable("finteeId") int finteeId) {
+		return cartRepository.findCartItemsById(finteeId).size();
+	}
 
 	@GetMapping("/all")
     public ResponseEntity<?> getAllItems() {
