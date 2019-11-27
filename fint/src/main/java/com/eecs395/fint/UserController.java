@@ -2,6 +2,7 @@ package com.eecs395.fint;
 
 import io.swagger.models.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -52,5 +53,46 @@ public class UserController {
     public ResponseEntity<?>  newUser(@RequestBody User user) {
       userRepository.save(user);
       return ResponseEntity.ok("New User Created");
+    }
+
+    public static class IntString {
+        private Integer i;
+        private String s;
+
+        public Integer getI() {
+            return i;
+        }
+
+        public String getS() {
+            return s;
+        }
+    }
+
+    @PostMapping("/setUserName")
+    public ResponseEntity<?> setUserName(
+            @RequestBody IntString idName) {
+        Optional<User> optionalUser = userRepository.findById(idName.getI());
+        if (optionalUser.isPresent()) {
+            User updatedUser = optionalUser.get();
+            updatedUser.setName(idName.getS());
+            userRepository.save(updatedUser);
+            return ResponseEntity.ok("User Name Updated");
+        } else {
+            return new ResponseEntity<>("User Not Found",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping("/setUserLocation")
+    public ResponseEntity<?> setUserLocation(
+            @RequestBody IntString idLocation) {
+        Optional<User> optionalUser = userRepository.findById(idLocation.getI());
+        if (optionalUser.isPresent()) {
+            User updatedUser = optionalUser.get();
+            updatedUser.setLocation(idLocation.getS());
+            userRepository.save(updatedUser);
+            return ResponseEntity.ok("User Location Updated");
+        } else {
+            return new ResponseEntity<>("User Not Found",HttpStatus.NOT_FOUND);
+        }
     }
 }

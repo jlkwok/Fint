@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
+import { FormControl } from '@angular/forms';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-profile-settings',
@@ -13,7 +16,12 @@ export class ProfileSettingsComponent implements OnInit {
   location: string;
   userId: number;
 
-  constructor(private userService: UserService) { }
+  firstName = new FormControl('');
+  lastName = new FormControl('');
+  city = new FormControl('');
+  state = new FormControl('');
+
+  constructor(private userService: UserService, private titleCasePipe: TitleCasePipe, private router: Router) { }
 
   ngOnInit() {
     this.userId = this.userService.currentUserId;
@@ -34,5 +42,26 @@ export class ProfileSettingsComponent implements OnInit {
         this.url = reader.result.toString();
       }
     }
+  }
+
+  updateUser(firstName: string, lastName: string, city: string, state: string) {
+    if (!firstName && !lastName && !city && !state) {
+      alert("You are not updating anything!");
+    } else if ((firstName && !lastName) || (!firstName && lastName)){
+      alert("You must update both first and last names");
+    } else if ((city && !state) || (!city && state)) {
+      alert("You must update both city and state");
+    }
+    firstName = firstName.trim();
+    lastName = lastName.trim();
+    city = city.trim();
+    state = state.trim();
+    let name = this.titleCasePipe.transform(firstName) + " " + this.titleCasePipe.transform(lastName);
+    let location = this.titleCasePipe.transform(city) + ", " + state.toUpperCase();
+    this.userService.updateUserName(this.userId, name).subscribe(response => {
+      this.userService.updateUserLocation(this.userId, location).subscribe(response => {
+        this.router.navigate([`/${this.userId}/profile`]);
+      });
+    });
   }
 }
