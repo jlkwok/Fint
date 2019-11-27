@@ -18,3 +18,6 @@ INSERT INTO fint.transaction (item_id, is_returned, fintee_id, start_date, end_d
 INSERT INTO fint.transaction (item_id, is_returned, fintee_id, start_date, end_date, t_price) VALUES (2, false, 1, '12-1-2019', '12-7-2019', 100);
 INSERT INTO fint.cart_item (item_id, fintee_id, start_date, end_date, price) VALUES (1, 1, '11-7-2019', '11-14-2019', 100);
 INSERT INTO fint.cart_item (item_id, fintee_id, start_date, end_date, price) VALUES (2, 1, '11-7-2019', '11-14-2019', 50);
+
+INSERT INTO fint.fintee_review (reviewed_id, reviewer_id, description, rating, post_date) VALUES (1, 2, 'Kyle is cool!', 4, '11-7-2019');
+INSERT INTO fint.fintee_review (reviewed_id, reviewer_id, description, rating, post_date) VALUES (1, 3, 'I hate kyle :(', 1, '11-7-2019');

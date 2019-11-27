@@ -59,6 +59,8 @@ export class ProfileComponent implements OnInit {
       this.finteeReviewService.postReview(review).subscribe(response => {
         alert(response);
         this.finteeReviewService.getFinteeReviews(this.userId).subscribe(reviews => this.reviews = reviews);
+        this.finteeReviewService.getReviewCount(this.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
+        this.finteeReviewService.getFinteeRating(this.userId).subscribe(rating => this.avgRating = rating);
       });
     });
   }
