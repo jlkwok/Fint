@@ -61,8 +61,8 @@ public class CartItemController {
 	}
 	
 	@PostMapping("/remove")
-	public ResponseEntity<?> removeFromCart(@RequestParam Integer itemId, @RequestParam int finteeId){
-		cartRepository.deleteById(new CartId(itemId, finteeId));
+	public ResponseEntity<?> removeFromCart(@RequestBody CartId cartId){
+		cartRepository.deleteById(cartId);
 		return ResponseEntity.ok("Item removed from cart");
 	}
 	

@@ -66,7 +66,6 @@ export class ItemComponent implements OnInit {
   addToCart() {
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
     let transaction = new Transaction(this.itemId, this.userId, date);
-    this.transactionService.fint(transaction).subscribe(response => alert(response));
 
     this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
       let cartItem = new CartItem(new CartId(this.itemId, user.userId), date, date, 0);
