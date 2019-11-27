@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CartComponent implements OnInit {
   cartItems:CartItem[];
+  price:number;
 
   constructor(private cartItemService: CartItemService, private route: ActivatedRoute) { }
 
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
     const userId = +this.route.snapshot.paramMap.get('userId');
     //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
     this.cartItemService.getFinteeCart(userId).subscribe(cartItems => {
-      this.cartItems = cartItems;
+      this.cartItems = cartItems;  
     });
+    this.cartItemService.getCartPrice(userId).subscribe(price => this.price = price);
   }
 }
