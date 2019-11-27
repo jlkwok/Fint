@@ -52,7 +52,13 @@ import java.util.*;
                 itemResults.sort(Comparator.comparingDouble(Item::getPrice));
                 break;
             case "rating":
-                itemResults.sort((o1, o2) -> (itemReviewRepository.getItemRating(o1.getItemId()).compareTo(itemReviewRepository.getItemRating(o2.getItemId()))));
+                itemResults.sort((o1, o2) -> {
+                    Double rating1 = itemReviewRepository.getItemRating(o1.getItemId());
+                    Double rating2 = itemReviewRepository.getItemRating(o2.getItemId());
+                    if (rating1 == null) rating1 = 0.0;
+                    if (rating2 == null) rating2 = 0.0;
+                    return rating1.compareTo(rating2);
+                });
                 break;
             case "recent":
                 itemResults.sort((o1, o2) -> (StringDateConverter.stringToCalendar(o1.getPostDate()).compareTo(StringDateConverter.stringToCalendar(o2.getPostDate()))));

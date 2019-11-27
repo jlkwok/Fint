@@ -26,4 +26,9 @@ export class FinteeReviewService {
   getFinteeReviews(id: number): Observable<Review[]> {
     return this.http.get<Review[]>(`${this.finteeReviewUrl}getFinteeReviews?finteeId=${id}`);
   }
+
+  postReview(review: Review): Observable<Review> {
+    return this.http.post<Review>(`${this.finteeReviewUrl}postFinteeReview`, review, {responseType:'text' as 'json'});
+  }
+
 }
