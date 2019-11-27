@@ -36,7 +36,7 @@
                 </p>
                 <div class="form-group">
                     <label for="revTextArea">Write Your Review:</label>
-                    <textarea class="form-control" id="revTextArea" rows="3"></textarea>
+                    <textarea class="form-control" id="revTextArea" rows="3" [formControl]="revTextArea"></textarea>
                 </div>
                 <p>Add a Photo or Video (Optional)</p>
                 <img class="mb-2" [src]="url" height="200">
@@ -44,7 +44,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Post Your Review</button>
+                <button type="button" class="btn btn-primary" (click)="post(revTextArea.value, reviewRating)">Post Your Review</button>
             </div>
         </div>
     </div>

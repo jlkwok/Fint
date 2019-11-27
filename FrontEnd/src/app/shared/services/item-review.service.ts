@@ -27,4 +27,9 @@ export class ItemReviewService {
   getItemReviews(id: number): Observable<Review[]> {
     return this.http.get<Review[]>(this.itemReviewUrl + "getItemReviews?itemId=" + id);
   }
+
+  postReview(review: Review): Observable<Review> {
+    return this.http.post<Review>(`${this.itemReviewUrl}postItemReview`, review, {responseType:'text' as 'json'});
+  }
+
 }

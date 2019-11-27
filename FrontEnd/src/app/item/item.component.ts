@@ -7,6 +7,9 @@ import { ActivatedRoute } from '@angular/router';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Transaction } from '../shared/models/transaction';
 import { TransactionService } from '../shared/services/transaction.service';
+import { CartItemService } from '../shared/services/cart-item.service';
+import { CartItem } from '../shared/models/cartItem';
+import { CartId } from '../shared/models/cartId';
 
 @Component({
   selector: 'app-item',
@@ -35,7 +38,7 @@ export class ItemComponent implements OnInit {
   model: NgbDateStruct;
   date: {year: number, month: number, day: number};
 
-  constructor(private itemService: ItemService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService) { }
+  constructor(private cartItemService: CartItemService, private itemService: ItemService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService) { }
 
   ngOnInit() {
     this.userId = +this.route.snapshot.paramMap.get('userId');
@@ -60,4 +63,18 @@ export class ItemComponent implements OnInit {
     let transaction = new Transaction(this.itemId, this.userId, date);
     this.transactionService.fint(transaction).subscribe(response => alert(response));
   }
+
+  addToCart() {
+    let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
+    let transaction = new Transaction(this.itemId, this.userId, date);
+    this.transactionService.fint(transaction).subscribe(response => alert(response));
+
+    this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
+      let cartItem = new CartItem(new CartId(this.itemId, user.userId), date, date, 0);
+      this.cartItemService.addToCart(cartItem).subscribe(response => {
+        alert(response);
+      });
+    });
+  }
+
 }

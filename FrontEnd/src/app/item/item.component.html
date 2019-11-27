@@ -26,8 +26,8 @@
         [outsideDays]="outsideDays" #dp [(ngModel)]="model" (navigate)="date = $event.next">
       </ngb-datepicker>
 
-      <button type="button" class="btn btn-outline-primary btn-lg btn-block">Add To Cart</button>
-      <button type="button" class="btn btn-outline-primary btn-lg btn-block" (click)="fint()">Fint Now</button>
+      <button type="button" class="btn btn-outline-primary btn-lg btn-block" (click)="addToCart()" id="cart">Add To Cart</button>
+      <button type="button" class="btn btn-outline-primary btn-lg btn-block" (click)="fint()" id="fintNow">Fint Now</button>
     </div>
   </div>
 </div>

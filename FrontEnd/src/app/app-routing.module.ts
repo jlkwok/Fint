@@ -10,6 +10,7 @@ import { ItemComponent } from './item/item.component';
 import { ReviewComponent } from './review/review.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { ItemCardComponent } from './item-card/item-card.component';
+import { PastFintCardComponent } from './past-fint-card/past-fint-card.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'Review', component:ReviewComponent },
   { path: 'Outfinting', component:OutfintComponent },
   { path: 'CartItem', component:CartItemComponent },
-  { path: 'ItemCard', component:ItemCardComponent }
+  { path: 'ItemCard', component:ItemCardComponent },
+  { path: ':userId/pastFint', component:PastFintCardComponent }
 ];
 
 @NgModule({

@@ -55,7 +55,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
     this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
-      let review = new Review(new ReviewIds(this.userId, user.userId), description, rating);
+      let review = new Review(new ReviewIds(user.userId, this.userId), description, rating);
       this.finteeReviewService.postReview(review).subscribe(response => {
         alert(response);
         this.finteeReviewService.getFinteeReviews(this.userId).subscribe(reviews => this.reviews = reviews);
