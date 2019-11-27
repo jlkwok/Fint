@@ -41,7 +41,7 @@ export class ItemComponent implements OnInit {
   constructor(private cartItemService: CartItemService, private itemService: ItemService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService) { }
 
   ngOnInit() {
-    this.userId = +this.route.snapshot.paramMap.get('userId');
+    this.userId = this.userService.currentUserId;
     this.itemId = +this.route.snapshot.paramMap.get('id');
     this.itemService.getItem(this.itemId).subscribe(item => {
       this.name = item.name;
@@ -65,9 +65,8 @@ export class ItemComponent implements OnInit {
 
   addToCart() {
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
-    let transaction = new Transaction(this.itemId, this.userId, date);
 
-    this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
+    this.userService.getUser(this.userService.currentUserId).subscribe(user => {
       let cartItem = new CartItem(new CartId(this.itemId, user.userId), date, date, 0);
       this.cartItemService.addToCart(cartItem).subscribe(response => {
         alert(response);
