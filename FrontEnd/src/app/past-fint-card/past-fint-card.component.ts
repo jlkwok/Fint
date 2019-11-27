@@ -26,8 +26,8 @@ export class PastFintCardComponent implements OnInit {
       this.name = item.name;
       this.price = item.price;
       this.picture = "../../assets/" + item.picture;
+      this.userService.getUser(item.finterId).subscribe(user => this.seller = user.name);
     });
-    this.userService.getUser(this.item.finterId).subscribe(user => this.seller = user.name);
     this.itemReviewService.getItemRating(this.item.itemId).subscribe(rating => this.avgRating = rating);
     this.itemReviewService.getReviewCount(this.item.itemId).subscribe(numReviews => this.numReviews = numReviews);
   }
