@@ -1,7 +1,9 @@
 import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
+import { HomeService } from './shared/services/home.service';
 import { User } from './shared/models/user';
+import { Item } from './shared/models/item';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 
@@ -18,6 +20,7 @@ export class AppComponent implements AfterViewInit {
   userId: number;
   userName: string;
   loggedIn: boolean;
+  items: Item[];
 
   logInEmail = new FormControl('');
   logInPassword = new FormControl('');
@@ -27,8 +30,9 @@ export class AppComponent implements AfterViewInit {
   state = new FormControl('');
   signUpEmail = new FormControl('');
   signUpPassword = new FormControl('');
+  searchQuery = new FormControl('');
 
-  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router, private route: ActivatedRoute, private titleCasePipe: TitleCasePipe) {
+  constructor(private elementRef: ElementRef, private userService: UserService, private homeService: HomeService, private router: Router, private route: ActivatedRoute, private titleCasePipe: TitleCasePipe) {
   }
 
   ngOnInit() {    
@@ -72,5 +76,10 @@ export class AppComponent implements AfterViewInit {
     this.state.reset();
     this.signUpEmail.reset();
     this.signUpPassword.reset();
+  }
+
+  getItemsByQuery(query: string): void {
+    query = query.trim();
+    this.router.navigate([`/${this.user.userId}/home/${query}`]);
   }
 }

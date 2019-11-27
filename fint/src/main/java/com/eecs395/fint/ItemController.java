@@ -78,8 +78,9 @@ public class ItemController {
 	public ResponseEntity<?> setItemName(
 			@RequestParam int id,
 			@RequestParam String name) {
-		Item updatedItem = itemRepository.findById(id).get();
-		if (updatedItem != null) {
+		Optional<Item> optionalItem = itemRepository.findById(id);
+		if (optionalItem.isPresent()) {
+			Item updatedItem = optionalItem.get();
 			updatedItem.setName(name);
 			itemRepository.save(updatedItem);
 			return ResponseEntity.ok("Item Name Updated");
@@ -92,8 +93,9 @@ public class ItemController {
 	public ResponseEntity<?> setItemPicture(
 			@RequestParam int id,
 			@RequestParam String picture) {
-		Item updatedItem = itemRepository.findById(id).get();
-		if (updatedItem != null) {
+		Optional<Item> optionalItem = itemRepository.findById(id);
+		if (optionalItem.isPresent()) {
+			Item updatedItem = optionalItem.get();
 			updatedItem.setPicture(picture);
 			itemRepository.save(updatedItem);
 			return ResponseEntity.ok("Item Picture Updated");
@@ -106,11 +108,12 @@ public class ItemController {
 	public ResponseEntity<?> setItemLocation(
 			@RequestParam int id,
 			@RequestParam String location) {
-		Item updatedItem = itemRepository.findById(id).get();
-		if (updatedItem != null) {
+		Optional<Item> optionalItem = itemRepository.findById(id);
+		if (optionalItem.isPresent()) {
+			Item updatedItem = optionalItem.get();
 			updatedItem.setLocation(location);
 			itemRepository.save(updatedItem);
-			return ResponseEntity.ok("Item location Updated");
+			return ResponseEntity.ok("Item Location Updated");
 		} else {
 			return new ResponseEntity<>("Item Not Found",HttpStatus.NOT_FOUND);
 		}

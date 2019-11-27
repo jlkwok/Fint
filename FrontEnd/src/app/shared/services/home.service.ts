@@ -19,4 +19,12 @@ export class HomeService {
   sortAllItems(metric: string, isAscending: boolean): Observable<Item[]> {
     return this.http.get<Item[]>(`${this.feedUrl}getFeedByQuerySorted?isAscending=${isAscending}&metric=${metric}`);
   }
+
+  sortItemsByQuery(query: string, metric: string, isAscending: boolean): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.feedUrl}getFeedByQuerySorted?query=${query}&isAscending=${isAscending}&metric=${metric}`);
+  }
+
+  getItemsByQuery(query: string) {
+    return this.http.get<Item[]>(`${this.feedUrl}getFeedByQuery?query=${query}`);
+  }
 }

@@ -8,21 +8,21 @@
         <h5>Name - {{name | titlecase}}</h5>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="firstName" placeholder="First Name">
+                <input type="text" class="form-control" id="firstName" [formControl]="firstName" placeholder="First Name">
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+                <input type="text" class="form-control" id="lastName" [formControl]="lastName" placeholder="Last Name">
             </div>
         </div>
         <h5>Location - {{location}}</h5>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="firstName" placeholder="City">
+                <input type="text" class="form-control" id="city" [formControl]="city" placeholder="City">
             </div>
             <div class="form-group col-md-6">
-                <input type="text" class="form-control" id="lastName" placeholder="State">
+                <input type="text" class="form-control" id="state" [formControl]="state" placeholder="State">
             </div>
         </div>
-        <button type="button" class="btn btn-outline-primary">Save Changes</button>
+        <button type="button" class="btn btn-outline-primary" (click)="updateUser(firstName.value, lastName.value, city.value, state.value)">Save Changes</button>
     </form>
 </div>

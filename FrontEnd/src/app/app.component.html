@@ -8,7 +8,8 @@
     <div class="collapse navbar-collapse">
       <div class="my-2 flex-fill">
         <form>
-          <input type="search" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" id="searchQuery" [formControl]="searchQuery" placeholder="Search">
+          <button type="submit" class="btn btn-outline-success" (click)="getItemsByQuery(searchQuery.value)" style="display: none;">Submit</button> 
         </form>
       </div>
       <span>
@@ -16,14 +17,14 @@
           <li class="nav-item active ml-2 border-right">
             <a class="nav-link" routerLink="/{{userId}}/outfint">Outfint</a>
           </li>
-          <li class="nav-item dropdown active border-right">
+          <li class="nav- dropdown active border-right">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
               aria-expanded="false">You</a>
             <div class="dropdown-menu">
               <span class="dropdown-item-text">{{userName}}</span>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" routerLink="/{{userId}}/profile">View Profile</a>
-              <a class="dropdown-item" routerLink="/{{UserId}}/profileSettings">Profile Settings</a>
+              <a class="dropdown-item" routerLink="/{{userId}}/profileSettings">Profile Settings</a>
               <a class="dropdown-item" href="#">Sign Out</a>
             </div>
           </li>
