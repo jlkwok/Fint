@@ -3,6 +3,10 @@ import { Item } from '../shared/models/item';
 import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
 import { ItemService } from '../shared/services/item.service';
+import { ReviewIds } from '../shared/models/reviewIds';
+import { Review } from '../shared/models/review';
+import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-past-fint-card',
@@ -18,8 +22,9 @@ export class PastFintCardComponent implements OnInit {
   numReviews: number;
   price: number;
   picture: string;
+  revTextArea = new FormControl('');
 
-  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private itemService: ItemService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private itemReviewService: ItemReviewService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.itemService.getItem(this.item.itemId).subscribe(item => {
@@ -43,4 +48,21 @@ export class PastFintCardComponent implements OnInit {
       }
     }
   }
+
+  post(description:string, rating: number) {
+    description = description.trim();
+    if (!description || !rating) {
+      alert("Please fill all fields");
+      return;
+    }
+    this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
+      let review = new Review(new ReviewIds(user.userId, this.item.itemId), description, rating);
+      this.itemReviewService.postReview(review).subscribe(response => {
+        alert(response);
+        this.itemReviewService.getReviewCount(this.item.itemId).subscribe(reviewCount => this.numReviews = reviewCount);
+        this.itemReviewService.getItemRating(this.item.itemId).subscribe(rating => this.avgRating = rating);
+      });
+    });
+  }
+
 }
