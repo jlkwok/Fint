@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Item } from '../shared/models/item';
 import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService } from '../shared/services/transaction.service';
 import { ItemService } from '../shared/services/item.service';
 
@@ -15,6 +15,7 @@ export class CurrentOutfintCardComponent implements OnInit {
   @Input() item: Item;
   rating: number;
   finteeName: string;
+  finteeId: number;
   name: string;
   price: number;
   itemImages: string[];
@@ -37,17 +38,17 @@ export class CurrentOutfintCardComponent implements OnInit {
     this.itemReviewService.getReviewCount(this.item.itemId).subscribe(itemReviewCount => this.itemReviewCount = itemReviewCount);
     this.transactionService.getTransaction(this.item.itemId).subscribe(transaction => {
       this.endDate = transaction.endDate;
+      this.finteeId = transaction.finteeId;
       this.userService.getUser(transaction.finteeId).subscribe(fintee => this.finteeName = fintee.name);
     });
   }
 
-  checkValue(event: any){
+  checkValue(event: any) {
     if (event == 'B') {
       this.transactionService.getTransaction(this.item.itemId).subscribe(transaction => {
         this.transactionService.return(transaction.tid).subscribe(response => alert(response));
         this.destroy = false;
       });
     }
- }
-
+  }
 }

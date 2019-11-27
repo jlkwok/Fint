@@ -41,7 +41,7 @@
             <ng-template ngbTabContent>
                 <div class="mt-3">
                     <div class="card-deck mx-3">
-                        <app-past-fint-card *ngFor="let item of pastFints" [item]="item">
+                        <app-past-fint-card *ngFor="let item of pastFints" [item]="item" [userId]="userId">
                         </app-past-fint-card>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
             <div class="modal-body">
                 <div class="row mx-2">
                     <img src="../../assets/avatar.png" alt="Avatar" class="revAvatar">
-                    <p class="mx-2 my-auto">Name</p>
+                    <p class="mx-2 my-auto">{{name}}</p>
                 </div>
                 <hr>
                 <p>Overall Rating: <ngb-rating class="align-text-center" id="rating" [(rate)]="reviewRating" [starTemplate]="t"

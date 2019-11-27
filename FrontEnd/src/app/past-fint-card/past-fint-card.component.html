@@ -1,5 +1,5 @@
 <div class="card m-2" style="width: 20rem;">
-    <img class="card-img-top" src={{picture}}>
+    <a routerLink="/{{userId}}/item/{{item.itemId}}"><img class="card-img-top" src={{picture}}></a>
     <div class="card-body">
         <h5 class="card-title">{{name}}</h5>
         <p class="card-text text-muted row-bottom-margin">{{seller}}</p>
@@ -44,7 +44,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" (click)="post(revTextArea.value, reviewRating)">Post Your Review</button>
+                <button type="button" class="btn btn-primary" (click)="post(revTextArea.value, reviewRating)">Post Your
+                    Review</button>
             </div>
         </div>
     </div>

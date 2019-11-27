@@ -43,7 +43,6 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     this.userId = +this.route.snapshot.paramMap.get('userId');
     this.itemId = +this.route.snapshot.paramMap.get('id');
-    //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
     this.itemService.getItem(this.itemId).subscribe(item => {
       this.name = item.name;
       this.fintCount = item.fintCount;

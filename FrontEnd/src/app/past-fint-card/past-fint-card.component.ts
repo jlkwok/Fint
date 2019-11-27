@@ -16,6 +16,7 @@ import { FormControl } from '@angular/forms';
 export class PastFintCardComponent implements OnInit {
   url = '';
   @Input() item: Item;
+  @Input() userId: number;
   name: string;
   seller: string;
   avgRating: number;
