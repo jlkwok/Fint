@@ -18,8 +18,6 @@ export class CartComponent implements OnInit {
     //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
     this.cartItemService.getFinteeCart(userId).subscribe(cartItems => {
       this.cartItems = cartItems;
-      alert(userId);
-      alert("Cart item id:" + this.cartItems[0].id);
     });
   }
 }
