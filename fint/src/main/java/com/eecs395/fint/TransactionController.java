@@ -86,14 +86,14 @@ public class TransactionController {
 
  
     @PostMapping("/return")
-    public ResponseEntity<?> returnTransaction(Integer tId) {
+    public ResponseEntity<?> returnTransaction(@RequestParam Integer tId) {
     	Transaction t = transactionRepository.findTransactionsByTransactionId(tId);
     	Item i = itemRepository.findById(t.getItemId()).get();
-    	i.setIsAvailable(true);
-    	t.setIsReturned(true);
-    	transactionRepository.save(t);
-    	itemRepository.save(i);
     	if(t.getIsReturned() == false) {
+        	i.setIsAvailable(true);
+        	t.setIsReturned(true);
+        	transactionRepository.save(t);
+        	itemRepository.save(i);
     		return ResponseEntity.ok("Item Returned");
     	} else {	
     		return new ResponseEntity<>("Item has already been returned", HttpStatus.NOT_FOUND);
