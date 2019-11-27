@@ -6,6 +6,8 @@ import { TransactionService } from '../shared/services/transaction.service';
 import { ItemService } from '../shared/services/item.service';
 import { Review } from '../shared/models/review';
 import { FinteeReviewService } from '../shared/services/fintee-review.service';
+import { FormControl } from '@angular/forms';
+import { ReviewIds } from '../shared/models/reviewIds';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +24,7 @@ export class ProfileComponent implements OnInit {
   pastFints: Item[];
   outfints: Item[];
   reviews: Review[];
+  revTextArea = new FormControl('');
   //currentTransactions: Item[];
   // reviews
 
@@ -40,5 +43,18 @@ export class ProfileComponent implements OnInit {
     this.itemService.getUserItems(this.userId).subscribe(outfints => this.outfints = outfints);
     this.profilePic = "../../assets/avatar.png";
   }
+
+  post(description:string, rating: number) {
+    description = description.trim();
+    if (!description || !rating) {
+      alert("Please fill all fields");
+      return;
+    }
+    this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
+      let review = new Review(new ReviewIds(this.userId, user.userId), description, rating, new Date());
+      this.finteeReviewService.postReview(review).subscribe(response => alert(response));
+    });
+  }
+
 
 }

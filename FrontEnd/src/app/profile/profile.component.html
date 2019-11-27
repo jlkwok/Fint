@@ -83,18 +83,18 @@
                     <p class="mx-2 my-auto">Name</p>
                 </div>
                 <hr>
-                <p>Overall Rating: <ngb-rating class="align-text-center" [(rate)]="reviewRating" [starTemplate]="t"
+                <p>Overall Rating: <ngb-rating class="align-text-center" id="rating" [(rate)]="reviewRating" [starTemplate]="t"
                         max="5">
                     </ngb-rating>
                 </p>
                 <div class="form-group">
                     <label for="revTextArea">Write Your Review:</label>
-                    <textarea class="form-control" id="revTextArea" rows="3"></textarea>
+                    <textarea class="form-control" id="revTextArea" rows="3" [formControl]="revTextArea"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Post Your Review</button>
+                <button type="button" class="btn btn-primary" (click)="post(revTextArea.value, reviewRating)">Post Your Review</button>
             </div>
         </div>
     </div>
