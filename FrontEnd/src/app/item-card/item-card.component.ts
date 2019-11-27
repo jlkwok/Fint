@@ -23,7 +23,7 @@ export class ItemCardComponent implements OnInit {
   constructor(private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.userId = +this.route.snapshot.paramMap.get('userId');
+    this.userId = this.userService.currentUserId;
     this.image = "../../assets/" + this.item.picture;
     this.name = this.item.name;
     this.price = this.item.price;
