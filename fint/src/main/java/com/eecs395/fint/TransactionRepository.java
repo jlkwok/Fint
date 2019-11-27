@@ -30,6 +30,10 @@ public interface TransactionRepository extends CrudRepository<Transaction, Integ
 	
 	@Query("SELECT t FROM Transaction t, Item i WHERE t.itemId=i.itemId AND i.finterId=?1")
 	public List<Transaction> findAllTransactionsByFinterId(Integer finterId);
+	
+	@Query("SELECT t FROM Transaction t WHERE t.itemId=?1 AND isReturned=false")
+	public Transaction getCurrentItemTransaction(Integer itemId);
+
 
 	
 }
