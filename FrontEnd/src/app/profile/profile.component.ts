@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
-    this.userId = +this.route.snapshot.paramMap.get('userId');
+    this.userId = this.userService.currentUserId;
     this.userService.getUser(this.userId).subscribe(user => {
       this.name = user.name;
       this.location = user.location;
@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
       alert("Please fill all fields");
       return;
     }
-    this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
+    this.userService.getUser(this.userId).subscribe(user => {
       let review = new Review(new ReviewIds(user.userId, this.userId), description, rating);
       this.finteeReviewService.postReview(review).subscribe(response => {
         alert(response);

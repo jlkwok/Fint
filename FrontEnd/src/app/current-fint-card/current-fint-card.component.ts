@@ -26,7 +26,7 @@ export class CurrentFintCardComponent implements OnInit {
   constructor(private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
-    this.userId = +this.route.snapshot.paramMap.get('userId');
+    this.userId = this.userService.currentUserId;
     this.itemService.getItem(this.item.itemId).subscribe(item => {
       this.image = "../../assets/" + item.picture;
       this.name = item.name;
