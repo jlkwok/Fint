@@ -1,5 +1,6 @@
 package com.eecs395.fint;
 
+import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,13 +35,17 @@ import java.util.*;
 
     @GetMapping(path = "/getFeedByQuerySorted")
     public ResponseEntity<?> getFeedByQuerySorted(
-            @RequestParam String query,
+            @RequestParam(required=false) String query,
             @RequestParam Boolean isAscending,
             @RequestParam String metric) {
-        String[] queryWords = query.split("\\s+");
         List<Item> itemResults = new ArrayList<Item>();
-        for (String word : queryWords) {
-            itemResults.addAll(itemRepository.query(word));
+        if (query != null) {
+            String[] queryWords = query.split("\\s+");
+            for (String word : queryWords) {
+                itemResults.addAll(itemRepository.query(word));
+            }
+        } else {
+            itemResults = Lists.newArrayList(itemRepository.findAll());
         }
         switch (metric.toLowerCase()) {
             case "price":

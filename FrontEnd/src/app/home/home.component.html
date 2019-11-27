@@ -13,10 +13,10 @@
             Sort by:
         </button>
         <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Top Rating</a>
-            <a class="dropdown-item" href="#">Highest Price</a>
-            <a class="dropdown-item" href="#">Lowest Price</a>
-            <a class="dropdown-item" href="#">Most Recent</a>
+            <a class="dropdown-item" (click)='sort("rating", false)'>Top Rating</a>
+            <a class="dropdown-item" (click)='sort("price", false)'>Highest Price</a>
+            <a class="dropdown-item" (click)='sort("price", true)'>Lowest Price</a>
+            <a class="dropdown-item" (click)='sort("recent", false)'>Most Recent</a>
         </div>
     </nav>
 
