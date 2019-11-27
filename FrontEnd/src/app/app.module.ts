@@ -19,6 +19,8 @@ import { CartItemComponent } from './cart-item/cart-item.component';
 import { HttpClientModule } from '@angular/common/http'; 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TitleCasePipe } from '@angular/common';
+import { CurrentOutfintCardComponent } from './current-outfint-card/current-outfint-card.component';
+import { CurrentFintCardComponent } from './current-fint-card/current-fint-card.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { TitleCasePipe } from '@angular/common';
     ItemCardComponent,
     PastFintCardComponent,
     OutfintCardComponent,
-    CartItemComponent
+    CartItemComponent,
+    CurrentOutfintCardComponent,
+    CurrentFintCardComponent
   ],
   imports: [
     BrowserModule,

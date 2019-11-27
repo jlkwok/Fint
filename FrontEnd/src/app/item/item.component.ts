@@ -56,7 +56,7 @@ export class ItemComponent implements OnInit {
   }
 
   fint() {
-    let date = this.model.day + " " + this.model.month + " " + this.model.year;
+    let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
     let transaction = new Transaction(this.itemId, this.userId, date);
     this.transactionService.fint(transaction).subscribe(response => alert(response));
   }

@@ -21,8 +21,8 @@
             <ng-template ngbTabContent>
                 <div class="mt-3">
                     <div class="card-deck mx-3">
-                        <app-past-fint-card *ngFor="let item of pastFints" [item]="item">
-                        </app-past-fint-card>
+                        <app-current-fint-card *ngFor="let item of currentFints" [item]="item">
+                        </app-current-fint-card>
                     </div>
                 </div>
             </ng-template>
@@ -31,7 +31,7 @@
             <ng-template ngbTabContent>
                 <div class="mt-3">
                     <div class="card-deck mx-3">
-                        <app-past-fint-card *ngFor="let item of pastFints" [item]="item">
+                        <app-past-fint-card *ngFor="let item of currentOutfints" [item]="item">
                         </app-past-fint-card>
                     </div>
                 </div>

@@ -1,0 +1,21 @@
+<div class="card m-2" style="width: 20rem;">
+    <a routerLink="/{{userId}}/item/{{item.itemId}}">
+        <img class="card-img-top" src={{image}}></a>
+    <div class="card-body">
+        <h5 class="card-title">{{name}} ({{endDate}})</h5>
+        <p class="card-text text-muted row-bottom-margin">{{sellerName}}</p>
+        <h4>
+            <ngb-rating class="mt-0" [(rate)]="rating" [starTemplate]="t" [readonly]="true" max="5">
+            </ngb-rating>
+            <small class="text-muted mr-2"> ({{itemReviewCount}})</small>
+        </h4>
+        <h5 class="card-title"><b>${{price}}/day</b></h5>
+    </div>
+</div>
+
+
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>

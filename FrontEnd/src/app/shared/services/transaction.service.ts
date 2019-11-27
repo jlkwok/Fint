@@ -17,8 +17,16 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-  getFints(id: number): Observable<Item[]> {
-    return this.http.get<Item[]>(`${this.transactionUrl}getAllFints?finteeId=${id}`);
+  getTransaction(id: number): Observable<Transaction> {
+    return this.http.get<Transaction>(`${this.transactionUrl}getTransaction?itemId=${id}`);
+  }
+
+  getCurrentFints(id: number): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.transactionUrl}getCurrentFints?finteeId=${id}`);
+  }
+
+  getCurrentOutfints(id: number): Observable<Item[]> {
+    return this.http.get<Item[]>(`${this.transactionUrl}getCurrentOutFints?finterId=${id}`);
   }
 
   getPastFints(id: number): Observable<Item[]> {

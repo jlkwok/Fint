@@ -22,8 +22,8 @@ export class ProfileComponent implements OnInit {
   pastFints: Item[];
   outfints: Item[];
   reviews: Review[];
-  //currentTransactions: Item[];
-  // reviews
+  currentFints: Item[];
+  currentOutfints: Item[];
 
   constructor(private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
@@ -37,6 +37,8 @@ export class ProfileComponent implements OnInit {
     this.finteeReviewService.getReviewCount(this.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
     this.finteeReviewService.getFinteeReviews(this.userId).subscribe(reviews => this.reviews = reviews);
     this.transactionService.getPastFints(this.userId).subscribe(fints => this.pastFints = fints);
+    this.transactionService.getCurrentFints(this.userId).subscribe(currentFints => this.currentFints = currentFints);
+    this.transactionService.getCurrentOutfints(this.userId).subscribe(currentOutfints => this.currentOutfints = currentOutfints);
     this.itemService.getUserItems(this.userId).subscribe(outfints => this.outfints = outfints);
     this.profilePic = "../../assets/avatar.png";
   }

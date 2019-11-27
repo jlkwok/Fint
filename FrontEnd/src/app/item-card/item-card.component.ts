@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ItemService } from '../shared/services/item.service';
 import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
 import { Item } from '../shared/models/item';
