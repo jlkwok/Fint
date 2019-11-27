@@ -17,7 +17,7 @@ export class ProfileSettingsComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    this.userId = +this.route.snapshot.paramMap.get('userId');
+    this.userId = this.userService.currentUserId;
     this.profilePic = "../../assets/avatar.png";
     this.userService.getUser(this.userId).subscribe(user => {
       this.name = user.name;

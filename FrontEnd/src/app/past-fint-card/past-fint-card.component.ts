@@ -56,7 +56,7 @@ export class PastFintCardComponent implements OnInit {
       alert("Please fill all fields");
       return;
     }
-    this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
+    this.userService.getUser(this.userService.currentUserId).subscribe(user => {
       let review = new Review(new ReviewIds(user.userId, this.item.itemId), description, rating);
       this.itemReviewService.postReview(review).subscribe(response => {
         alert(response);
