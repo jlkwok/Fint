@@ -1,5 +1,5 @@
 <div class="container mx-5">
-    <h1># Items in Your Cart</h1>
+    <h1>{{itemCount}} Items in Your Cart</h1>
     <div class="row" style="background-color: white;">
         <div class="col-lg-7 border-right">
             <app-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem" [cart]="this"></app-cart-item>

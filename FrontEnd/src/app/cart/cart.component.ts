@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   cartItems:CartItem[];
   price:number;
   userId: number;
+  itemCount: number;
 
   constructor(private transactionService: TransactionService ,private cartItemService: CartItemService, private userService: UserService) { }
 
@@ -23,6 +24,7 @@ export class CartComponent implements OnInit {
       this.cartItems = cartItems;  
     });
     this.cartItemService.getCartPrice(this.userId).subscribe(price => this.price = price);
+    this.cartItemService.getCartCount(this.userId).subscribe(itemCount => this.itemCount=itemCount);
   }
 
   fintCart() {
