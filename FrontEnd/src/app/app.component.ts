@@ -12,8 +12,6 @@ import { TitleCasePipe } from '@angular/common';
 })
 export class AppComponent implements AfterViewInit {
   title = 'Fint';
-  // temporary
-  //user: User = new User("jlkwok", "Jessica Kwok", "JessicaPassword", "Cleveland, OH");
   user: User;
   userId: number;
   userName: string;
@@ -32,8 +30,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngOnInit() {    
-    //this.userId = +this.route.snapshot.paramMap.get('userId');
-    //this.userService.getUser(this.userId).subscribe(user => this.user = user);
   }
 
   ngAfterViewInit(): void {
