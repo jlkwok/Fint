@@ -21,7 +21,7 @@ export class OutfintComponent implements OnInit {
   constructor(private userService: UserService, private route: ActivatedRoute, private itemService: ItemService) { }
 
   ngOnInit() {
-    this.finterId = +this.route.snapshot.paramMap.get('userId');
+    this.finterId = this.userService.currentUserId;
   }
 
   onFileSelected(event) {
@@ -34,7 +34,7 @@ export class OutfintComponent implements OnInit {
       alert("Please fill all fields");
       return;
     }
-    this.userService.getUser(+this.route.snapshot.paramMap.get('userId')).subscribe(user => {
+    this.userService.getUser(this.finterId).subscribe(user => {
       let item = new Item(title, price, this.picture, 0, true, user.location, this.finterId);
       this.itemService.postItem(item).subscribe(response => alert(response));
     });
