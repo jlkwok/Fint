@@ -32,8 +32,8 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngOnInit() {    
-    this.userId = +this.route.snapshot.paramMap.get('userId');
-    this.userService.getUser(this.userId).subscribe(user => this.user = user);
+    //this.userId = +this.route.snapshot.paramMap.get('userId');
+    //this.userService.getUser(this.userId).subscribe(user => this.user = user);
   }
 
   ngAfterViewInit(): void {
@@ -45,10 +45,10 @@ export class AppComponent implements AfterViewInit {
     password = password.trim();
     if (!email || !password) { return; }
     this.userService.logInUser(email, password).subscribe(user => {
-      this.user = user;
-      this.userId = user.userId;
+      this.userService.setCurrentUserId(user.userId);
+      this.userId = this.userService.currentUserId;
       this.userName = user.name;
-      this.router.navigate([`/${user.userId}/home`]);
+      this.router.navigate([`/${this.userId}/home`]);
     });
   }
 

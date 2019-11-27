@@ -9,12 +9,17 @@ import { Observable } from 'rxjs';
 export class UserService {
 
   private userUrl = 'http://localhost:8080/user/';
+  currentUserId: number;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(private http: HttpClient) { }
+
+  setCurrentUserId(id: number): void {
+    this.currentUserId = id;
+  }
 
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${this.userUrl}getUser?id=${id}`);
