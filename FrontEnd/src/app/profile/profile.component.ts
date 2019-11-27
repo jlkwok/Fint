@@ -7,6 +7,7 @@ import { Review } from '../shared/models/review';
 import { FinteeReviewService } from '../shared/services/fintee-review.service';
 import { FormControl } from '@angular/forms';
 import { ReviewIds } from '../shared/models/reviewIds';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -26,22 +27,24 @@ export class ProfileComponent implements OnInit {
   currentFints: Item[];
   currentOutfints: Item[];
   revTextArea = new FormControl('');
+  profileUserId: number;
 
-  constructor(private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
+  constructor(private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
+    this.profileUserId = +this.route.snapshot.paramMap.get('userId');
     this.userId = this.userService.currentUserId;
-    this.userService.getUser(this.userId).subscribe(user => {
+    this.userService.getUser(this.profileUserId).subscribe(user => {
       this.name = user.name;
       this.location = user.location;
     });   
-    this.finteeReviewService.getFinteeRating(this.userId).subscribe(rating => this.avgRating = rating);
-    this.finteeReviewService.getReviewCount(this.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
-    this.finteeReviewService.getFinteeReviews(this.userId).subscribe(reviews => this.reviews = reviews);
-    this.transactionService.getPastFints(this.userId).subscribe(fints => this.pastFints = fints);
-    this.transactionService.getCurrentFints(this.userId).subscribe(currentFints => this.currentFints = currentFints);
-    this.transactionService.getCurrentOutfints(this.userId).subscribe(currentOutfints => this.currentOutfints = currentOutfints);
-    this.itemService.getUserItems(this.userId).subscribe(outfints => this.outfints = outfints);
+    this.finteeReviewService.getFinteeRating(this.profileUserId).subscribe(rating => this.avgRating = rating);
+    this.finteeReviewService.getReviewCount(this.profileUserId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
+    this.finteeReviewService.getFinteeReviews(this.profileUserId).subscribe(reviews => this.reviews = reviews);
+    this.transactionService.getPastFints(this.profileUserId).subscribe(fints => this.pastFints = fints);
+    this.transactionService.getCurrentFints(this.profileUserId).subscribe(currentFints => this.currentFints = currentFints);
+    this.transactionService.getCurrentOutfints(this.profileUserId).subscribe(currentOutfints => this.currentOutfints = currentOutfints);
+    this.itemService.getUserItems(this.profileUserId).subscribe(outfints => this.outfints = outfints);
     this.profilePic = "../../assets/avatar.png";
   }
 
