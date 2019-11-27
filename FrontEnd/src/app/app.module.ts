@@ -21,6 +21,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TitleCasePipe } from '@angular/common';
 import { CurrentOutfintCardComponent } from './current-outfint-card/current-outfint-card.component';
 import { CurrentFintCardComponent } from './current-fint-card/current-fint-card.component';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { CurrentFintCardComponent } from './current-fint-card/current-fint-card.
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [TitleCasePipe],
+  providers: [TitleCasePipe, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

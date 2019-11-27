@@ -10,6 +10,7 @@ import { TransactionService } from '../shared/services/transaction.service';
 import { CartItemService } from '../shared/services/cart-item.service';
 import { CartItem } from '../shared/models/cartItem';
 import { CartId } from '../shared/models/cartId';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-item',
@@ -38,10 +39,10 @@ export class ItemComponent implements OnInit {
   model: NgbDateStruct;
   date: {year: number, month: number, day: number};
 
-  constructor(private cartItemService: CartItemService, private itemService: ItemService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService) { }
+  constructor(private cookieService: CookieService, private cartItemService: CartItemService, private itemService: ItemService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService) { }
 
   ngOnInit() {
-    this.userId = this.userService.currentUserId;
+    this.userId = parseInt(this.cookieService.get('currentUserId'));
     this.itemId = +this.route.snapshot.paramMap.get('id');
     this.itemService.getItem(this.itemId).subscribe(item => {
       this.name = item.name;
@@ -66,7 +67,7 @@ export class ItemComponent implements OnInit {
   addToCart() {
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
 
-    this.userService.getUser(this.userService.currentUserId).subscribe(user => {
+    this.userService.getUser(parseInt(this.cookieService.get('currentUserId'))).subscribe(user => {
       let cartItem = new CartItem(new CartId(this.itemId, user.userId), date, date, 0);
       this.cartItemService.addToCart(cartItem).subscribe(response => {
         alert(response);

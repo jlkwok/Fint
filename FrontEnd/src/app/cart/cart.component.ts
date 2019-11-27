@@ -4,6 +4,7 @@ import { TransactionService } from '../shared/services/transaction.service';
 import { CartItem } from '../shared/models/cartItem';
 import { Transaction } from '../shared/models/transaction';
 import { UserService } from '../shared/services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-cart',
@@ -16,10 +17,10 @@ export class CartComponent implements OnInit {
   userId: number;
   itemCount: number;
 
-  constructor(private transactionService: TransactionService ,private cartItemService: CartItemService, private userService: UserService) { }
+  constructor(private cookieService: CookieService, private transactionService: TransactionService ,private cartItemService: CartItemService, private userService: UserService) { }
 
   ngOnInit() {
-    this.userId = this.userService.currentUserId;
+    this.userId = parseInt(this.cookieService.get('currentUserId'));
     this.cartItemService.getFinteeCart(this.userId).subscribe(cartItems => {
       this.cartItems = cartItems;  
     });

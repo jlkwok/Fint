@@ -2,9 +2,10 @@ import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
 import { User } from './shared/models/user';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { Item } from './shared/models/item';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -29,14 +30,23 @@ export class AppComponent implements AfterViewInit {
   signUpPassword = new FormControl('');
   searchQuery = new FormControl('');
 
-  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router, private titleCasePipe: TitleCasePipe) {
+  constructor(private cookieService: CookieService, private elementRef: ElementRef, private userService: UserService, private router: Router, private titleCasePipe: TitleCasePipe) {
+    this.loggedIn = false;
   }
 
-  ngOnInit() {    
+  ngOnInit() {
+    if (!window.location.href.toString().includes("SignIn")) {
+      this.loggedIn = true;
+    }
+    else if (window.location.href.toString().includes("SignIn")) {
+      this.loggedIn = false;
+    }
   }
 
   ngAfterViewInit(): void {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f4f4f8';
+    this.userId = parseInt(this.cookieService.get('currentUserId'));
+    this.userService.getUser(this.userId).subscribe(user => this.userName = user.name);
   }
 
   logIn(email: string, password: string): void {
@@ -44,10 +54,11 @@ export class AppComponent implements AfterViewInit {
     password = password.trim();
     if (!email || !password) { return; }
     this.userService.logInUser(email, password).subscribe(user => {
-      this.userService.setCurrentUserId(user.userId);
-      this.userId = this.userService.currentUserId;
+      this.cookieService.set( 'currentUserId', user.userId.toString());
+      this.userId = parseInt(this.cookieService.get('currentUserId'));
       this.userName = user.name;
       this.router.navigate([`/${this.userId}/home`]);
+      this.loggedIn = true;
     });
   }
 

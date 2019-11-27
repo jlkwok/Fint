@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { FormControl } from '@angular/forms';
 import { TitleCasePipe } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile-settings',
@@ -21,10 +22,10 @@ export class ProfileSettingsComponent implements OnInit {
   city = new FormControl('');
   state = new FormControl('');
 
-  constructor(private userService: UserService, private titleCasePipe: TitleCasePipe, private router: Router) { }
+  constructor(private cookieService: CookieService, private userService: UserService, private titleCasePipe: TitleCasePipe, private router: Router) { }
 
   ngOnInit() {
-    this.userId = this.userService.currentUserId;
+    this.userId = parseInt(this.cookieService.get('currentUserId'));
     this.profilePic = "../../assets/avatar.png";
     this.userService.getUser(this.userId).subscribe(user => {
       this.name = user.name;

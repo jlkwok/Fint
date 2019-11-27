@@ -8,6 +8,7 @@ import { FinteeReviewService } from '../shared/services/fintee-review.service';
 import { FormControl } from '@angular/forms';
 import { ReviewIds } from '../shared/models/reviewIds';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-profile',
@@ -29,11 +30,11 @@ export class ProfileComponent implements OnInit {
   revTextArea = new FormControl('');
   profileUserId: number;
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
+  constructor(private cookieService: CookieService, private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.profileUserId = +this.route.snapshot.paramMap.get('userId');
-    this.userId = this.userService.currentUserId;
+    this.userId = parseInt(this.cookieService.get('currentUserId'));
     this.userService.getUser(this.profileUserId).subscribe(user => {
       this.name = user.name;
       this.location = user.location;

@@ -5,6 +5,7 @@ import { ItemReviewService } from '../shared/services/item-review.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService } from '../shared/services/transaction.service';
 import { ItemService } from '../shared/services/item.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-current-outfint-card',
@@ -25,10 +26,10 @@ export class CurrentOutfintCardComponent implements OnInit {
   endDate: string;
   destroy: boolean = true;
 
-  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService, private itemService: ItemService) { }
+  constructor(private cookieService: CookieService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
-    this.userId = this.userService.currentUserId;
+    this.userId = parseInt(this.cookieService.get('currentUserId'));
     this.itemService.getItem(this.item.itemId).subscribe(item => {
       this.image = "../../assets/" + item.picture;
       this.name = item.name;

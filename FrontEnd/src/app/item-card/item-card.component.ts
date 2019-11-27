@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
 import { Item } from '../shared/models/item';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-item-card',
@@ -19,10 +20,10 @@ export class ItemCardComponent implements OnInit {
   image: string;
   userId: number;
 
-  constructor(private userService: UserService, private itemReviewService: ItemReviewService) { }
+  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private cookieService: CookieService) { }
 
   ngOnInit() {
-    this.userId = this.userService.currentUserId;
+    this.userId = parseInt(this.cookieService.get('currentUserId'));
     this.image = "../../assets/" + this.item.picture;
     this.name = this.item.name;
     this.price = this.item.price;

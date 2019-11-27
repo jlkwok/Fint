@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
 import { Item } from '../shared/models/item';
 import { ItemService } from '../shared/services/item.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-outfint',
@@ -15,10 +16,10 @@ export class OutfintComponent implements OnInit {
   picture: string;
   finterId: number;
 
-  constructor(private userService: UserService, private itemService: ItemService) { }
+  constructor(private cookieService: CookieService, private userService: UserService, private itemService: ItemService) { }
 
   ngOnInit() {
-    this.finterId = this.userService.currentUserId;
+    this.finterId = parseInt(this.cookieService.get('currentUserId'));
   }
 
   onFileSelected(event) {

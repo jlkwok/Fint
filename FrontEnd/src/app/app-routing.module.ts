@@ -11,11 +11,12 @@ import { ReviewComponent } from './review/review.component';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { ItemCardComponent } from './item-card/item-card.component';
 import { PastFintCardComponent } from './past-fint-card/past-fint-card.component';
+import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'SignIn', pathMatch: 'full' },
-  { path: 'SignIn', component:SignInComponent },
+  { path: 'SignIn', component:AppComponent },
   { path: ':userId/home', component:HomeComponent },
   { path: ':userId/home/:query', component:HomeComponent },
   { path: ':userId/outfint', component:OutfintComponent },

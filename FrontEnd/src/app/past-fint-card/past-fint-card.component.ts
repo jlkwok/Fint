@@ -6,6 +6,7 @@ import { ItemService } from '../shared/services/item.service';
 import { ReviewIds } from '../shared/models/reviewIds';
 import { Review } from '../shared/models/review';
 import { FormControl } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-past-fint-card',
@@ -24,7 +25,7 @@ export class PastFintCardComponent implements OnInit {
   picture: string;
   revTextArea = new FormControl('');
 
-  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private itemService: ItemService) { }
+  constructor(private cookieService: CookieService, private userService: UserService, private itemReviewService: ItemReviewService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.itemService.getItem(this.item.itemId).subscribe(item => {
@@ -55,7 +56,7 @@ export class PastFintCardComponent implements OnInit {
       alert("Please fill all fields");
       return;
     }
-    this.userService.getUser(this.userService.currentUserId).subscribe(user => {
+    this.userService.getUser(parseInt(this.cookieService.get('currentUserId'))).subscribe(user => {
       let review = new Review(new ReviewIds(user.userId, this.item.itemId), description, rating);
       this.itemReviewService.postReview(review).subscribe(response => {
         alert(response);
