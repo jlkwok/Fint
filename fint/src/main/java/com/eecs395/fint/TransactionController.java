@@ -26,9 +26,18 @@ public class TransactionController {
     public ResponseEntity<?> fint(@RequestBody Transaction transaction) {
         transaction.setStartDate(StringDateConverter.calendarToString(Calendar.getInstance()));
         transaction.setIsReturned(false);
+        
+        if(StringDateConverter.stringToCalendar(transaction.getEndDate()).compareTo(Calendar.getInstance()) < 0){
+            return new ResponseEntity<>("End date before begin date", HttpStatus.BAD_REQUEST);
+    	}
+        
         Optional<Item> itemOp = itemRepository.findById(transaction.getItemId());
         if (itemOp.isPresent()) {
         	Item item = itemOp.get();
+        	if(!item.getIsAvailable()) {
+                return new ResponseEntity<>("Item not currently available", HttpStatus.BAD_REQUEST);
+        	}
+        	
             transaction.setTPrice(item.getPrice() * transaction.getLength());
             transactionRepository.save(transaction);
             item.setIsAvailable(false);
