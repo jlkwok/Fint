@@ -5,7 +5,6 @@ import { ItemReviewService } from '../shared/services/item-review.service';
 import { ItemService } from '../shared/services/item.service';
 import { ReviewIds } from '../shared/models/reviewIds';
 import { Review } from '../shared/models/review';
-import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -25,7 +24,7 @@ export class PastFintCardComponent implements OnInit {
   picture: string;
   revTextArea = new FormControl('');
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private itemReviewService: ItemReviewService, private itemService: ItemService) { }
+  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.itemService.getItem(this.item.itemId).subscribe(item => {

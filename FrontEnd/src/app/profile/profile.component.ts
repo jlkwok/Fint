@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 import { Item } from '../shared/models/item';
 import { TransactionService } from '../shared/services/transaction.service';
@@ -28,7 +27,7 @@ export class ProfileComponent implements OnInit {
   currentOutfints: Item[];
   revTextArea = new FormControl('');
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
+  constructor(private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.userId = this.userService.currentUserId;

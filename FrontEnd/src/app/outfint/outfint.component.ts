@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UserService } from '../shared/services/user.service';
-import { AppComponent } from '../app.component';
-import { ActivatedRoute } from '@angular/router';
 import { Item } from '../shared/models/item';
 import { ItemService } from '../shared/services/item.service';
-import { User } from '../shared/models/user';
 
 @Component({
   selector: 'app-outfint',
@@ -18,7 +15,7 @@ export class OutfintComponent implements OnInit {
   picture: string;
   finterId: number;
 
-  constructor(private userService: UserService, private route: ActivatedRoute, private itemService: ItemService) { }
+  constructor(private userService: UserService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.finterId = this.userService.currentUserId;

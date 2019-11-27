@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class ProfileSettingsComponent implements OnInit {
   location: string;
   userId: number;
 
-  constructor(private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userId = this.userService.currentUserId;

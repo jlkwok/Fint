@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { CartItemService } from '../shared/services/cart-item.service';
 import { ItemService } from '../shared/services/item.service';
 import { UserService } from '../shared/services/user.service';
-import { ActivatedRoute } from '@angular/router';
 import { CartItem } from '../shared/models/cartItem';
 import { CartComponent } from '../cart/cart.component';
 
@@ -23,7 +22,7 @@ export class CartItemComponent implements OnInit {
   price: number;
   isDestroyed: boolean;
 
-  constructor(private cartItemService: CartItemService, private itemService: ItemService, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private cartItemService: CartItemService, private itemService: ItemService, private userService: UserService) { }
 
 
   ngOnInit() {

@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
 import { Item } from '../shared/models/item';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-item-card',
@@ -20,7 +19,7 @@ export class ItemCardComponent implements OnInit {
   image: string;
   userId: number;
 
-  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService, private itemReviewService: ItemReviewService) { }
 
   ngOnInit() {
     this.userId = this.userService.currentUserId;

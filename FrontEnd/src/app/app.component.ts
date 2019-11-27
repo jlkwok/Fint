@@ -2,7 +2,7 @@ import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
 import { User } from './shared/models/user';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 
 @Component({
@@ -26,7 +26,7 @@ export class AppComponent implements AfterViewInit {
   signUpEmail = new FormControl('');
   signUpPassword = new FormControl('');
 
-  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router, private route: ActivatedRoute, private titleCasePipe: TitleCasePipe) {
+  constructor(private elementRef: ElementRef, private userService: UserService, private router: Router, private titleCasePipe: TitleCasePipe) {
   }
 
   ngOnInit() {    

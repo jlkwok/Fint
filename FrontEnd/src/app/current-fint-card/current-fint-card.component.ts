@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
 import { Item } from '../shared/models/item';
-import { ActivatedRoute } from '@angular/router';
 import { TransactionService } from '../shared/services/transaction.service';
 import { ItemService } from '../shared/services/item.service';
 
@@ -23,7 +22,7 @@ export class CurrentFintCardComponent implements OnInit {
   userId: number;
   endDate: string;
 
-  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService, private itemService: ItemService) { }
+  constructor(private userService: UserService, private itemReviewService: ItemReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.userId = this.userService.currentUserId;

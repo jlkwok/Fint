@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Item } from '../shared/models/item';
-import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-outfint-card',

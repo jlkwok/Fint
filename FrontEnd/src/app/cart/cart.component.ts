@@ -3,7 +3,6 @@ import { CartItemService } from '../shared/services/cart-item.service';
 import { TransactionService } from '../shared/services/transaction.service';
 import { CartItem } from '../shared/models/cartItem';
 import { Transaction } from '../shared/models/transaction';
-import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
 
 @Component({
@@ -16,7 +15,7 @@ export class CartComponent implements OnInit {
   price:number;
   userId: number;
 
-  constructor(private transactionService: TransactionService ,private cartItemService: CartItemService, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private transactionService: TransactionService ,private cartItemService: CartItemService, private userService: UserService) { }
 
   ngOnInit() {
     this.userId = this.userService.currentUserId;
