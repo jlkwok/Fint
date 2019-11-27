@@ -27,7 +27,6 @@ export class CartItemComponent implements OnInit {
 
 
   ngOnInit() {
-    //this.itemImages = ["../../assets/placeholder.png", "../../assets/avatar.png"];
     this.startDate = this.cartItem.startDate;
     this.endDate = this.cartItem.endDate;
     this.price = this.cartItem.price;  
