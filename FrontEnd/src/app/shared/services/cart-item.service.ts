@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CartItem } from '../models/cartItem';
+import { CartId } from '../models/cartId';
 import { Item } from '../models/item'
 import { Observable } from 'rxjs';
 
@@ -24,7 +25,15 @@ export class CartItemService {
     return this.http.get<CartItem[]>(this.cartItemUrl + 'all');
   }
 
+  getCartPrice(finteeId: number): Observable<number> {
+    return this.http.get<number>(this.cartItemUrl + 'price/' + finteeId);
+  }
+
   addToCart(item: CartItem): Observable<CartItem> {
     return this.http.post<CartItem>(`${this.cartItemUrl}add`, item, {responseType:'text' as 'json'});
+  }
+
+  removeFromCart(id: CartId): Observable<CartItem> {
+    return this.http.post<CartItem>(`${this.cartItemUrl}remove`, id, {responseType:'text' as 'json'});
   }
 }

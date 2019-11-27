@@ -86,7 +86,7 @@ public class TransactionController {
 
  
     @PostMapping("/return")
-    public ResponseEntity<?> returnTransaction(@RequestParam Integer tId) {
+    public ResponseEntity<?> returnTransaction(@RequestBody Integer tId) {
     	Transaction t = transactionRepository.findTransactionsByTransactionId(tId);
     	Item i = itemRepository.findById(t.getItemId()).get();
     	if(t.getIsReturned() == false) {

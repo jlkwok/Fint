@@ -1,1 +1,57 @@
-<p>current-outfint-card works!</p>
+<div *ngIf="destroy" class="card m-2" style="width: 20rem;">
+    <a routerLink="/{{userId}}/item/{{item.itemId}}">
+        <img class="card-img-top" src={{image}}></a>
+    <div class="card-body">
+        <h5 class="card-title">{{name}} ({{endDate}})</h5>
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" (change)="checkValue(isChecked?'A':'B')" data-toggle="modal" data-target="#userReviewModal">
+            <label class="form-check-label" for="exampleCheck1">Outfint Returned</label>
+          </div>
+          <p class="card-text text-muted row-bottom-margin">{{finteeName}}</p>
+        <h4>
+            <ngb-rating class="mt-0" [(rate)]="rating" [starTemplate]="t" [readonly]="true" max="5">
+            </ngb-rating>
+            <small class="text-muted mr-2"> ({{itemReviewCount}})</small>
+        </h4>
+        <h5 class="card-title"><b>${{price}}/day</b></h5>
+    </div>
+</div>
+
+
+<ng-template #t let-fill="fill">
+    <span class="star" [class.full]="fill === 100">
+        <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+    </span>
+</ng-template>
+
+<div class="modal fade" id="userReviewModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Leave a Review</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row mx-2">
+                    <img src="../../assets/avatar.png" alt="Avatar" class="revAvatar">
+                    <p class="mx-2 my-auto">{{finteeName}}</p>
+                </div>
+                <hr>
+                <p>Overall Rating: <ngb-rating class="align-text-center" id="rating" [(rate)]="reviewRating" [starTemplate]="t"
+                        max="5">
+                    </ngb-rating>
+                </p>
+                <div class="form-group">
+                    <label for="revTextArea">Write Your Review:</label>
+                    <textarea class="form-control" id="revTextArea" rows="3" [formControl]="revTextArea"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" (click)="post(revTextArea.value, reviewRating)">Post Your Review</button>
+            </div>
+        </div>
+    </div>
+</div>

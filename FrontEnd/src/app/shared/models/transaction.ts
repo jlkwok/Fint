@@ -1,5 +1,5 @@
 export class Transaction {
-    tId: number;
+    tid: number;
     itemId: number;
     isReturned: boolean;
     finteeId: number;

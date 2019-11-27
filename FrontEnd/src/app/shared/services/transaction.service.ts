@@ -40,4 +40,8 @@ export class TransactionService {
   fint(transaction: Transaction): Observable<Transaction> {
     return this.http.post<Transaction>(`${this.transactionUrl}fint`, transaction, {responseType:'text' as 'json'});
   }
+
+  return(tId: number): Observable<Transaction> {
+    return this.http.post<Transaction>(`${this.transactionUrl}return`, tId, {responseType:'text' as 'json'});
+  }
 }

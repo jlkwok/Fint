@@ -27,8 +27,6 @@ export class ProfileComponent implements OnInit {
   currentFints: Item[];
   currentOutfints: Item[];
   revTextArea = new FormControl('');
-  //currentTransactions: Item[];
-  // reviews
 
   constructor(private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
