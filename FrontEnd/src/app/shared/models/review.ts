@@ -6,10 +6,10 @@ export class Review {
     rating: number;
     postDate: Date;
 
-    constructor (id: ReviewIds, description: string, rating: number, postDate: Date) {
+    constructor (id: ReviewIds, description: string, rating: number) {
         this.id = id;
         this.description = description;
         this.rating = rating; 
-        this.postDate = postDate;
+        this.postDate = null;
     }
 }
