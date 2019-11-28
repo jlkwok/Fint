@@ -60,13 +60,22 @@ export class ItemComponent implements OnInit {
 
   fint() {
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
+    let currentDate = new Date();
+    if (parseInt(date) < currentDate.getDate()) {
+      alert("Invalid End Date");
+      return;
+    }
     let transaction = new Transaction(this.itemId, this.userId, date);
     this.transactionService.fint(transaction).subscribe(response => alert(response));
   }
 
   addToCart() {
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
-
+    let currentDate = new Date();
+    if (parseInt(date) < currentDate.getDate()) {
+      alert("Invalid End Date");
+      return;
+    }
     this.userService.getUser(parseInt(this.cookieService.get('currentUserId'))).subscribe(user => {
       let cartItem = new CartItem(new CartId(this.itemId, user.userId), date, date, 0);
       this.cartItemService.addToCart(cartItem).subscribe(response => {
