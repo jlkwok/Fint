@@ -29,12 +29,15 @@ export class ProfileComponent implements OnInit {
   currentOutfints: Item[];
   revTextArea = new FormControl('');
   profileUserId: number;
+  currentUserProfile: boolean = false;
 
   constructor(private cookieService: CookieService, private route: ActivatedRoute, private userService: UserService, private finteeReviewService: FinteeReviewService, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.profileUserId = +this.route.snapshot.paramMap.get('userId');
     this.userId = parseInt(this.cookieService.get('currentUserId'));
+    if (this.profileUserId === this.userId)
+      this.currentUserProfile = true;
     this.userService.getUser(this.profileUserId).subscribe(user => {
       this.name = user.name;
       this.location = user.location;

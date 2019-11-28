@@ -10,7 +10,7 @@
             </ngb-rating>
             <small class="text-muted mr-2">({{totalNumReviews}})</small>
         </h4>
-        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#userReviewModal">Review
+        <button *ngIf="!currentUserProfile" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#userReviewModal">Review
             this
             person</button>
     </div>
