@@ -2,7 +2,7 @@ import { Component, ElementRef, AfterViewInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { UserService } from './shared/services/user.service';
 import { User } from './shared/models/user';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { Item } from './shared/models/item';
 import { CookieService } from 'ngx-cookie-service';
@@ -41,12 +41,12 @@ export class AppComponent implements AfterViewInit {
     else if (window.location.href.toString().includes("SignIn")) {
       this.loggedIn = false;
     }
+    this.userId = parseInt(this.cookieService.get('currentUserId'));
+    this.userService.getUser(this.userId).subscribe(user => this.userName = user.name);
   }
 
   ngAfterViewInit(): void {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#f4f4f8';
-    this.userId = parseInt(this.cookieService.get('currentUserId'));
-    this.userService.getUser(this.userId).subscribe(user => this.userName = user.name);
   }
 
   logIn(email: string, password: string): void {
@@ -86,6 +86,6 @@ export class AppComponent implements AfterViewInit {
 
   getItemsByQuery(query: string): void {
     query = query.trim();
-    this.router.navigate([`/${this.user.userId}/home/${query}`]);
+    this.router.navigate([`/${this.userId}/home/${query}`]);
   }
 }
