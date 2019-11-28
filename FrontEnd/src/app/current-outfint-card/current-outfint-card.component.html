@@ -4,7 +4,7 @@
     <div class="card-body">
         <h5 class="card-title">{{name}} ({{endDate}})</h5>
         <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1" (change)="checkValue(isChecked?'A':'B')" data-toggle="modal" data-target="#userReviewModal">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" (change)="checkValue(isChecked?'A':'B')" data-toggle="modal" data-target="#itemReviewModal">
             <label class="form-check-label" for="exampleCheck1">Outfint Returned</label>
           </div>
           <p class="card-text text-muted row-bottom-margin">{{finteeName}}</p>
@@ -24,7 +24,7 @@
     </span>
 </ng-template>
 
-<div class="modal fade" id="userReviewModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="itemReviewModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

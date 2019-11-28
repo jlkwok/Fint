@@ -63,7 +63,7 @@ export class ItemComponent implements OnInit {
     let chosenDate: NgbDate = new NgbDate(this.model.year, this.model.month, this.model.day);
     let currentDateObject = new Date();
     let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth(), currentDateObject.getDate());
-    if (currentDate.before(chosenDate)) {
+    if (chosenDate.before(currentDate)) {
       alert("Invalid End Date");
       return;
     }
@@ -76,7 +76,7 @@ export class ItemComponent implements OnInit {
     let chosenDate: NgbDate = new NgbDate(this.model.year, this.model.month, this.model.day);
     let currentDateObject = new Date();
     let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth(), currentDateObject.getDate());
-    if (currentDate.before(chosenDate)) {
+    if (chosenDate.before(currentDate)) {
       alert("Invalid End Date");
       return;
     }
