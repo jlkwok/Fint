@@ -4,7 +4,7 @@ import { UserService } from '../shared/services/user.service';
 import { ItemReviewService } from '../shared/services/item-review.service';
 import { Review } from '../shared/models/review';
 import { ActivatedRoute } from '@angular/router';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { Transaction } from '../shared/models/transaction';
 import { TransactionService } from '../shared/services/transaction.service';
 import { CartItemService } from '../shared/services/cart-item.service';
@@ -60,8 +60,10 @@ export class ItemComponent implements OnInit {
 
   fint() {
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
-    let currentDate = new Date();
-    if (parseInt(date) < currentDate.getDate()) {
+    let chosenDate: NgbDate = new NgbDate(this.model.year, this.model.month, this.model.day);
+    let currentDateObject = new Date();
+    let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth(), currentDateObject.getDate());
+    if (currentDate.before(chosenDate)) {
       alert("Invalid End Date");
       return;
     }
@@ -71,8 +73,10 @@ export class ItemComponent implements OnInit {
 
   addToCart() {
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
-    let currentDate = new Date();
-    if (parseInt(date) < currentDate.getDate()) {
+    let chosenDate: NgbDate = new NgbDate(this.model.year, this.model.month, this.model.day);
+    let currentDateObject = new Date();
+    let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth(), currentDateObject.getDate());
+    if (currentDate.before(chosenDate)) {
       alert("Invalid End Date");
       return;
     }

@@ -25,7 +25,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" routerLink="/{{userId}}/profile">View Profile</a>
               <a class="dropdown-item" routerLink="/{{userId}}/profileSettings">Profile Settings</a>
-              <a class="dropdown-item" href="#">Sign Out</a>
+              <a class="dropdown-item" (click)="signOut()" routerLink="/SignIn">Sign Out</a>
             </div>
           </li>
           <li class="nav-item active">

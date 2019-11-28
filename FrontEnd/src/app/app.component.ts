@@ -88,4 +88,8 @@ export class AppComponent implements AfterViewInit {
     query = query.trim();
     this.router.navigate([`/${this.userId}/home/${query}`]);
   }
+
+  signOut() {
+    this.cookieService.delete('currentUserId');
+  }
 }

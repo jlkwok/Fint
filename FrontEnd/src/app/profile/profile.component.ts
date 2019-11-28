@@ -58,16 +58,12 @@ export class ProfileComponent implements OnInit {
       alert("Please fill all fields");
       return;
     }
-    this.userService.getUser(this.userId).subscribe(user => {
-      let review = new Review(new ReviewIds(user.userId, this.userId), description, rating);
-      this.finteeReviewService.postReview(review).subscribe(response => {
-        alert(response);
-        this.finteeReviewService.getFinteeReviews(this.userId).subscribe(reviews => this.reviews = reviews);
-        this.finteeReviewService.getReviewCount(this.userId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
-        this.finteeReviewService.getFinteeRating(this.userId).subscribe(rating => this.avgRating = rating);
-      });
+    let review = new Review(new ReviewIds(this.userId, this.profileUserId), description, rating);
+    this.finteeReviewService.postReview(review).subscribe(response => {
+      alert(response);
+      this.finteeReviewService.getFinteeReviews(this.profileUserId).subscribe(reviews => this.reviews = reviews);
+      this.finteeReviewService.getReviewCount(this.profileUserId).subscribe(reviewCount => this.totalNumReviews = reviewCount);
+      this.finteeReviewService.getFinteeRating(this.profileUserId).subscribe(rating => this.avgRating = rating);
     });
   }
-
-
 }
