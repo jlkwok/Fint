@@ -52,11 +52,11 @@ export class ProfileSettingsComponent implements OnInit {
 
   updateUser(firstName: string, lastName: string, city: string, state: string) {
     if (!firstName && !lastName && !city && !state) {
-      alert("You are not updating anything!");
+      //alert("You are not updating anything!");
     } else if ((firstName && !lastName) || (!firstName && lastName)){
-      alert("You must update both first and last names");
+      //alert("You must update both first and last names");
     } else if ((city && !state) || (!city && state)) {
-      alert("You must update both city and state");
+      //alert("You must update both city and state");
     }
     firstName = firstName.trim();
     lastName = lastName.trim();
