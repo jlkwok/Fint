@@ -6,7 +6,6 @@ import { Transaction } from '../shared/models/transaction';
 import { UserService } from '../shared/services/user.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ItemService } from '../shared/services/item.service';
-import { Item } from '../shared/models/item';
 
 declare let paypal: any;
 
@@ -78,7 +77,6 @@ export class CartComponent implements OnInit {
     },
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then((payment) => {
-        alert(payment);
         this.fintCart();
       })
     }

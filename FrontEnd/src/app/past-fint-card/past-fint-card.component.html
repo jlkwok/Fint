@@ -26,8 +26,8 @@
             </div>
             <div class="modal-body">
                 <div class="row mx-2">
-                    <img class="small" src="../../assets/placeholder.png">
-                    <p class="mx-2 my-auto">Name</p>
+                    <img class="small" src={{picture}}>
+                    <p class="mx-2 my-auto">{{name}}</p>
                 </div>
                 <hr>
                 <p>Overall Rating: <ngb-rating class="align-text-center" [(rate)]="reviewRating" [starTemplate]="t"
@@ -38,7 +38,7 @@
                     <label for="revTextArea">Write Your Review:</label>
                     <textarea class="form-control" id="revTextArea" rows="3" [formControl]="revTextArea"></textarea>
                 </div>
-                <p>Add a Photo or Video (Optional)</p>
+                <p>Add a Photo (Optional)</p>
                 <img class="mb-2" [src]="url" height="200">
                 <input type='file' (change)="onSelectFile($event)">
             </div>
