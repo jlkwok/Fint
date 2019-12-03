@@ -24,14 +24,14 @@ INSERT INTO fint.item (name, price, picture, fint_count, is_available, location,
 INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id) VALUES ('Suitcase', 15, 'suitcase.jpg', 95, true, 'Ann Arbor, MI', 1);
 INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id) VALUES ('Tent', 50, 'tent.jpg', 30, true, 'Ann Arbor, MI', 1);
 INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id) VALUES ('Wedding Dress', 200, 'weddingdress.jpg', 10, true, 'Ann Arbor, MI', 1);
-INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grill and Tool', 20, 'grill.png', 13, true, 'Redmond, WA', 6, '3 11 2019');
-INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grill and Charcoal', 25, 'grill.png', 13, true, 'Redmond, WA', 6, '4 11 2019');
-INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grill Brush', 5, 'grill.png', 13, true, 'Redmond, WA', 6, '5 11 2019');
-INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grill Cover', 6, 'grill.png', 13, true, 'Redmond, WA', 6, '6 11 2019');
-INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('New Grill', 18, 'grill.png', 13, true, 'Redmond, WA', 6, '7 11 2019');
-INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Mini Grill', 12, 'grill.png', 13, true, 'Redmond, WA', 6, '8 11 2019');
-INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grilling', 20, 'grill.png', 13, true, 'Redmond, WA', 6, '9 11 2019');
-INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Two Grills', 20, 'grill.png', 13, true, 'Redmond, WA', 6, '10 11 2019');
+INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grill and Tool', 20, 'grill.png', 13, true, 'Redmond, WA', 5, '3-11-2019');
+INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grill and Charcoal', 25, 'grill.png', 13, true, 'Redmond, WA', 5, '4-11-2019');
+INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grill Brush', 5, 'grill.png', 13, true, 'Redmond, WA', 5, '5-11-2019');
+INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grill Cover', 6, 'grill.png', 13, true, 'Redmond, WA', 5, '6-11-2019');
+INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('New Grill', 18, 'grill.png', 13, true, 'Redmond, WA', 5, '7-11-2019');
+INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Mini Grill', 12, 'grill.png', 13, true, 'Redmond, WA', 5, '8-11-2019');
+INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Grilling', 20, 'grill.png', 13, true, 'Redmond, WA', 5, '9-11-2019');
+INSERT INTO fint.item (name, price, picture, fint_count, is_available, location, finter_id, post_date) VALUES ('Two Grills', 20, 'grill.png', 13, true, 'Redmond, WA', 5, '10-11-2019');
 
 INSERT INTO fint.item_review (reviewed_id, reviewer_id, description, rating, post_date) VALUES (1, 2, 'This tuxedo is awesome', 4, '11-7-2019');
 INSERT INTO fint.item_review (reviewed_id, reviewer_id, description, rating, post_date) VALUES (1, 3, 'This tuxedo is terrible', 1, '11-7-2019');
