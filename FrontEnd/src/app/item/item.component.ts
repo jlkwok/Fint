@@ -59,10 +59,12 @@ export class ItemComponent implements OnInit {
   }
 
   fint() {
+    if (!this.model)
+      alert("Please specify an end date");
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
     let chosenDate: NgbDate = new NgbDate(this.model.year, this.model.month, this.model.day);
     let currentDateObject = new Date();
-    let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth(), currentDateObject.getDate());
+    let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth() + 1, currentDateObject.getDate());
     if (chosenDate.before(currentDate)) {
       alert("Invalid End Date");
       return;
@@ -72,10 +74,12 @@ export class ItemComponent implements OnInit {
   }
 
   addToCart() {
+    if (!this.model)
+      alert("Please specify an end date");
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
     let chosenDate: NgbDate = new NgbDate(this.model.year, this.model.month, this.model.day);
     let currentDateObject = new Date();
-    let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth(), currentDateObject.getDate());
+    let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth() + 1, currentDateObject.getDate());
     if (chosenDate.before(currentDate)) {
       alert("Invalid End Date");
       return;

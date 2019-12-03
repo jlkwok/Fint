@@ -1,4 +1,4 @@
-<div class="card m-2" style="width: 20rem;">
+<div *ngIf="item.isAvailable" class="card m-2" style="width: 20rem;">
     <a routerLink="/{{userId}}/item/{{item.itemId}}">
         <img class="card-img-top" src="{{image}}"></a>
     <div class="card-body">

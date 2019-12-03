@@ -49,7 +49,6 @@ export class ProfileComponent implements OnInit {
     this.transactionService.getCurrentFints(this.profileUserId).subscribe(currentFints => this.currentFints = currentFints);
     this.transactionService.getCurrentOutfints(this.profileUserId).subscribe(currentOutfints => this.currentOutfints = currentOutfints);
     this.itemService.getUserItems(this.profileUserId).subscribe(outfints => this.outfints = outfints);
-    alert(this.userId);
     this.profilePic = "../../assets/photos/user"+this.userId;
   }
 
