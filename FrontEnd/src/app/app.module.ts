@@ -22,6 +22,7 @@ import { TitleCasePipe } from '@angular/common';
 import { CurrentOutfintCardComponent } from './current-outfint-card/current-outfint-card.component';
 import { CurrentFintCardComponent } from './current-fint-card/current-fint-card.component';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { CookieService } from 'ngx-cookie-service';
     CurrentFintCardComponent
   ],
   imports: [
+    NgxPayPalModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,

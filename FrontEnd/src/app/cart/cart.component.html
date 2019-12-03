@@ -6,7 +6,8 @@
         </div>
         <div class="col-lg-auto m-2">
             <h5>Total: ${{price}}</h5>
-            <button type="button" class="btn btn-outline-primary btn-block" (click)="fintCart()">Pay with PayPal</button>
+            <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+                <div id="paypal-checkout-btn"></div>
         </div>
     </div>
 </div>

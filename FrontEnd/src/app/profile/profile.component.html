@@ -17,7 +17,7 @@
 </div>
 <div class="mx-5 mt-3">
     <ngb-tabset>
-        <ngb-tab title="Current Fints">
+        <ngb-tab title="Current Fints" *ngIf="currentUserProfile">
             <ng-template ngbTabContent>
                 <div class="mt-3">
                     <div class="card-deck mx-3">
@@ -27,7 +27,7 @@
                 </div>
             </ng-template>
         </ngb-tab>
-        <ngb-tab title="Current Outfints">
+        <ngb-tab title="Current Outfints" *ngIf="currentUserProfile">
             <ng-template ngbTabContent>
                 <div class="mt-3">
                     <div class="card-deck mx-3">
@@ -37,7 +37,7 @@
                 </div>
             </ng-template>
         </ngb-tab>
-        <ngb-tab title="Past Fints">
+        <ngb-tab title="Past Fints" *ngIf="currentUserProfile">
             <ng-template ngbTabContent>
                 <div class="mt-3">
                     <div class="card-deck mx-3">

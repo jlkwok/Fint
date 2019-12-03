@@ -6,6 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TransactionService } from '../shared/services/transaction.service';
 import { ItemService } from '../shared/services/item.service';
 import { CookieService } from 'ngx-cookie-service';
+import { ReviewIds } from '../shared/models/reviewIds';
+import { Review } from '../shared/models/review';
+import { FinteeReviewService } from '../shared/services/fintee-review.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-current-outfint-card',
@@ -25,8 +29,9 @@ export class CurrentOutfintCardComponent implements OnInit {
   userId: number;
   endDate: string;
   destroy: boolean = true;
+  revTextArea = new FormControl('');
 
-  constructor(private cookieService: CookieService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService, private itemService: ItemService) { }
+  constructor(private cookieService: CookieService, private finteeReviewService: FinteeReviewService, private userService: UserService, private itemReviewService: ItemReviewService, private route: ActivatedRoute, private transactionService: TransactionService, private itemService: ItemService) { }
 
   ngOnInit() {
     this.userId = parseInt(this.cookieService.get('currentUserId'));
@@ -51,5 +56,17 @@ export class CurrentOutfintCardComponent implements OnInit {
         this.destroy = false;
       });
     }
+  }
+
+  post(description:string, rating: number) {
+    description = description.trim();
+    if (!description || !rating) {
+      alert("Please fill all fields");
+      return;
+    }
+    let review = new Review(new ReviewIds(this.userId, this.finteeId), description, rating);
+    this.finteeReviewService.postReview(review).subscribe(response => {
+      alert(response);
+    });
   }
 }
