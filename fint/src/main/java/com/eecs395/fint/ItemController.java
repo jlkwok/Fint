@@ -50,14 +50,27 @@ public class ItemController {
 	@PostMapping("/post")
     public ResponseEntity<?> postItem(@RequestBody Item item) {
 		item.setPostDate(StringDateConverter.calendarToString(Calendar.getInstance()));
-		itemRepository.save(item);
-		return ResponseEntity.ok("New Item Created");
+		Item i = itemRepository.save(item);
+		return ResponseEntity.ok(i.getItemId());
     }
 
 	@GetMapping("/getUserItems")
 	public ResponseEntity<?> getUserItems(
 			@RequestParam int finterId) {
 		return ResponseEntity.ok(itemRepository.findItemsByFinterId(finterId));
+	}
+
+	public static class IntString {
+		private Integer i;
+		private String s;
+
+		public Integer getI() {
+			return i;
+		}
+
+		public String getS() {
+			return s;
+		}
 	}
 
 	@PostMapping(path="/setItemPrice")
@@ -76,12 +89,11 @@ public class ItemController {
 
 	@PostMapping(path="/setItemName")
 	public ResponseEntity<?> setItemName(
-			@RequestParam int id,
-			@RequestParam String name) {
-		Optional<Item> optionalItem = itemRepository.findById(id);
+			@RequestBody IntString idName) {
+		Optional<Item> optionalItem = itemRepository.findById(idName.getI());
 		if (optionalItem.isPresent()) {
 			Item updatedItem = optionalItem.get();
-			updatedItem.setName(name);
+			updatedItem.setName(idName.getS());
 			itemRepository.save(updatedItem);
 			return ResponseEntity.ok("Item Name Updated");
 		} else {
@@ -91,12 +103,11 @@ public class ItemController {
 
 	@PostMapping(path="/setItemPicture")
 	public ResponseEntity<?> setItemPicture(
-			@RequestParam int id,
-			@RequestParam String picture) {
-		Optional<Item> optionalItem = itemRepository.findById(id);
+			@RequestBody IntString idPic) {
+		Optional<Item> optionalItem = itemRepository.findById(idPic.getI());
 		if (optionalItem.isPresent()) {
 			Item updatedItem = optionalItem.get();
-			updatedItem.setPicture(picture);
+			updatedItem.setPicture(idPic.getS());
 			itemRepository.save(updatedItem);
 			return ResponseEntity.ok("Item Picture Updated");
 		} else {
@@ -106,12 +117,11 @@ public class ItemController {
 
 	@PostMapping(path="/setItemLocation")
 	public ResponseEntity<?> setItemLocation(
-			@RequestParam int id,
-			@RequestParam String location) {
-		Optional<Item> optionalItem = itemRepository.findById(id);
+			@RequestBody IntString idLocation) {
+		Optional<Item> optionalItem = itemRepository.findById(idLocation.getI());
 		if (optionalItem.isPresent()) {
 			Item updatedItem = optionalItem.get();
-			updatedItem.setLocation(location);
+			updatedItem.setLocation(idLocation.getS());
 			itemRepository.save(updatedItem);
 			return ResponseEntity.ok("Item Location Updated");
 		} else {

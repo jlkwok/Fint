@@ -66,7 +66,7 @@ export class ProfileSettingsComponent implements OnInit {
     let location = this.titleCasePipe.transform(city) + ", " + state.toUpperCase();
     this.userService.updateUserName(this.userId, name).subscribe(response => {
       this.userService.updateUserLocation(this.userId, location).subscribe(response => {
-        this.photoService.updateUserPicture(this.selectedFile, "user"+this.userId).subscribe(response => {
+        this.photoService.updatePicture(this.selectedFile, "user"+this.userId).subscribe(response => {
           this.router.navigate([`/${this.userId}/profile`]);
         });
       });

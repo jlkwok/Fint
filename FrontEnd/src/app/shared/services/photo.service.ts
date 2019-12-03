@@ -17,7 +17,7 @@ export class PhotoService {
   };
 
   constructor(private http: HttpClient) { }
-  updateUserPicture(photoFile: File, photoName: string) {
+  updatePicture(photoFile: File, photoName: string) {
     if (typeof photoFile !== "undefined") {
         let formData: FormData = new FormData();
         formData.append('file', photoFile);
