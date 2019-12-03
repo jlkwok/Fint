@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { IntString } from '../models/intstring'
 import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,11 +35,13 @@ export class UserService {
       let is = new IntString(id, name);
       return this.http.post<string>(`${this.userUrl}setUserName`, is, {responseType:'text' as 'json'});
     }
+    return of("bad");
   }
   updateUserLocation(id: number, location: string){
     if (location !== ", ") {
       let is = new IntString(id, location);
       return this.http.post<string>(`${this.userUrl}setUserLocation`, is, {responseType:'text' as 'json'});
     }
+    return of("bad");
   }
 }

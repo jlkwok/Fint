@@ -15,7 +15,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+@CrossOrigin
 @Controller
+@RequestMapping(path="/photoupload")
 public class PhotoUploadController {
 
     private final StorageService storageService;
@@ -45,15 +47,17 @@ public class PhotoUploadController {
                 "attachment; filename=\"" + file.getFilename() + "\"").body(file);
     }
 
-    @PostMapping("/")
-    public String handlePhotoUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+    @PostMapping("/upload")
+    public ResponseEntity<String> handlePhotoUpload(
+            @RequestParam("file") MultipartFile file,
+            String name) {
+//            RedirectAttributes redirectAttributes) {
 
-        storageService.store(file);
-        redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
+        storageService.store(file, name);
+//        redirectAttributes.addFlashAttribute("message",
+//                "You successfully uploaded " + file.getOriginalFilename() + "!");
 
-        return "uploaded";
+        return ResponseEntity.ok("uploaded");
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

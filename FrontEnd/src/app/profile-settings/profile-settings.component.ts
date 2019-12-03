@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../shared/services/user.service';
+import { PhotoService } from '../shared/services/photo.service';
 import { FormControl } from '@angular/forms';
 import { TitleCasePipe } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
@@ -13,20 +14,23 @@ import { CookieService } from 'ngx-cookie-service';
 export class ProfileSettingsComponent implements OnInit {
   url = '';
   profilePic: string;
+  defaultProfilePic: string;
   name: string;
   location: string;
   userId: number;
+  selectedFile: File;
 
   firstName = new FormControl('');
   lastName = new FormControl('');
   city = new FormControl('');
   state = new FormControl('');
 
-  constructor(private cookieService: CookieService, private userService: UserService, private titleCasePipe: TitleCasePipe, private router: Router) { }
+  constructor(private cookieService: CookieService, private userService: UserService, private photoService: PhotoService, private titleCasePipe: TitleCasePipe, private router: Router) { }
 
   ngOnInit() {
     this.userId = parseInt(this.cookieService.get('currentUserId'));
-    this.profilePic = "../../assets/avatar.png";
+    this.defaultProfilePic = "../../assets/avatar.png";
+    this.profilePic = "../../assets/photos/user"+this.userId;
     this.userService.getUser(this.userId).subscribe(user => {
       this.name = user.name;
       this.location = user.location;
@@ -34,15 +38,16 @@ export class ProfileSettingsComponent implements OnInit {
   }
 
   onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+    this.selectedFile = event.target.files[0];
+    // if (event.target.files && event.target.files[0]) {
+    //   var reader = new FileReader();
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
+    //   reader.readAsDataURL(event.target.files[0]); // read file as data url
 
-      reader.onload = () => { // called once readAsDataURL is completed
-        this.url = reader.result.toString();
-      }
-    }
+    //   reader.onload = () => { // called once readAsDataURL is completed
+    //     this.url = reader.result.toString();
+    //   }
+    // }
   }
 
   updateUser(firstName: string, lastName: string, city: string, state: string) {
@@ -61,7 +66,9 @@ export class ProfileSettingsComponent implements OnInit {
     let location = this.titleCasePipe.transform(city) + ", " + state.toUpperCase();
     this.userService.updateUserName(this.userId, name).subscribe(response => {
       this.userService.updateUserLocation(this.userId, location).subscribe(response => {
-        this.router.navigate([`/${this.userId}/profile`]);
+        this.photoService.updateUserPicture(this.selectedFile, "user"+this.userId).subscribe(response => {
+          this.router.navigate([`/${this.userId}/profile`]);
+        });
       });
     });
   }
