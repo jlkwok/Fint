@@ -44,4 +44,8 @@ export class TransactionService {
   return(tId: number): Observable<Transaction> {
     return this.http.post<Transaction>(`${this.transactionUrl}return`, tId, {responseType:'text' as 'json'});
   }
+
+  getTransactionPrice(price : number, endDate : string) : Observable<number> {
+    return this.http.get<number>(`${this.transactionUrl}tPrice?price=${price}&endDate=${endDate}`);
+  }
 }

@@ -11,6 +11,9 @@ import { CartItemService } from '../shared/services/cart-item.service';
 import { CartItem } from '../shared/models/cartItem';
 import { CartId } from '../shared/models/cartId';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpResponseBase } from '@angular/common/http';
+
+declare let paypal: any;
 
 @Component({
   selector: 'app-item',
@@ -30,6 +33,10 @@ export class ItemComponent implements OnInit {
   reviews: Review[];
   itemId: number;
   userId: number;
+  tPrice:number;
+
+  addScript: boolean = false;
+  paypalLoad: boolean = true;
 
   displayMonths = 2;
   navigation = 'select';
@@ -59,6 +66,11 @@ export class ItemComponent implements OnInit {
   }
 
   fint() {
+    let transaction = this.createTransaction();
+    this.transactionService.fint(transaction).subscribe(response => alert(response));
+  }
+
+  createTransaction() {
     if (!this.model)
       alert("Please specify an end date");
     let date = this.model.month + "-" + this.model.day + "-" + this.model.year;
@@ -67,10 +79,19 @@ export class ItemComponent implements OnInit {
     let currentDate = new NgbDate(currentDateObject.getFullYear(), currentDateObject.getMonth() + 1, currentDateObject.getDate());
     if (chosenDate.before(currentDate)) {
       alert("Invalid End Date");
+      return null;
+    }
+    return new Transaction(this.itemId, this.userId, date);
+  }
+
+  updatePrice() {
+    let transaction = this.createTransaction();
+    if(!transaction){
       return;
     }
-    let transaction = new Transaction(this.itemId, this.userId, date);
-    this.transactionService.fint(transaction).subscribe(response => alert(response));
+    this.transactionService.getTransactionPrice(this.price, transaction.endDate).subscribe(response => {
+      this.tPrice = response;
+    });
   }
 
   addToCart() {
@@ -91,5 +112,47 @@ export class ItemComponent implements OnInit {
       });
     });
   }
+
+  paypalConfig = {
+    env: 'sandbox',
+    client: {
+      sandbox: 'AXBc2G7PXzN0XzwWDLTbb7tzCwR4yN_UgGqIbRXhRYV130N5ncX3YY3BiKAc29Otde-7Hhwf0Ch5Xa_8',
+    },
+    commit: true,
+    payment: (data, actions) => {
+      return actions.payment.create({
+        payment: {
+          transactions: [
+            { amount: { total: this.tPrice, currency: 'USD' } }
+          ]
+        }
+      });    
+    },
+    onAuthorize: (data, actions) => {
+      return actions.payment.execute().then((payment) => {
+        this.fint();
+      })
+    }
+  };
+
+  ngAfterViewChecked(): void {
+    if (!this.addScript) {
+      this.addPaypalScript().then(() => {
+        paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
+        this.paypalLoad = false;
+      })
+    }
+  }
+  
+  addPaypalScript() {
+    this.addScript = true;
+    return new Promise((resolve, reject) => {
+      let scripttagElement = document.createElement('script');    
+      scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
+      scripttagElement.onload = resolve;
+      document.body.appendChild(scripttagElement);
+    })
+  }
+
 
 }

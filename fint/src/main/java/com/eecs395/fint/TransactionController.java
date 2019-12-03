@@ -49,6 +49,15 @@ public class TransactionController {
         }
     }
     
+    @GetMapping("/tPrice")
+    public @ResponseBody double getTPrice(@RequestParam double price, @RequestParam String endDate) {
+    	Transaction transaction = new Transaction();
+        transaction.setStartDate(StringDateConverter.calendarToString(Calendar.getInstance()));
+        transaction.setEndDate(endDate);
+        transaction.setTPrice(price * transaction.getLength());
+        return transaction.getTPrice();
+    }
+    
     @GetMapping("/getTransaction")
     public @ResponseBody Transaction getTransaction(@RequestParam Integer itemId){
     	return transactionRepository.getCurrentItemTransaction(itemId);
